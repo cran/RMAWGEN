@@ -1,0 +1,54 @@
+
+NULL
+
+
+ 
+#' 
+#' Verifies if 'climate' represents the monthly climatology in one year, i.e  'climate' is monthly.climate type
+#' 
+#'  
+#' @param  climate the 'monthly climatology' data
+#' @param  nstation number of variable measurement station (columns of the matrix 'climate')
+#' @param  nmonth number of months in one year (it can be different if climate is represented by seasonal avarages or others), Default is 12 
+#' @param  verbose Prints output and warining messagrs only if is \code{TRUE}.
+#'    
+#' 
+#' @callGraphPrimitives     
+#' @author  Emanuele Cordano, Emanuele Eccel  
+#' 
+#' @return  A logical variable if the matrix 'climate' is monthly.climate type
+
+# @examples 
+# data(trentino_predictions)
+# is.monthly.climate(Tn_2021_2050_50,nstation=ncol(Tn_2021_2050_50))
+#
+
+
+
+is.monthly.climate <-
+function (climate,nstation=3,nmonth=12,verbose=TRUE) {
+
+	
+	
+	if (is.null(climate)) {
+		return(FALSE)
+	} else if (!is.matrix(climate)) {
+		if (verbose) print("Error: The format for monthly mean climate is not a matrix !!")
+		return(FALSE)
+	} else {
+		v <- dim(climate)
+		if ((v[1]!=nmonth) | (v[2]!=nstation)) {
+			if (verbose) print("Error: The matrix format for monthly mean climate is not correct !!")
+			return(FALSE)
+		} else {
+			return(TRUE)
+		}
+		
+		return(FALSE)
+	}
+	
+	
+	return(FALSE)
+	
+}
+
