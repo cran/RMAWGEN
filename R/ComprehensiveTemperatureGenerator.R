@@ -99,6 +99,7 @@ function(
 
 	
 	useVAR=TRUE	
+	if (option==2) normalize=TRUE # set NORMALIZE TRUE always for option=2
 	
 	origin <- paste(year_min,"1","1",sep="/") # Must start from Jan 1 
 	origin_sim <- paste(year_min_sim,"1","1",sep="/") # Must start from Jan 1 
@@ -136,6 +137,8 @@ function(
 		}	
 		var <- getVARmodel(data=param[['data_for_var']],suffix=c("_T1","_T2"),sep="",p=p,type=type,lag.max=lag.max,ic=ic,activateVARselect=activateVARselect,exogen=exogen) 
 		
+		if (activateVARselect) return(list(input=param,varselect=var))
+
 	} else {
 
 		var <- varmodel

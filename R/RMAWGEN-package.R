@@ -10,8 +10,8 @@
 #' \tabular{ll}{
 #' Package: \tab RMAWGEN\cr
 #' Type: \tab Package\cr
-#' Version: \tab 1.0\cr
-#' Date: \tab   2011-08-11\cr
+#' Version: \tab 1.1\cr
+#' Date: \tab   2011-09-27\cr
 #' License: \tab GPL (>= 2)\cr
 #' LazyLoad: \tab yes\cr
 #' Depends: R(>=2.12),time,chron,vars \cr
@@ -27,7 +27,7 @@
 #' @aliases RMAWGEN
 #' @docType package
 #' @title R - Multi-site Autoregressive WEather Generator
-#' @author Emanuele Cordano \email{emanuele.cordano@@gmail.org}, Emanuele Eccel \email{emanuele.eccel@@iasama.it}
+#' @author Emanuele Cordano \email{emanuele.cordano@@gmail.org}, Emanuele Eccel \email{emanuele.eccel@@iasma.it}
 # @references 
 #' 
 #' @keywords package

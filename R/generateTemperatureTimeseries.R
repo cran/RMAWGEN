@@ -109,8 +109,12 @@ function (std_tn,std_tx,SplineTx,SplineTn,
 		Tn_gen <- Tm_gen-DeltaT_gen/2.0
 		
 		
+	} else if (option==3) {	
+		# extract_average_temperature 
+		Tm_gen <- res_multigen%*% diag(std_tm) + SplineTm
 		
-		
+		Tx_gen <- Tm_gen-SplineTm+SplineTx
+		Tn_gen <- Tm_gen-SplineTm+SplineTn
 	}
 	
 	out <- list(res_multigen,SplineTx,SplineTn,Tx_gen,Tn_gen)

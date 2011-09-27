@@ -1,13 +1,10 @@
 Package: RMAWGEN
-Type: Package
+Maintainer: Emanuele Cordano <emanuele.cordano@gmail.com>
+License: GPL (>= 2)
 Title: RMAWGEN (R Multi-site Auto-regressive Weather GENeretor): a
         package to generate daily time series from monthly mean values
-Version: 1.0
-Date: 2011-08-11
+Type: Package
 Author: Emanuele Cordano, Emanuele Eccel
-Maintainer: Emanuele Cordano <emanuele.cordano@gmail.com>
-Depends: R (>= 2.10), chron, date, vars, MASS, strucchange, urca (>=
-        1.1-6), lmtest (>= 0.9-26), sandwich (>= 2.2-4)
 Description: This package contains S3 functions for spatial multi-site
         stochastic generation of daily timeseries of temperature and
         precipitation. The implemented tools make use of Vectorial
@@ -15,7 +12,12 @@ Description: This package contains S3 functions for spatial multi-site
         instrumental timeseries given and then works with monthly
         timeseries as input. Bugs/comments/questions/collaboration of
         any kind are warmly welcomed.
-License: GPL (>= 2)
+Version: 1.1
+Repository: CRAN
+Date/Publication: 2011-09-28 07:01:39
+Date: 2011-09-27
+Depends: R (>= 2.10), chron, date, vars, MASS, strucchange, urca (>=
+        1.1-6), lmtest (>= 0.9-26), sandwich (>= 2.2-4)
 Collate: 'acvWGEN.R' 'adddate.R' 'addsuffixes.R'
         'ComprehensivePrecipitationGenerator.R'
         'ComprehensiveTemperatureGenerator.R' 'continuity_ratio.R'
@@ -35,6 +37,4 @@ Collate: 'acvWGEN.R' 'adddate.R' 'addsuffixes.R'
         'splineInterpolateMonthlytoDailyforSeveralYears.R'
         'splineInterpolateMonthlytoDaily.R' 'TemperatureEndDay.R'
         'TemperatureStartDay.R' 'WhereIs.R'
-Packaged: 2011-08-12 07:38:22 UTC; ecor
-Repository: CRAN
-Date/Publication: 2011-08-12 14:30:10
+Packaged: 2011-09-27 14:37:13 UTC; ecor

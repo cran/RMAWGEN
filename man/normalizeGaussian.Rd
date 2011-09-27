@@ -1,13 +1,13 @@
 \name{normalizeGaussian}
 \alias{normalizeGaussian}
 \title{normalizeGaussian}
-\usage{normalizeGaussian(x=0, data, cpf, mean=0, sd=1, inverse=FALSE, step,
+\usage{normalizeGaussian(x=0, data=x, cpf, mean=0, sd=1, inverse=FALSE, step,
     prec=10^-4, type=3, extremes=TRUE, sample)}
 \description{Converts a random variable \code{x} extracted by a population represented by the sample \code{data} or \code{sample}
 to a normally-distributed variable with assigned mean and standard deviation or vice versa in case \code{inverse} is \code{TRUE}}
 \author{Emanuele Cordano, Emanuele Eccel}
 \value{the normalized variable or its inverse}
-\note{See the R code for further details}
+\note{This function makes a Marginal Gaussianization. See the R code for further details}
 \arguments{\item{x}{value or vector of values to be converted}
 \item{data}{a sample of data on which a non-parametric probility distribution is estimated}
 \item{cpf}{cumulative probability distribution. If \code{NULL} (default) is calaculated as \code{\link{ecdf}(data)}}

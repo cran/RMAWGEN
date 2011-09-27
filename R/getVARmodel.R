@@ -36,7 +36,7 @@ NULL
 
 getVARmodel <-
 function (data,suffix=c("_Tx","_Tn"),sep="",p=1,type="none",season=NULL,exogen=NULL,lag.max=NULL,ic="AIC",activateVARselect=FALSE,na.rm=TRUE) { 
-
+	
 	if (!is.null(suffix)) names(data) <- addsuffixes(names=names(data),suffix=suffix,sep=sep) 
 	
 	if (na.rm) {
@@ -49,8 +49,9 @@ function (data,suffix=c("_Tx","_Tn"),sep="",p=1,type="none",season=NULL,exogen=N
 	
 	
 	if (activateVARselect) {
-	
-		out <- VARselect(data[!is.na(data[,1]),],lag.max=lag.max)
+
+		if (is.null(lag.max)) lag.max=10
+		out <- VARselect(data[!is.na(data[,1]),],type=type,season=season,exogen=exogen,lag.max=lag.max)
 		
 	} else {
 		if (!is.null(exogen)) exogen <- exogen[!is.na(data[,1]),]

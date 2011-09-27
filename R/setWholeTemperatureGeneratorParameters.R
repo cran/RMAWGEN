@@ -161,8 +161,12 @@ function(station,
 		data_original <- cbind(Tm_mes_res,DeltaT_mes_res)
 		normalize=TRUE
 		
-	} else {
+	} else if (option==3) {
 		
+		data_original <- Tm_mes_res
+		# set data_original for option 3 
+	
+	} else { 
 		data_original <- NULL
 	}
 	

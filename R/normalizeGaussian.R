@@ -24,7 +24,7 @@ NULL
 #' @return the normalized variable or its inverse   
 #' @callGraphPrimitives 
 #'     
-#'  @note See the R code for further details
+#'  @note This function makes a Marginal Gaussianization. See the R code for further details
 
 
 #converts a random variable distributed according to data to normally distributed variable
@@ -34,7 +34,7 @@ NULL
 
 
 normalizeGaussian <-
-function(x=0,data,cpf=NULL,mean=0,sd=1,inverse=FALSE,step=NULL,prec=10^-4,type=3,extremes=TRUE,sample=NULL) {
+function(x=0,data=x,cpf=NULL,mean=0,sd=1,inverse=FALSE,step=NULL,prec=10^-4,type=3,extremes=TRUE,sample=NULL) {
 	
 	
 	
