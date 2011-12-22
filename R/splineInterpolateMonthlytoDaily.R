@@ -10,7 +10,7 @@ NULL
 #' @param first_row row corresponding the first day of time interval where montlhy mean conservation is applied
 #' @param last_row corresponding the last day of time interval where montlhy mean conservation is applied
 #' 
-#' 
+#' @export 
 #'  
 #' @return a matrix with interpolated daily data 
 #' 

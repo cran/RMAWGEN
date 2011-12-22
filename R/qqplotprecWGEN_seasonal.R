@@ -8,7 +8,7 @@ NULL
 #' 
 #' @param measured  matrix containing measured data (each station corresponds to a column) 
 #' @param simulated matrix containing respective generated data (each station corresponds to a column) 
-#' @param xlab,ylab see \code{\link{plot}},\code{\link{qqplotWGEN}}
+#' @param xlab,ylab see \code{\link{plot.default}},\code{\link{qqplotWGEN}}
 #' @param title title 
 #' @param station character vector containing IDs of analyzed station. If \code{NULL} (default) all station (columns of \code{simulated} and \code{measured}) are considered
 #' @param directorypdf name of the directory (path included) where to seva the outputs 
@@ -16,12 +16,14 @@ NULL
 #' 
 #' @author  Emanuele Cordano, Emanuele Eccel
 #' 
+#' @export
+#' 
 #' @note  Uses \code{\link{qqplotprecWGEN}} for each season of collected data and saves the output on  pdf files. See the R code for further details.
 #' @seealso \code{\link{qqplotprecWGEN}},\code{\link{extractmonths}}
 #' 
 #' 
 #' 
-#' @callGraphPrimitives      
+#'        
 #' @return  0 in case of success 
 
 

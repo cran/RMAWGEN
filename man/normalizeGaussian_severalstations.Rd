@@ -1,27 +1,77 @@
 \name{normalizeGaussian_severalstations}
 \alias{normalizeGaussian_severalstations}
-\title{normalizeGaussian_severalstations}
-\usage{normalizeGaussian_severalstations(x, data=x, cpf, mean=0, sd=1,
-    inverse=FALSE, step, prec=10^-4, type=3, extremes=TRUE, sample,
-    origin_x, origin_data)}
-\description{Converts several samples \code{x} random variable  extracted by populations represented by the columns of \code{data} respectively or \code{sample}
-to a normally-distributed samples with assinged mean and standard deviation or vice versa in case \code{inverse} is \code{TRUE}}
-\author{Emanuele Cordano, Emanuele Eccel}
-\value{a matrix with the normalized variable or its inverse}
-\seealso{\code{\link{normalizeGaussian}}}
-\note{It applies \code{\link{normalizeGaussian}} for each column of \code{x} and \code{data}.
-See the R code for further details}
-\arguments{\item{x}{value to be converted}
-\item{data}{a sample of data on which a non-parametric probility distribution is estimated}
-\item{cpf}{cumulative probability distribution. If \code{NULL} (default) is calaculated as \code{\link{ecdf}(data)}}
-\item{mean}{mean (expected value) of the normalized random variable. Default is 0.}
-\item{sd}{standard deviation of the normalized random variable. Default is 1.}
-\item{inverse}{logical value. If \code{TRUE} the function works inversely (the opposite way). Default is \code{FALSE}.}
-\item{step}{vector of values in which step discontinuities of the cumulative probability function occur. Default is \code{NULL}}
-\item{prec}{amplitude of the neighbourhood of the step discontinuities where cumulative probability function is treated as non-continuous.}
-\item{type}{see \code{\link{quantile}}}
-\item{extremes}{logical variable. 
-If \code{TRUE} (default) the probability or frequency is multiplied by \deqn{\frac{N}{N+1}} where \eqn{N} is the length of \code{data}}
-\item{sample}{information about sample or probability distribution. Default is \code{NULL}}
-\item{origin_x}{date corresponding to the first row of \code{x}}
-\item{origin_data}{date corresponding to the first row of \code{data}}}
+\title{Converts several samples \code{x} random variable  extracted by populations represented by the columns of \code{data} respectively or \code{sample}
+ to a normally-distributed samples with assinged mean and standard deviation or vice versa in case \code{inverse} is \code{TRUE}}
+\usage{
+  normalizeGaussian_severalstations(x, data = x,
+    cpf = NULL, mean = 0, sd = 1, inverse = FALSE,
+    step = NULL, prec = 10^-4, type = 3, extremes = TRUE,
+    sample = NULL, origin_x = NULL, origin_data = NULL)
+}
+\arguments{
+  \item{x}{value to be converted}
+
+  \item{data}{a sample of data on which a non-parametric
+  probility distribution is estimated}
+
+  \item{cpf}{cumulative probability distribution. If
+  \code{NULL} (default) is calaculated as
+  \code{\link{ecdf}(data)}}
+
+  \item{mean}{mean (expected value) of the normalized
+  random variable. Default is 0.}
+
+  \item{sd}{standard deviation of the normalized random
+  variable. Default is 1.}
+
+  \item{inverse}{logical value. If \code{TRUE} the function
+  works inversely (the opposite way). Default is
+  \code{FALSE}.}
+
+  \item{step}{vector of values in which step
+  discontinuities of the cumulative probability function
+  occur. Default is \code{NULL}}
+
+  \item{prec}{amplitude of the neighbourhood of the step
+  discontinuities where cumulative probability function is
+  treated as non-continuous.}
+
+  \item{type}{see \code{\link{quantile}}}
+
+  \item{extremes}{logical variable.  If \code{TRUE}
+  (default) the probability or frequency is multiplied by
+  \deqn{\frac{N}{N+1}} where \eqn{N} is the length of
+  \code{data}}
+
+  \item{sample}{information about sample or probability
+  distribution. Default is \code{NULL}}
+
+  \item{origin_x}{date corresponding to the first row of
+  \code{x}}
+
+  \item{origin_data}{date corresponding to the first row of
+  \code{data}}
+}
+\value{
+  a matrix with the normalized variable or its inverse
+}
+\description{
+  Converts several samples \code{x} random variable
+  extracted by populations represented by the columns of
+  \code{data} respectively or \code{sample} to a
+  normally-distributed samples with assinged mean and
+  standard deviation or vice versa in case \code{inverse}
+  is \code{TRUE}
+}
+\note{
+  It applies \code{\link{normalizeGaussian}} for each
+  column of \code{x} and \code{data}. See the R code for
+  further details
+}
+\author{
+  Emanuele Cordano, Emanuele Eccel
+}
+\seealso{
+  \code{\link{normalizeGaussian}}
+}
+

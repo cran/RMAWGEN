@@ -11,12 +11,13 @@ NULL
 #' @param decimal logical variable. If \code{FALSE} (default) k is integer and starts from 1, otherwise is consider as the decimal julian day since \code{origin} (deprecated)
 #' @param character logical variable. It is used if \code{data.frame} is \code{FALSE}, if it is \code{FALSE}, the dete is returned as POSIXct, otherwise is a character in the following form \code{YYYY-MM-DD} 
 #' 
+#' @export
 #' 
 #'  @author  Emanuele Cordano, Emanuele Eccel
 #'    
 #'   
 #'
-#'  @callGraphPrimitives      
+#'         
 #' 
 #' @note It uses functions of  \code{\link{time}} package. It works like an  inverse functions of \code{\link{extractdays}}. 
 #' If \code{k} is a vector, the function returns several dates for each element of \code{k}

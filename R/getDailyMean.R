@@ -15,12 +15,14 @@ NULL
 #' @param lag lag (number of days) on which daily mean is calculated. The mean is calculated considereing \code{lag} days before and after each day.  
 #'
 #' @return  a matrix containing the requested daily mean data where each day corresponds to a row and each station corresponds to a column
-#' @callGraphPrimitives    
+#'      
 #' 
 #' 
 #' @seealso \code{\link{extractyears}}
 #' 
-
+#' 
+#' @export
+#' 
 #' @note The input data frame \code{data} must have the following fields: \code{year,month,day,variables_ID1,variables_ID2,...} 
 #' where the fields \code{,variables_ID1,variables_ID2,...} contain the daily variables referred to the respective stations and the field names are replaced with the respective station ID. 
 

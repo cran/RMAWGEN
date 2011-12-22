@@ -8,13 +8,15 @@ NULL
 #' @param std vector containing start deviation for each minimun temperature anomalies
 #' @param SplineAdv matrix containing the averaged values of maximum temperature obtained by a spline interpolation of monthly climate
 #' 
+#' @export 
+#' 
 #' 
 #' @author  Emanuele Cordano, Emanuele Eccel
 #'    
 #'   
 #'
 #'
-#' @callGraphPrimitives      
+#'        
 #' @return a matrix with generated maximum temperature
 
 

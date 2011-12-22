@@ -12,8 +12,9 @@ NULL
 #' @param end_day       vector containing the measurement end day. An example is \code{TEMPERATURE_MEASUREMENT_END_DAY} defined in \code{\link{trentino}}.
 #'  
 #'  
-#'
-#' @callGraphPrimitives     
+#' @export 
+#' 
+#'       
 #' @return  the precipitation measurement end day given the vectors of station IDs and the precipitation measurement end days
 #' 
 #' 

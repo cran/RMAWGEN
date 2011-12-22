@@ -19,10 +19,12 @@ NULL
 #' @param sample a character string or \code{NULL} containing sample or probability distribution information. 
 #' Default is \code{NULL} 
 #' 
+#' @export 
+#' 
 #' 
 #' @author Emanuele Cordano, Emanuele Eccel
 #' @return the normalized variable or its inverse   
-#' @callGraphPrimitives 
+#'   
 #'     
 #'  @note This function makes a Marginal Gaussianization. See the R code for further details
 
@@ -49,8 +51,10 @@ function(x=0,data=x,cpf=NULL,mean=0,sd=1,inverse=FALSE,step=NULL,prec=10^-4,type
 	if (inverse) {
 	
 		out <- x*NA
-		qx <- pnorm(x[!is.na(x)]) # check the extermes!! extremes are 
-	
+		
+		qx <- pnorm(x[!is.na(x)])/f # check the extermes!! extremes are 
+		
+		qx[qx>1] <- 1
 		
 		out[!is.na(x)] <- quantile(x=data,probs=qx,na.rm=TRUE,names=FALSE,type=type)
 		

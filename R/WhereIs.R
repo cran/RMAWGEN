@@ -11,9 +11,9 @@ NULL
 #' @param station_names  vector containing the IDs (characters)  of the considered meteorological stations. An example is \code{STATION_NAMES} defined in the \code{\link{trentino}} dataset.
 #' @param location      vector containing the toponyms. An example is \code{LOCATION} defined in the \code{\link{trentino}} dataset.
 #'  
-#'  
+#'  @export 
 #'
-#' @callGraphPrimitives     
+#'       
 #' @return  the location toponym given the vectors of station IDs and the respective location toponyms
 
 #' @examples 

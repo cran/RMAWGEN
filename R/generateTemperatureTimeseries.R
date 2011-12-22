@@ -16,13 +16,13 @@ NULL
 #'  @param var A VAR model represented by a \code{varest} object as returned by \code{\link{getVARmodel}} or \code{\link{VAR}}
 #'  @param exogen see \code{\link{VAR}}
 #'  @param normalize logical variable If \code{TRUE} \code{\link{normalizeGaussian_severalstations}} is used, otherwise not. If \code{option} is 2, it is always \code{TRUE}.
-#'  @param sample,origin_x,origin_data see \code{\link{normalizeGaussian_severalstations}}
+#'  @param sample,origin_x,origin_data,extremes see \code{\link{normalizeGaussian_severalstations}}
 #'  @param type see \code{\link{quantile}}
 #'  @param option integer value. If 1, the generator works with minimun and maximum temperature, if 2 (Default) it works with th average value between maximum and minimum temparature and the respective daily Atmosheric Temparature.
 #'  @param original_data matrix containing the measured standardized temperature anomalies
-#' 	
+
 #' 
-#'   
+#'  @export 
 #' @return  This function returns a list of the following variables: 
 #' 
 #' \code{res_multigen} matrix containing standardized values of daily maximum and minimun temperature anomalies
@@ -44,7 +44,7 @@ NULL
 #' @seealso \code{\link{newVARmultieventRealization}},\code{\link{normalizeGaussian_severalstations}}
 #' 
 #' @author Emanuele Cordano, Emanuele Eccel
-#' @callGraphPrimitives      
+#'        
 #' 
 
 
@@ -52,13 +52,13 @@ NULL
 generateTemperatureTimeseries <-
 function (std_tn,std_tx,SplineTx,SplineTn,
 		SplineTm,SplineDeltaT,std_tm,
-		var=NULL,exogen=NULL,normalize=TRUE,type=3,sample=NULL,option=1,original_data,origin_x=NULL,origin_data=NULL) {
+		var=NULL,exogen=NULL,normalize=TRUE,type=3,extremes=TRUE,sample=NULL,option=1,original_data,origin_x=NULL,origin_data=NULL) {
 	
 	#  @author  Emanuele Cordano
 	#    
 	#   
 	#
-	# @callGraphPrimitives      @note Calculated complete generated time series of Daily Maximum Temperature and Daily Minum Temperature with a random multi-realization obtained by using NewMultiRealizations function and saves the results as global variables 
+	#        @note Calculated complete generated time series of Daily Maximum Temperature and Daily Minum Temperature with a random multi-realization obtained by using NewMultiRealizations function and saves the results as global variables 
 	# @return 0 in case of success, -1 otherwise
 	
 	if (is.null(var)) { 
@@ -68,14 +68,14 @@ function (std_tn,std_tx,SplineTx,SplineTn,
 		
 	} else {
 		
-		res_multigen0 <- newVARmultieventRealization(var=var,exogen=exogen,nrealization=nrow(SplineTx))
+		res_multigen0 <- newVARmultieventRealization(var=var,exogen=exogen,nrealization=nrow(SplineTx),type=type,extremes=extremes)
 		
 		
 		
 		if (normalize) {
 			
 			
-			res_multigen <- normalizeGaussian_severalstations(x=res_multigen0,data=original_data,inverse=TRUE,type=type,sample=sample,origin_x=origin_x,origin_data=origin_data)
+			res_multigen <- normalizeGaussian_severalstations(x=res_multigen0,data=original_data,inverse=TRUE,type=type,sample=sample,origin_x=origin_x,origin_data=origin_data,extremes=extremes)
 			
 			
 		} else {

@@ -1,4 +1,5 @@
 
+
 NULL
 
 
@@ -18,8 +19,8 @@ NULL
 #' @param  station string vector containing the IDs of the meteorological stations where the autocovariance is calculated. 
 #' If it is \code{NULL} (default) all stations (corresponding to the columns of "simulated" and "measured") are applied
 #' 
-#' @callGraphPrimitives
-#' 
+#'  
+#' @export 
 #' @note It uses \code{\link{acf}} function
 #' @return  0 in case of success 
 

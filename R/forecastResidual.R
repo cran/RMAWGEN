@@ -16,9 +16,9 @@ NULL
 #' 
 #' @seealso \code{\link{forecastEV}},\code{\link{NewVAReventRealization}}
 #' 
-#' @callGraphPrimitives      
+#'        
 #' 
-#' 
+#' @export
 #' 
 #' @return  a vector of values
 
@@ -32,6 +32,7 @@ function(var,xprev=NULL,B=NULL) {
 	if (is.null(B)) B <- t(chol(summary(var)$covres))
 	
 	if (is.null(xprev)) xprev <- rnorm(ncol(B))
+	
 	
 	out <- as.vector(B %*% xprev)
 	

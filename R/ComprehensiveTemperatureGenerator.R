@@ -12,9 +12,11 @@ NULL
 #' @param mean_climate_Tx_sim monthly avaraged daily maximum temperatures for the simulated scenario and used by the random generator .  Default is \code{mean_climate_Tx}
 #' @param onlygeneration logical variable. If \code{TRUE} the VAR model \code{varmodel} is given as input and only random generation is done, otherwise (default) is calculated from measured data 
 #' @param varmodel the VAR model as a \code{varest} object. If \code{NULL}, it is  given as input and only random generation is done, otherwise (default) is calculated from measured data 
-#' @param normalize,sample see \code{\link{normalizeGaussian_severalstations}} or \code{\link{setComprehensiveTemperatureGeneratorParameters}}
+#' @param normalize,sample,extremes see \code{\link{normalizeGaussian_severalstations}} or \code{\link{setComprehensiveTemperatureGeneratorParameters}}
 #' @param type_quantile see \code{type} on \code{\link{quantile}}
 #' @param option integer value. If 1, the generator works with minimun and maximum temperature, if 2 (default) it works with the average value between maximum and minimum temparature and the respective daily thermal range.
+#' @param n_GPCA_iteration number of iteration of Gaussianization process for data. Default is 0 (no Gaussianization) 
+#' @param n_GPCA_iteration_residuals number of iteration of Gaussianization process for data. Default is 0 (no Gaussianization)
 #' @param exogen matrix containing the (normalized or not) exogenous variables (predictors) for the recorded (calibration) period. Default is NULL
 #' @param exogen_sim  matrix containing the (normalized or not) exogenous variables (predictors) for the simulation period. Default is \code{exogen}
 #' @param is_exogen_gaussian logical value, If \code{TRUE}, \code{exogen_sim} and \code{exogen} are given as already normalized variables, otherwhise they are not normalized. Default is \code{FALSE}
@@ -22,11 +24,13 @@ NULL
 #' It is alternative to \code{exogen} and if it not \code{NULL},\code{is_exogen_gaussian} is automatically set \code{FALSE}	
 #' @param exogen_all_col vector of considered  columns of \code{exogen_all}. Default is \code{station}.
 #' 
+#' @export 
+#' 
 #' @author  Emanuele Cordano, Emanuele Eccel
 #'    
 #' @seealso \code{\link{setComprehensiveTemperatureGeneratorParameters}}, \code{\link{generateTemperatureTimeseries}} ,\code{\link{generateTemperatureTimeseries}}. 
 #' 
-#' @callGraphPrimitives      
+#'        
 #'
 #' @note It pre-processes series and generates multi-site temperature fields by using \code{\link{setComprehensiveTemperatureGeneratorParameters}},\code{\link{getVARmodel}} and \code{\link{generateTemperatureTimeseries}}. 
 #' 
@@ -87,7 +91,10 @@ function(
 		varmodel=NULL,normalize=TRUE,
 		type_quantile=3,
 		sample=NULL,
+		extremes=TRUE,
 		option=2,
+		n_GPCA_iteration=0,
+		n_GPCA_iteration_residuals=n_GPCA_iteration,
 		exogen=NULL,
 		exogen_sim=exogen,
 		is_exogen_gaussian=FALSE,
@@ -131,11 +138,11 @@ function(
 		if (!is.null(exogen) & (!is_exogen_gaussian))  {
 					
 			exogen0 <- exogen
-			exogen <- normalizeGaussian_severalstations(x=exogen0,data=exogen0,sample=sample,cpf=NULL,origin_x=origin,origin_data=origin)					
+			exogen <- normalizeGaussian_severalstations(x=exogen0,data=exogen0,sample=sample,cpf=NULL,origin_x=origin,origin_data=origin,extremes=extremes)					
 			
 			
 		}	
-		var <- getVARmodel(data=param[['data_for_var']],suffix=c("_T1","_T2"),sep="",p=p,type=type,lag.max=lag.max,ic=ic,activateVARselect=activateVARselect,exogen=exogen) 
+		var <- getVARmodel(data=param[['data_for_var']],suffix=c("_T1","_T2"),sep="",p=p,type=type,lag.max=lag.max,ic=ic,activateVARselect=activateVARselect,exogen=exogen,n_GPCA_iteration_residuals=n_GPCA_iteration_residuals,n_GPCA_iteration=n_GPCA_iteration,extremes=extremes) 
 		
 		if (activateVARselect) return(list(input=param,varselect=var))
 
@@ -165,13 +172,21 @@ function(
 	if (!is.null(exogen_sim) & (!is_exogen_gaussian))  {
 		
 		exogen0_sim <- exogen_sim
-		exogen_sim <- normalizeGaussian_severalstations(x=exogen0_sim,data=exogen0_sim,sample=sample,cpf=NULL,origin_x=origin_sim,origin_data=origin_sim)					
+		exogen_sim <- normalizeGaussian_severalstations(x=exogen0_sim,data=exogen0_sim,sample=sample,cpf=NULL,origin_x=origin_sim,origin_data=origin_sim,extremes=extremes)					
 	}
 		
-	results <- generateTemperatureTimeseries(std_tn=param[['stdTn']],std_tx=param[['stdTx']],SplineTx=SplineAdvTx_sim,SplineTn=SplineAdvTn_sim,SplineTm=SplineAdvTm_sim,SplineDeltaT=SplineAdvDeltaT_sim,std_tm=param[['stdTm']],var=var,normalize=normalize,type=type_quantile,sample=sample,option=option,original_data=param[['data_original']],origin_x=origin_sim,origin_data=origin,exogen=exogen_sim)	
+	results <- generateTemperatureTimeseries(std_tn=param[['stdTn']],std_tx=param[['stdTx']],SplineTx=SplineAdvTx_sim,SplineTn=SplineAdvTn_sim,SplineTm=SplineAdvTm_sim,SplineDeltaT=SplineAdvDeltaT_sim,std_tm=param[['stdTm']],var=var,normalize=normalize,type=type_quantile,sample=sample,option=option,original_data=param[['data_original']],origin_x=origin_sim,origin_data=origin,exogen=exogen_sim,extremes=extremes)	
 	
 
-	
+	if (onlygeneration) {
+		
+		return(list(output=results))
+		
+	} else {
+		
+		return(list(input=param,var=var,output=results))
+		
+	}
 	return(list(input=param,var=var,output=results))	
 	
 	

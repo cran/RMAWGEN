@@ -14,9 +14,11 @@ NULL
 #'  
 #'  
 #'
-#' @callGraphPrimitives    
+#'      
 #' 
 #' @seealso \code{\link{getVARmodel}}
+#' 
+#' @export
 #' 
 #' @return  the matrix \code{data} with the modified rows of NA values
 #' 

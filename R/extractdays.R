@@ -13,11 +13,11 @@ NULL
 #' 
 #' @author  Emanuele Cordano, Emanuele Eccel
 #'   
-#' 
+#' @export 
 #' @note It uses \code{\link{julian}}
 #'  
 #'
-#' @callGraphPrimitives      
+#'        
 #' 
 #' @return  a matrix containing the requested rows
 

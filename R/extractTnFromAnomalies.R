@@ -9,13 +9,13 @@ NULL
 #' @param SplineAdv matrix containing the averaged daily values of minimun temperature obtained by a spline interpolation of the monthly climate
 #' 
 #' 
-#' 
+#' @export 
 #' 
 #' @author  Emanuele Cordano, Emanuele Eccel
 #'    
 #'   
 #'
-#' @callGraphPrimitives      
+#'        
 #' 
 #' @return  a matrix with generated minimum temperature
 

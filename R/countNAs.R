@@ -11,9 +11,9 @@ NULL
 #'   
 #' @param data a data input matrix
 #'  
-#'  
+#'  @export 
 #'
-#' @callGraphPrimitives     
+#'       
 #' @return  the vector of names with added suffixes
 
 

@@ -8,13 +8,15 @@ NULL
 #' @param data matrix whose column contains daily-averaged climatic series of variables (e.g. maximum or minumum daily averaged temperature obtained by spline interpolation of monthly climatology) 
 #' @param origin origin date corresponding to the first row of \code{data}  
 #' @param when   start day for daily climatology plot
-#' @param title,xlab,ylab,col,lwd see \code{\link{plot}}
+#' @param title,xlab,ylab,col,lwd see \code{\link{plot.default}}
 #' @param nday number of days in one year. Default is 365.
 #' @param bicolor logical variable. If \code{TRUE} and \code{data} represents climatologies of minimun and maximum daily temperature, the lines are plotted with blue and red colors respectively.
 
+#' 
+#' @export 
 #'   
 #' @author  Emanuele Cordano, Emanuele Eccel
-#' @callGraphPrimitives     
+#'       
 #' @return  a matrix containing the plotted variables
 
 

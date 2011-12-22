@@ -22,8 +22,13 @@ NULL
 #' @param sample see \code{\link{normalizeGaussian_severalstations}}
 #' @param option integer value. If 1, the generator works with minimun and maximum temperature, if 2 (default) it works with the average value between maximum and minimum temparature and the respective daily thermal range.
 #'
-#' @callGraphPrimitives    
+#'   
+#' 
+#' @export   
 #' @return This function creates and returns the following gloabal variables: 
+#' 
+#' 
+#' 
 #' 
 #' \code{data_original} matrix containing normalized and standardized data (i.e. \code{data_original})
 #' 

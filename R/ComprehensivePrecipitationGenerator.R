@@ -12,12 +12,14 @@ NULL
 #' @param nmonth number of months in one year (default is 12)
 #' @param verbose logical variable
 #' @param cpf see \code{\link{normalizeGaussian_severalstations}}
-#' @param sample see \code{\link{normalizeGaussian_severalstations}}
+#' @param sample,extremes see \code{\link{normalizeGaussian_severalstations}}
 #' @param step see \code{\link{normalizeGaussian_severalstations}}. Default is 0.
 #' @param p,type,lag.max,ic,activateVARselect see respective input parameter on \code{\link{getVARmodel}}
 #' @param year_max_sim last year of the simulation period. Default is equal to \code{year_max} 
 #' @param year_min_sim fist year of the simulation period. Default is equal to \code{year_min}
 #' @param mean_climate_prec_sim a matrix containing monthly mean daily precipitation for the simulation period. If is \code{NULL} (Default), it is set equal to \code{mean_climate_prec}. 
+#' @param n_GPCA_iteration number of iteration of Gaussianization process for data. Default is 0 (no Gaussianization) 
+#' @param n_GPCA_iteration_residuals number of iteration of Gaussianization process for data. Default is 0 (no Gaussianization)
 #' @param exogen matrix containing the (normalized or not) exogenous variables (predictors) for the recorded (calibration) period. 
 #' @param exogen_sim  matrix containing the (normalized or not) exogenous variables (predictors) for the simulation period. Default is \code{exogen}
 #' @param is_exogen_gaussian logical value. If \code{TRUE}, \code{exogen_sim} and \code{exogen} are given as already normalized variables, otherwhise they are not normalized. Default is \code{FALSE}
@@ -29,7 +31,7 @@ NULL
 #' It is alternative to \code{exogen} and if it not \code{NULL},\code{is_exogen_gaussian} is automatically set \code{FALSE}	
 #' @param exogen_all_col vector of considered  columns of \code{exogen_all}. Default is \code{station}.
 #' 
-#' 
+#' @export 
 
 
 #' 
@@ -38,7 +40,7 @@ NULL
 #'    
 #' @seealso \code{\link{splineInterpolateMonthlytoDailyforSeveralYears}} 
 #' 
-#' @callGraphPrimitives      
+#'        
 #'
 #' @note It pre-processes and generates a multi-site precipitation fields. It uses \code{\link{getVARmodel}}. 
 #' Unfortunately, using this approach, the spatial correlations are underestimated. This is due to the persinstence of zeros in the precipitation records.
@@ -83,6 +85,7 @@ NULL
 #'  "T0102","T0110","T0129","T0139","T0147","T0149","T0152","T0157","T0168","T0179","T0189","T0193","T0204","T0210","T0211","T0327","T0367","T0373")		
 #' 	generation_prec <- ComprehensivePrecipitationGenerator(station=vstation[10:12],prec_all=PRECIPITATION,sample="monthly")
 #' 	str(generation_prec)
+#' 	print(generation_prec$var)
 #' 
 #' 
 #' 
@@ -91,8 +94,6 @@ NULL
 #' 
 #' 
 #' 
-#' 
-
 
 ComprehensivePrecipitationGenerator <-
 function(
@@ -122,13 +123,16 @@ function(
 		varmodel=NULL,
 		type_quantile=3,
 		step=0,
+		n_GPCA_iteration=0,
+		n_GPCA_iteration_residuals=n_GPCA_iteration,
+		
 		sample=NULL,
+		extremes=TRUE,
 		exogen_all=NULL,
 		exogen_all_col=station,
 		
 		
 		option_temp=0
-
 		
 
 ) {
@@ -140,7 +144,7 @@ function(
 	origin_sim <- paste(year_min_sim,"1","1",sep="/") # Must start from Jan 1 
 	
 	
-	prec_mes <- extractyears(prec_all,year_min=year_min,year_max=year_max,station=station)
+	prec_mes <- as.data.frame(extractyears(prec_all,year_min=year_min,year_max=year_max,station=station))
 	
 	nyear <- year_max-year_min+1
 	if (!is.monthly.climate(mean_climate_prec,nstation=length(station),nmonth=nmonth,verbose=verbose)) mean_climate_prec <- getMonthlyMean(prec_all,year_min=year_min,year_max=year_max,station=station)
@@ -154,12 +158,12 @@ function(
 		return(-1)
 	}
 	
-	data_prec <- normalizeGaussian_severalstations(x=prec_mes,data=prec_mes,sample=sample,cpf=cpf,step=step,origin_x=origin,origin_data=origin)
+	data_prec <- normalizeGaussian_severalstations(x=prec_mes,data=prec_mes,sample=sample,cpf=cpf,step=step,origin_x=origin,origin_data=origin,extremes=extremes)
 	
 	if (!onlygeneration){
 
 		if (!is.null(exogen_all)) {
-			str(exogen_all)
+			
 			exogen <- as.data.frame(extractyears(exogen_all,year_min=year_min,year_max=year_max,station=exogen_all_col))
 			is_exogen_gaussian=FALSE
 			
@@ -174,7 +178,7 @@ function(
 		}
 						
 	
-		var <- getVARmodel(data=data_prec,suffix=NULL,sep="",p=p,type=type,exogen=exogen,lag.max=lag.max,ic=ic,activateVARselect=activateVARselect) 
+		var <- getVARmodel(data=data_prec,suffix=NULL,sep="",p=p,type=type,exogen=exogen,lag.max=lag.max,ic=ic,activateVARselect=activateVARselect,n_GPCA_iteration_residuals=n_GPCA_iteration_residuals,n_GPCA_iteration=n_GPCA_iteration,extremes=extremes) 
 	
 		if (activateVARselect) return(var)
 			
@@ -187,27 +191,38 @@ function(
 	if (is.null(mean_climate_prec_sim)) mean_climate_prec_sim <- mean_climate_prec
 	nyear_sim <- year_max_sim-year_min_sim+1
 	prec_spline_sim <- as.data.frame(splineInterpolateMonthlytoDailyforSeveralYears(val=mean_climate_prec_sim,start_year=year_min_sim,nyear=nyear_sim,leap=leap))	
-	names(prec_spline_sim) <- names(mean_climate_prec_sim)	
+	names(prec_spline_sim) <- colnames(mean_climate_prec_sim)	
 	if (is.null(exogen_sim)) exogen_sim <- exogen 
 	if (!is.null(exogen_sim) & (!is_exogen_gaussian)) {
 		
 		exogen_sim0 <- exogen_sim
-		exogen_sim <- normalizeGaussian_severalstations(x=exogen_sim0,data=exogen_sim0,sample=sample,cpf=cpf,origin_x=origin_sim,origin_data=origin_sim) 
+		exogen_sim <- normalizeGaussian_severalstations(x=exogen_sim0,data=exogen_sim0,sample=sample,cpf=cpf,origin_x=origin_sim,origin_data=origin_sim,extremes=extremes) 
 		
 	}
 
-	data_prec_gen <- newVARmultieventRealization(var,exogen=exogen_sim,nrealization=nrow(prec_spline_sim)) 
+	data_prec_gen <- newVARmultieventRealization(var,exogen=exogen_sim,nrealization=nrow(prec_spline_sim),extremes=extremes,type=type_quantile) 
 	
 	
 	prec_mes_rescaled <- prec_mes/prec_spline*prec_spline_sim	
 		
-	prec_gen <- as.data.frame(normalizeGaussian_severalstations(x=data_prec_gen,data=prec_mes_rescaled,inverse=TRUE,type=type_quantile,sample=sample,origin_x=origin_sim,origin_data=origin))
+	prec_gen <- as.data.frame(normalizeGaussian_severalstations(x=data_prec_gen,data=prec_mes_rescaled,inverse=TRUE,type=type_quantile,sample=sample,origin_x=origin_sim,origin_data=origin,extremes=extremes))
 	names(prec_gen) <- names(prec_spline_sim)			
+  #  names(prec_gen) <- names(prec_mes)
 
-	names_out <- c("prec_mes","prec_spline","data_prec","prec_gen","prec_spline_sim","data_prec_gen","mean_climate_prec","mean_climate_prec_sim","var")
-	for (it in names_out) { if (!exists(it)) assign(it,NULL)}
-	out <- list(prec_mes,prec_spline,data_prec,prec_gen,prec_spline_sim,data_prec_gen,mean_climate_prec,mean_climate_prec_sim,var)
-	names(out) <- names_out
+	if (onlygeneration) {
+		names_out <- c("prec_gen","prec_spline_sim","data_prec_gen","mean_climate_prec_sim")
+		for (it in names_out) { if (!exists(it)) assign(it,NULL)}
+		out <- list(prec_mes,prec_spline,data_prec,prec_gen,prec_spline_sim,data_prec_gen,mean_climate_prec,mean_climate_prec_sim,var)
+		names(out) <- names_out
+	} else {
+		names_out <- c("prec_mes","prec_spline","data_prec","prec_gen","prec_spline_sim","data_prec_gen","mean_climate_prec","mean_climate_prec_sim","var")
+		for (it in names_out) { if (!exists(it)) assign(it,NULL)}
+		out <- list(prec_mes,prec_spline,data_prec,prec_gen,prec_spline_sim,data_prec_gen,mean_climate_prec,mean_climate_prec_sim,var)
+		names(out) <- names_out
+		
+		
+	}
+
 	return(out)
 #	return(list(prec_mes=prec_mes,prec_spline=prec_spline,data_prec=data_prec,prec_gen=prec_gen,prec_spline_sim=prec_spline_sim,data_prec_gen=data_prec_gen,mean_climate_prec=mean_climate_prec,mean_climate_prec_sim=mean_climate_prec_sim,var=var))
 	

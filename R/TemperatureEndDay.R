@@ -17,9 +17,10 @@ NULL
 #'  
 #'  
 #'
-#' @callGraphPrimitives     
+#'       
 #' @return  the temperature measurement end day given the vectors of station IDs and the temperature measurement end days
 #' 
+#' @export 
 #' 
 #' @examples 
 #' data(trentino)

@@ -8,7 +8,7 @@ NULL
 #' @param origin character string containig the date of the first row of \code{data} as YY-MM-DD
 #' 
 #' @seealso \code{\link{findDate}}
-#' 
+#' @export 
 #' @return a data frame with dates and \code{data} values
 #' 
 

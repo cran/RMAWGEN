@@ -12,8 +12,8 @@ NULL
 #' @param  nmonth number of months in one year (it can be different if climate is represented by seasonal avarages or others), Default is 12 
 #' @param  verbose Prints output and warining messagrs only if is \code{TRUE}.
 #'    
-#' 
-#' @callGraphPrimitives     
+#' @export 
+#'       
 #' @author  Emanuele Cordano, Emanuele Eccel  
 #' 
 #' @return  A logical variable if the matrix 'climate' is monthly.climate type

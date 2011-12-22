@@ -8,6 +8,8 @@ NULL
 #' 
 #' @author Emanuele Cordano, Emanuele Eccel 
 #' 
+#' @export 
+#' 
 #' @references  see the following URL references:  \url{http://onlinelibrary.wiley.com/doi/10.1002/joc.2305/abstract} 
 #'   and \url{http://www.sciencedirect.com/science/article/pii/S0022169498001863}
 #' @return the value of the continuity ratio 
@@ -16,10 +18,16 @@ NULL
 
 
 
+
+
 continuity_ratio <- function(data,valmin=0.5) {
 	
 	ncols <- ncol(data)
-	out <- array(NA,c(ncols,ncols))
+	nrows <- nrow(data)
+	out <- new.env()
+	out$continuity_ratio <- array(NA,c(ncols,ncols))
+	out$occurence <- array(NA,c(ncols,ncols))
+	out$nooccurence <- array(NA,c(ncols,ncols))
 	for (i in 1:ncols) {
 		for (j in 1:ncols) {
 			
@@ -30,12 +38,15 @@ continuity_ratio <- function(data,valmin=0.5) {
 			l1 <- length(d1[d1>valmin & d2>valmin])
 			l2 <- length(d1[d1>valmin & d2<=valmin])
 	
-			
-			out[i,j] <- e2/e1
+			nrowsa <- length(d1[!is.na(d1) & !is.na(d2)])
+
+			out$continuity_ratio[i,j] <- e2/e1
+			out$occurence[i,j] <- length(d1[d1>valmin & d2>valmin & !is.na(d1) & !is.na(d2)])/nrowsa
+			out$nooccurence[i,j] <- length(d1[d1<=valmin & d2<=valmin & !is.na(d1) & !is.na(d2)])/nrowsa
 			
 		}
 		
 	}
 	
-	return(out)
+	return(as.list(out))
 }

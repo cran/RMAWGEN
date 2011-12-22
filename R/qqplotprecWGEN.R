@@ -8,16 +8,18 @@ NULL
 #'  
 #' @param measured  matrix containing measured data (each station corresponds to a column) 
 #' @param simulated matrix containing respective generated data (each station corresponds to a column) 
-#' @param xlab,ylab  see \code{\link{plot}},\code{\link{qqplotWGEN}}
+#' @param xlab,ylab  see \code{\link{plot.default}},\code{\link{qqplotWGEN}}
 #' @param title title 
 #' @param station character vector containing IDs of analyzed station. If \code{NULL} (default) all station (columns of \code{simulated} and \code{measured}) are considered
 #' @param diff,quantile see \code{\link{qqplotWGEN}}
+#' 
+#' @export
 #' 
 #' @note It uses \code{\link{qqplotWGEN}} and makes a figure for each pair of columns from \code{measured} and \code{simulated}. See the R code for further details.
 #' 
 #' @author  Emanuele Cordano, Emanuele Eccel
 #' 
-#' @callGraphPrimitives   
+#'     
 #' @return  0 in case of success 
 #' 
 #' 

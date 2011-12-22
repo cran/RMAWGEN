@@ -12,9 +12,9 @@ NULL
 #'  @seealso \code{\link{forecastResidual}}
 #'  @author  Emanuele Cordano, Emanuele Eccel
 #'    
-#'  
+#'  @export
 #'
-#' @callGraphPrimitives    
+#'      
 #' 
 #' 
 #' @return  a vector of values
@@ -27,6 +27,7 @@ forecastEV <-
 function(var,xprev=NULL,exogen=NULL) {
 
 	
+#	class(var) <- "varest"
 
 	if (is.null(xprev)) xprev <- rnorm(var$p*var$K)
 

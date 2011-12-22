@@ -1,11 +1,30 @@
 \name{forecastEV}
 \alias{forecastEV}
-\title{forecastEV}
-\usage{forecastEV(var, xprev, exogen)}
-\description{Forecasts the expected value of a VAR realization given the prievious one}
-\seealso{\code{\link{forecastResidual}}}
-\author{Emanuele Cordano, Emanuele Eccel}
-\value{a vector of values}
-\arguments{\item{var}{A VAR model represented by a \code{varest} object as returned by \code{\link{getVARmodel}} or \code{\link{VAR}}}
-\item{xprev}{previous status of the random variable}
-\item{exogen}{vector containing the values of the "exogen" variables (predictor) for the generation}}
+\title{Forecasts the expected value of a VAR realization given the prievious one}
+\usage{
+  forecastEV(var, xprev = NULL, exogen = NULL)
+}
+\arguments{
+  \item{var}{A VAR model represented by a \code{varest}
+  object as returned by \code{\link{getVARmodel}} or
+  \code{\link{VAR}}}
+
+  \item{xprev}{previous status of the random variable}
+
+  \item{exogen}{vector containing the values of the
+  "exogen" variables (predictor) for the generation}
+}
+\value{
+  a vector of values
+}
+\description{
+  Forecasts the expected value of a VAR realization given
+  the prievious one
+}
+\author{
+  Emanuele Cordano, Emanuele Eccel
+}
+\seealso{
+  \code{\link{forecastResidual}}
+}
+

@@ -12,11 +12,11 @@ NULL
 #' @param station character vector of the IDs of the station where the data are required
 #' 
 
-#'     
+#' @export 
 #'   
 #'
 #' @return   a matrix containing the requested daily data where each day corresponds to a row and each station corresponds to a column
-#' @callGraphPrimitives    
+#'      
 #' 
 #' 
 #' 

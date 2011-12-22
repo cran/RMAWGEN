@@ -15,10 +15,10 @@ NULL
 #' 
 #' @param origin date corresponding to the first row
 #'     
-#'   
+#' @export  
 #'
 #' @return   a matrix containing the requested monthly mean data where each month corresponds to a row and each station corresponds to a column
-#' @callGraphPrimitives    
+#'      
 #' 
 #' 
 #' @seealso \code{\link{extractyears}}

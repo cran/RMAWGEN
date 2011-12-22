@@ -20,11 +20,12 @@ NULL
 #' @param origin_data date corresponding to the first row of \code{data}
 
 #' 
+#' @export 
 #' @author Emanuele Cordano, Emanuele Eccel
 #' @return a matrix with the normalized variable or its inverse   
 #' 
 #' @seealso   \code{\link{normalizeGaussian}}
-#' @callGraphPrimitives 
+#'   
 #'     
 #' @note It applies \code{\link{normalizeGaussian}} for each column of \code{x} and \code{data}.
 #' See the R code for further details

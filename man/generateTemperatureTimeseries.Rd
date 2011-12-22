@@ -1,41 +1,111 @@
 \name{generateTemperatureTimeseries}
 \alias{generateTemperatureTimeseries}
-\title{generateTemperatureTimeseries}
-\usage{generateTemperatureTimeseries(std_tn, std_tx, SplineTx, SplineTn,
-    SplineTm, SplineDeltaT, std_tm, var, exogen, normalize=TRUE,
-    type=3, sample, option=1, original_data, origin_x, origin_data)}
-\description{Returns time series of Daily Maximum and Minimum with a random multi-realization obtained by using \code{\link{newVARmultieventRealization}}}
-\value{This function returns a list of the following variables: 
+\title{Returns time series of Daily Maximum and Minimum with a random multi-realization obtained by using \code{\link{newVARmultieventRealization}}}
+\usage{
+  generateTemperatureTimeseries(std_tn, std_tx, SplineTx,
+    SplineTn, SplineTm, SplineDeltaT, std_tm, var = NULL,
+    exogen = NULL, normalize = TRUE, type = 3,
+    extremes = TRUE, sample = NULL, option = 1,
+    original_data, origin_x = NULL, origin_data = NULL)
+}
+\arguments{
+  \item{std_tn}{vector containing standard deviation of
+  daily minimum temperature anomalies. \code{stdTn} is
+  default, see
+  \code{\link{setComprehensiveTemperatureGeneratorParameters}}.}
 
-\code{res_multigen} matrix containing standardized values of daily maximum and minimun temperature anomalies
+  \item{std_tx}{vector containing standard deviation of
+  daily maximum temperature anomalies. \code{stdTx} is
+  default, see
+  \code{\link{setComprehensiveTemperatureGeneratorParameters}}.}
 
-\code{Tx_spline} matrix containing  containing climatic "spline-interpolated" daily maximum daily temperature 
+  \item{SplineTx}{matrix containing the averaged daily
+  maximum temperature obtained by a spline interpolation of
+  monthly means . \code{SplineAdvTx} is default, see
+  \code{\link{setComprehensiveTemperatureGeneratorParameters}}.}
 
-\code{Tn_spine} matrix containing  containing climatic "spline-interpolated" daily minimum daily temperature 
+  \item{SplineTn}{matrix containing the averaged daily
+  minimum temperature obtained by a spline interpolation of
+  monthly means . \code{SplineAdvTn} is default, see
+  \code{\link{setComprehensiveTemperatureGeneratorParameters}}.}
 
-\code{Tx_gen} matrix containing generated daily maximum daily temperature (\eqn{Tx_{gen}})
+  \item{SplineTm}{matrix containing the averaged daily
+  "mean" temperature obtained by a spline interpolation of
+  monthly means . \code{SplineAdvTm} is default, see
+  \code{\link{setComprehensiveTemperatureGeneratorParameters}}.}
 
-\code{Tn_gen} matrix containing generated daily maximum daily temperature (\eqn{Tn_{gen}})
+  \item{SplineDeltaT}{matrix containing the rescaled
+  averaged daily temperature range obtained by a spline
+  interpolation of monthly means .
+  \code{SplineAdvDelta_T_sim/SplineAdvDelta_T} is default,
+  see
+  \code{\link{setComprehensiveTemperatureGeneratorParameters}}.}
 
-\code{Tm_gen} matrix containig generated "mean" daily temperature defined as  \eqn{\frac{Tx_{gen}+Tn_{gen}}{2}}
+  \item{std_tm}{vector containing standard deviation of
+  daily "mean" temperature anomalies. \code{stdTn} is
+  default, see
+  \code{\link{setComprehensiveTemperatureGeneratorParameters}}.}
 
-\code{DeltaT_gen} matrix containing generated daily thermal range defined as  \eqn{Tx_{gen}-Tn_{gen}}
+  \item{var}{A VAR model represented by a \code{varest}
+  object as returned by \code{\link{getVARmodel}} or
+  \code{\link{VAR}}}
 
-See the R code for further details}
-\seealso{\code{\link{newVARmultieventRealization}},\code{\link{normalizeGaussian_severalstations}}}
-\author{Emanuele Cordano, Emanuele Eccel}
-\arguments{\item{std_tn}{vector containing standard deviation of daily minimum temperature anomalies. \code{stdTn} is default, see \code{\link{setComprehensiveTemperatureGeneratorParameters}}.}
-\item{std_tx}{vector containing standard deviation of daily maximum temperature anomalies. \code{stdTx} is default, see \code{\link{setComprehensiveTemperatureGeneratorParameters}}.}
-\item{SplineTx}{matrix containing the averaged daily maximum temperature  obtained by a spline interpolation of monthly means . \code{SplineAdvTx} is default, see \code{\link{setComprehensiveTemperatureGeneratorParameters}}.}
-\item{SplineTn}{matrix containing the averaged daily minimum temperature  obtained by a spline interpolation of monthly means . \code{SplineAdvTn} is default, see \code{\link{setComprehensiveTemperatureGeneratorParameters}}.}
-\item{SplineTm}{matrix containing the averaged daily "mean" temperature   obtained by a spline interpolation of monthly means . \code{SplineAdvTm} is default, see \code{\link{setComprehensiveTemperatureGeneratorParameters}}.}
-\item{SplineDeltaT}{matrix containing the rescaled averaged daily temperature range obtained by a spline interpolation of monthly means . 
-\code{SplineAdvDelta_T_sim/SplineAdvDelta_T} is default, see \code{\link{setComprehensiveTemperatureGeneratorParameters}}.}
-\item{std_tm}{vector containing standard deviation of daily "mean" temperature anomalies. \code{stdTn} is default, see \code{\link{setComprehensiveTemperatureGeneratorParameters}}.}
-\item{var}{A VAR model represented by a \code{varest} object as returned by \code{\link{getVARmodel}} or \code{\link{VAR}}}
-\item{exogen}{see \code{\link{VAR}}}
-\item{normalize}{logical variable If \code{TRUE} \code{\link{normalizeGaussian_severalstations}} is used, otherwise not. If \code{option} is 2, it is always \code{TRUE}.}
-\item{sample,origin_x,origin_data}{see \code{\link{normalizeGaussian_severalstations}}}
-\item{type}{see \code{\link{quantile}}}
-\item{option}{integer value. If 1, the generator works with minimun and maximum temperature, if 2 (Default) it works with th average value between maximum and minimum temparature and the respective daily Atmosheric Temparature.}
-\item{original_data}{matrix containing the measured standardized temperature anomalies}}
+  \item{exogen}{see \code{\link{VAR}}}
+
+  \item{normalize}{logical variable If \code{TRUE}
+  \code{\link{normalizeGaussian_severalstations}} is used,
+  otherwise not. If \code{option} is 2, it is always
+  \code{TRUE}.}
+
+  \item{sample,origin_x,origin_data,extremes}{see
+  \code{\link{normalizeGaussian_severalstations}}}
+
+  \item{type}{see \code{\link{quantile}}}
+
+  \item{option}{integer value. If 1, the generator works
+  with minimun and maximum temperature, if 2 (Default) it
+  works with th average value between maximum and minimum
+  temparature and the respective daily Atmosheric
+  Temparature.}
+
+  \item{original_data}{matrix containing the measured
+  standardized temperature anomalies}
+}
+\value{
+  This function returns a list of the following variables:
+
+  \code{res_multigen} matrix containing standardized values
+  of daily maximum and minimun temperature anomalies
+
+  \code{Tx_spline} matrix containing containing climatic
+  "spline-interpolated" daily maximum daily temperature
+
+  \code{Tn_spine} matrix containing containing climatic
+  "spline-interpolated" daily minimum daily temperature
+
+  \code{Tx_gen} matrix containing generated daily maximum
+  daily temperature (\eqn{Tx_{gen}})
+
+  \code{Tn_gen} matrix containing generated daily maximum
+  daily temperature (\eqn{Tn_{gen}})
+
+  \code{Tm_gen} matrix containig generated "mean" daily
+  temperature defined as \eqn{\frac{Tx_{gen}+Tn_{gen}}{2}}
+
+  \code{DeltaT_gen} matrix containing generated daily
+  thermal range defined as \eqn{Tx_{gen}-Tn_{gen}}
+
+  See the R code for further details
+}
+\description{
+  Returns time series of Daily Maximum and Minimum with a
+  random multi-realization obtained by using
+  \code{\link{newVARmultieventRealization}}
+}
+\author{
+  Emanuele Cordano, Emanuele Eccel
+}
+\seealso{
+  \code{\link{newVARmultieventRealization}},\code{\link{normalizeGaussian_severalstations}}
+}
+

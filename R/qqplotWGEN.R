@@ -6,14 +6,16 @@ NULL
 #' Makes a qqplot and Wilcoxon test between the two columns of \code{val}
 #' 
 #'  @param val a matrix with two colomns containing the two samples to be compared
-#'  @param xlab,ylab,main see \code{\link{plot}}
-#'  @param xlim,ylim see \code{\link{plot}}
+#'  @param xlab,ylab,main see \code{\link{plot.default}}
+#'  @param xlim,ylim see \code{\link{plot.default}}
 #'  @param diff logical variable, if \code{TRUE} the function is applied to \code{diff(val)} instead of \code{val}. See \code{\link{diff}}
 #' 	@param quantile quantile value on which data samples in \code{val} are considered. Default is 0.
 #'
 #' @author  Emanuele Cordano, Emanuele Eccel
 #' 
-#' @callGraphPrimitives      
+#' @export
+#' 
+#'        
 #' @return  Wilcoxon test between the two columnds of 'val'
 
 

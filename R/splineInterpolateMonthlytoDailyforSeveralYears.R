@@ -13,6 +13,8 @@ NULL
 #' 
 #' @return a matrix with interpolated daily data 
 #' 
+#' @export 
+#' 
 #' @seealso \code{\link{spline}},\code{\link{splineInterpolateMonthlytoDaily}}
 #' 
 #' @author Emanuele Cordano, Emanuele Eccel

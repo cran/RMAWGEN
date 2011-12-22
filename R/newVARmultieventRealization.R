@@ -7,17 +7,16 @@ NULL
 #' 
 #' @author  Emanuele Cordano, Emanuele Eccel
 #' 
-#' @param var A VAR model represented by a \code{varest} object as returned by \code{\link{getVARmodel}} or \code{\link{VAR}}
+#' @param var A VAR model represented by a \code{varest2} object as returned by \code{\link{getVARmodel}}
 #' @param xprev previous status of the random variable
-#' @param exogen matrix containing the values of the "exogn" variables (predictor) for the generation
+#' @param exogen matrix containing the values of the "exogen" variables (predictor) for the generation
 #' @param nrealization number of realization (e.g. days to simulate). If \code{exogen} is not \code{NULL} and it is a matrix, it must be lower or equal to the number of rows of \code{exogen}
 #' @param B matrix of coefficients for the vectorial white-noise component
-#' 
-#' 
+#' @param extremes,type  see \code{\link{inv_GPCA}}
 #'    
-#'  
+#' @export  
 #'
-#' @callGraphPrimitives     
+#'       
 #' 
 #' @return  a matrix of values
 
@@ -26,15 +25,25 @@ NULL
 
 
 newVARmultieventRealization <-
-function(var,xprev=rnorm(var$K*var$p),exogen=NULL,nrealization=10,B=t(chol(summary(var)$covres))) {
+function(var,xprev=rnorm(var@VAR$K*var@VAR$p),exogen=NULL,nrealization=10,B=t(chol(summary(var@VAR)$covres)),extremes=TRUE,type=3) {
 	
 
 	
 	
-	K <-var$K
-	p <- var$p
+	K <-var@VAR$K
+	p <- var@VAR$p
 	
-	nexogen <- ncol(var$datamat)-var$K*(var$p+1)
+	nexogen <- ncol(var@VAR$datamat)-K*(p+1)
+	noise <- array(rnorm(K*nrealization),c(nrealization,K))
+	
+	
+	if (class(var)=="GPCAvarest2") {
+		
+		noise <- inv_GPCA(x=noise,GPCA_param=var@GPCA_residuals,type=type,extremes=extremes)
+
+	} 
+		
+	
 	
 	if ((is.null(exogen)) & (nexogen!=0)) {
 		print("Error exogen variables (predictors) are needed to new VAR multirealization") 
@@ -42,6 +51,7 @@ function(var,xprev=rnorm(var$K*var$p),exogen=NULL,nrealization=10,B=t(chol(summa
 	#if (nexogen!=ncol(exogen)) names
 	
 	out <- array(NA,c(nrealization,K))
+	
 	
 	x <-xprev[1:K]
 	if (p>1) xprev <- xprev[(K+1):(K*p)]
@@ -57,15 +67,20 @@ function(var,xprev=rnorm(var$K*var$p),exogen=NULL,nrealization=10,B=t(chol(summa
 		} else {
 			exogen_data <- as.vector(t(exogen[i,]))
 		}
-		
-		x <- NewVAReventRealization(var=var,xprev=xprev,exogen=exogen_data,B=B)
+
+		x <- NewVAReventRealization(var=var@VAR,xprev=xprev,exogen=exogen_data,noise=as.vector(t(noise[i,])),B=B)
 		out[i,] <- x
-		
+	
 		
 	}
 	
+	if (class(var)=="GPCAvarest2") {
 	
-	return(out)
+		out <- inv_GPCA(x=out,GPCA_param=var@GPCA_data,type=type,extremes=extremes)
+		
+	} 		
+	
+	return(as.matrix(out))
 	
 	
 }

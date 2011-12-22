@@ -20,7 +20,7 @@ NULL
 # @param cov_min minimum admitted value of covariance. See \code{\link{mcovcorrection}}
 # @param cov_max maximum admitted value of covariance. See \code{\link{mcovcorrection}}
 #' 
-#' 
+#' @export 
 #'  
 #' @param use see \code{\link{cov}} 
 #' 
@@ -28,7 +28,7 @@ NULL
 #' @return a matrix with the normalized variable or its inverse   
 #' 
 #' @seealso   \code{\link{normalizeGaussian_severalstations}},\code{\link{normalizeGaussian}}
-#' @callGraphPrimitives 
+#'   
 #'     
 #'  @note It applies \code{\link{normalizeGaussian_severalstations}} to \code{x} and \code{data} and then calculates the covariances among the column.
 #' See the R code for further details
