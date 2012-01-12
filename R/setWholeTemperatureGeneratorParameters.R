@@ -191,7 +191,7 @@ function(station,
 	out <- list(data_for_var,data_original,
 			Tn_mes_res,Tx_mes_res,Tm_mes_res,DeltaT_mes_res,stdTn,stdTx,stdTm,
 			SplineAdvTn,SplineAdvTx,SplineAdvTm,SplineAdvDeltaT,Tn_mes,Tx_mes,Tm_mes,DeltaT_mes,
-			monthly_mean_Tx,monthly_mean_Tx)
+			monthly_mean_Tx,monthly_mean_Tn)
 	
 	names(out) <- c("data_for_var","data_original",
 			"Tn_mes_res","Tx_mes_res","Tm_mes_res","DeltaT_mes_res","stdTn","stdTx","stdTm",

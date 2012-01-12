@@ -11,9 +11,9 @@ NULL
 #' @param leap logical variables. If it is \code{TRUE} (default), leap years are considered
 #' @param nmonth number of months in one year (default is 12)
 #' @param verbose logical variable
-#' @param cpf see \code{\link{normalizeGaussian_severalstations}}
-#' @param sample,extremes see \code{\link{normalizeGaussian_severalstations}}
-#' @param step see \code{\link{normalizeGaussian_severalstations}}. Default is 0.
+#' @param cpf see \code{\link{normalizeGaussian_severalstations_prec}}
+#' @param sample,extremes,qnull,valmin see \code{\link{normalizeGaussian_severalstations_prec}}
+#' @param step see \code{\link{normalizeGaussian_severalstations_prec}}. Default is 0.
 #' @param p,type,lag.max,ic,activateVARselect see respective input parameter on \code{\link{getVARmodel}}
 #' @param year_max_sim last year of the simulation period. Default is equal to \code{year_max} 
 #' @param year_min_sim fist year of the simulation period. Default is equal to \code{year_min}
@@ -122,6 +122,8 @@ function(
 		onlygeneration=FALSE,
 		varmodel=NULL,
 		type_quantile=3,
+		qnull=NULL,
+		valmin=0.5,
 		step=0,
 		n_GPCA_iteration=0,
 		n_GPCA_iteration_residuals=n_GPCA_iteration,
@@ -158,7 +160,7 @@ function(
 		return(-1)
 	}
 	
-	data_prec <- normalizeGaussian_severalstations(x=prec_mes,data=prec_mes,sample=sample,cpf=cpf,step=step,origin_x=origin,origin_data=origin,extremes=extremes)
+	data_prec <- normalizeGaussian_severalstations_prec(x=prec_mes,data=prec_mes,sample=sample,cpf=cpf,qnull=qnull,valmin=valmin,origin_x=origin,origin_data=origin,extremes=extremes)
 	
 	if (!onlygeneration){
 
@@ -205,10 +207,10 @@ function(
 	
 	prec_mes_rescaled <- prec_mes/prec_spline*prec_spline_sim	
 		
-	prec_gen <- as.data.frame(normalizeGaussian_severalstations(x=data_prec_gen,data=prec_mes_rescaled,inverse=TRUE,type=type_quantile,sample=sample,origin_x=origin_sim,origin_data=origin,extremes=extremes))
+	prec_gen <- as.data.frame(normalizeGaussian_severalstations_prec(x=data_prec_gen,data=prec_mes_rescaled,inverse=TRUE,type=type_quantile,qnull=qnull,valmin=valmin,sample=sample,origin_x=origin_sim,origin_data=origin,extremes=extremes))
 	names(prec_gen) <- names(prec_spline_sim)			
   #  names(prec_gen) <- names(prec_mes)
-
+	out <- NULL
 	if (onlygeneration) {
 		names_out <- c("prec_gen","prec_spline_sim","data_prec_gen","mean_climate_prec_sim")
 		for (it in names_out) { if (!exists(it)) assign(it,NULL)}

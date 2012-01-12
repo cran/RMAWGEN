@@ -10,8 +10,8 @@
     exogen_sim = NULL, is_exogen_gaussian = FALSE,
     year_max_sim = year_max, year_min_sim = year_min,
     mean_climate_prec_sim = NULL, onlygeneration = FALSE,
-    varmodel = NULL, type_quantile = 3, step = 0,
-    n_GPCA_iteration = 0,
+    varmodel = NULL, type_quantile = 3, qnull = NULL,
+    valmin = 0.5, step = 0, n_GPCA_iteration = 0,
     n_GPCA_iteration_residuals = n_GPCA_iteration,
     sample = NULL, extremes = TRUE, exogen_all = NULL,
     exogen_all_col = station, option_temp = 0)
@@ -45,14 +45,14 @@
   \item{verbose}{logical variable}
 
   \item{cpf}{see
-  \code{\link{normalizeGaussian_severalstations}}}
+  \code{\link{normalizeGaussian_severalstations_prec}}}
 
-  \item{sample,extremes}{see
-  \code{\link{normalizeGaussian_severalstations}}}
+  \item{sample,extremes,qnull,valmin}{see
+  \code{\link{normalizeGaussian_severalstations_prec}}}
 
   \item{step}{see
-  \code{\link{normalizeGaussian_severalstations}}. Default
-  is 0.}
+  \code{\link{normalizeGaussian_severalstations_prec}}.
+  Default is 0.}
 
   \item{p,type,lag.max,ic,activateVARselect}{see respective
   input parameter on \code{\link{getVARmodel}}}

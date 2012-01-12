@@ -1,10 +1,26 @@
-# 
-# This file contains a script example about to perform a precipitation stovhastic generation 
+# file precipitation-generator.R
+#
+# This file contains a script example with a precipitation stochastic generation 
 #
 #
-# Emanuele Cordano on 17-12-2011
+# author: Emanuele Cordano on 17-12-2011
+
+#This program is free software: you can redistribute it and/or modify
+#it under the terms of the GNU General Public License as published by
+#the Free Software Foundation, either version 3 of the License, or
+#(at your option) any later version.
 #
+#This program is distributed in the hope that it will be useful,
+#but WITHOUT ANY WARRANTY; without even the implied warranty of
+#MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#GNU General Public License for more details.
+#
+#You should have received a copy of the GNU General Public License
+#along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 ###############################################################################
+
+
 rm(list=ls())
 set.seed(1222)
 library(RMAWGEN)
@@ -14,9 +30,9 @@ year_max <- 1990
 year_min <- 1961
 origin <- "1961-1-1"
 
-n_GPCA_iter <- 100
+n_GPCA_iter <- 20
 
-station <- c("T0090","T0083","T0099","T0001") #//,"T0010","")
+station <- c("T0090","T0083","T0099","T0001") 
 
 vstation <- 	vstation <- c("B2440","B6130","B8570","B9100","LAVIO","POLSA","SMICH","T0001",
 		"T0010","T0014","T0018","T0032","T0064","T0083","T0090","T0092","T0094","T0099",

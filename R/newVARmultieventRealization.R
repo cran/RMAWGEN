@@ -21,7 +21,7 @@ NULL
 #' @return  a matrix of values
 
 
-
+# TO ADJUST 
 
 
 newVARmultieventRealization <-
@@ -39,8 +39,10 @@ function(var,xprev=rnorm(var@VAR$K*var@VAR$p),exogen=NULL,nrealization=10,B=t(ch
 	
 	if (class(var)=="GPCAvarest2") {
 		
-		noise <- inv_GPCA(x=noise,GPCA_param=var@GPCA_residuals,type=type,extremes=extremes)
-
+		noise1 <- as.data.frame(t(B %*% t(as.matrix(noise))))
+		
+		noise <- inv_GPCA(x=noise1,GPCA_param=var@GPCA_residuals,type=type,extremes=extremes)
+		B <- diag(1,ncol(B))
 	} 
 		
 	
