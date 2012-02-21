@@ -12,7 +12,9 @@
     yhist = hist(y, breaks = breaks, plot = FALSE),
     axes = FALSE, step = NULL, prec = 1e-04, breaks = 50,
     origin_x = origin, origin_data = origin, data = x,
-    xlab = "", ylab = "", color = FALSE, gray = TRUE, ...)
+    xlab = "", ylab = "", color = FALSE, gray = TRUE,
+    sort = FALSE, valmin_x = valmin, valmin_y = valmin,
+    valmin = -9999, abline = c(0, 1), ...)
 }
 \arguments{
   \item{x}{vector of input data}
@@ -86,6 +88,26 @@
   \code{col} is unspecified, a color scale is applied
   according to \code{col_min} and \code{col_max} (see
   \code{\link{gray}}). Default is \code{TRUE}.}
+
+  \item{sort}{logical value. If \code{TRUE}, \code{x} and
+  \code{y} are sorted and a Q-Q plot is presented.
+  Deafault is \code{FALSE}.}
+
+  \item{valmin_x}{numerical threshold value over which the
+  variable \code{x} is plotted. It is enabled only if
+  \code{sort} is set \code{TRUE}.}
+
+  \item{valmin_y}{numerical threshold value over which the
+  variable \code{y} is plotted. It is enabled only if
+  \code{sort} is set \code{TRUE}.}
+
+  \item{valmin}{numerical threshold value for
+  \code{valmin_y} and \code{valmin_x} if there are not
+  specified.}
+
+  \item{abline}{arguments for \code{\link{abline}}
+  function. Default is \code{c(0,1)}. If it is \code{NULL},
+  \code{\link{abline}} is disabled and not called.}
 
   \item{...}{see graphical parametes on
   \code{\link{plot.default}}}

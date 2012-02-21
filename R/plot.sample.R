@@ -23,6 +23,15 @@ NULL
 #' @param data \code{\link{normalizeGaussian_severalstations}}. Default value is set equal to \code{x}.
 #' @param color logical value. If \code{TRUE} and if \code{col} is unspecified, a color scale is applied according to \code{col_min} and \code{col_max} (see \code{\link{rainbow}}). Default is \code{FALSE}.
 #' @param gray logical value. If \code{TRUE} and if \code{col} is unspecified, a color scale is applied according to \code{col_min} and \code{col_max} (see \code{\link{gray}}). Default is \code{TRUE}.
+#' @param sort logical value. If \code{TRUE}, \code{x} and \code{y} are sorted and a Q-Q plot is presented.  Deafault is \code{FALSE}. 
+#' @param valmin_x numerical threshold value over which the variable \code{x} is plotted. It is enabled only if \code{sort} is set \code{TRUE}.
+#' @param valmin_y numerical threshold value over which the variable \code{y} is plotted. It is enabled only if \code{sort} is set \code{TRUE}.
+#' @param valmin numerical threshold value for \code{valmin_y} and \code{valmin_x} if there are not specified.
+#' @param abline arguments for  \code{\link{abline}} function. Default is \code{c(0,1)}. If it is \code{NULL}, \code{\link{abline}} is disabled and not called.
+#valmin=-9999,
+#abline=c(0,1),
+
+
 #' @param ...  see graphical parametes on \code{\link{plot.default}} 
 #' 
 #' @note It makes a plot betwee \code{x} and \code{y} and shows thair respective probibilty histograms. 
@@ -71,6 +80,11 @@ plot_sample <- function(x,
 		ylab="",
 		color=FALSE,
 		gray=TRUE,
+		sort=FALSE,
+		valmin_x=valmin,
+		valmin_y=valmin,
+		valmin=-9999,
+		abline=c(0,1),
 		...) {
 	
 ## CONTROLLARE I VALORI CHE SI PASSANO DA PLOT A PLOT!!!	
@@ -116,9 +130,11 @@ plot_sample <- function(x,
 				origin_data=origin_data,
 				data=data,
 				legend_position=legend_position,
-				color=color,gray=gray,...)
+				color=color,gray=gray,sort=sort,
+				valmin=valmin,
+				valmin_x=valmin_x,valmin_y=valmin_y,abline=NULL,...)
 
-		
+		if (!is.null(abline)) abline(abline)
 		
 		par(mar=c(0,3,1,1))
 		barplot(xhist$counts, axes=axes, ylim=c(0,top), space=0)
@@ -130,8 +146,14 @@ plot_sample <- function(x,
 	
 	
 	} else if (is.null(sample)) {
-		
-		plot(x,y,xlim=xlim,ylim=ylim,xlab=xlab,ylab=ylab,col=col,pch=pch,...)
+	
+		xplot <-  x
+		yplot <-  y
+		if (sort) {
+			xplot <- sort(xplot[xplot>valmin_x & !is.na(xplot)]) #/(length(xplot[xplot>valmin_x & !is.na(xplot)])+1)
+			yplot <- sort(yplot[yplot>valmin_y & !is.na(yplot)]) #/(length(yplot[yplot>valmin_y & !is.na(yplot)])+1)
+		} 
+		plot(xplot,yplot,xlim=xlim,ylim=ylim,xlab=xlab,ylab=ylab,col=col,pch=pch,...)
 	
 	} else if (sample=="monthly") {
 		
@@ -176,14 +198,31 @@ plot_sample <- function(x,
 		
 		}
 			
-
 		
-		plot(x[i_months_x],y[i_months_x],xlim=xlim,ylim=ylim,col=col[1],pch=pch[1],xlab=xlab,ylab=ylab,...)
+		
+		xplot <-  x[i_months_x]
+		yplot <-  y[i_months_x]
+		if (sort) {
+			xplot <- sort(xplot[xplot>valmin_x & !is.na(xplot)]) #/(length(xplot[xplot>valmin_x & !is.na(xplot)])+1)
+			yplot <- sort(yplot[yplot>valmin_y & !is.na(yplot)]) #/(length(yplot[yplot>valmin_y & !is.na(yplot)])+1)
+		} 			
+
+
+		plot(xplot,yplot,xlim=xlim,ylim=ylim,col=col[1],pch=pch[1],xlab=xlab,ylab=ylab,...)
 		
 		for (m in 2:length(months)) {
 			
 			i_months_x <- extractmonths(data=1:length(x),when=months[m],origin=origin_x)
-			points(x[i_months_x],y[i_months_x],pch=pch[m],col=col[m])
+			xplot <-  x[i_months_x]
+			yplot <-  y[i_months_x]
+			if (sort) {
+				xplot <- sort(xplot[xplot>valmin_x & !is.na(xplot)]) #/(length(xplot[xplot>valmin_x & !is.na(xplot)])+1)
+				yplot <- sort(yplot[yplot>valmin_y & !is.na(yplot)]) #/(length(yplot[yplot>valmin_y & !is.na(yplot)])+1)
+			} 			
+			
+			
+			
+			points(xplot,yplot,pch=pch[m],col=col[m])
 			
 			
 			
@@ -191,7 +230,16 @@ plot_sample <- function(x,
 		legend(legend_position,pch=pch,col=col,legend=months)
 	} else {
 		
-		plot(x,y,xlim=xlim,ylim=ylim,pch=pch[1],col=col[1],xlab=xlab,ylab=ylab,...)
+		xplot <-  x
+		yplot <-  y
+		if (sort) {
+			xplot <- sort(xplot[xplot>valmin_x & !is.na(xplot)]) #/(length(xplot[xplot>valmin_x & !is.na(xplot)])+1)
+			yplot <- sort(yplot[yplot>valmin_y & !is.na(yplot)]) #/(length(yplot[yplot>valmin_y & !is.na(yplot)])+1)
+		} 
+	
+	
+	
+		plot(xplot,yplot,xlim=xlim,ylim=ylim,pch=pch[1],col=col[1],xlab=xlab,ylab=ylab,...)
 		
 	}
 	

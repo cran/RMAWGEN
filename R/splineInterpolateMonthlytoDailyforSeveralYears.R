@@ -10,7 +10,7 @@ NULL
 #' @param nyear number of years since \code{start_year}
 #' @param leap logical variable If \code{TRUE} (default) leap years are considered, otherwise they are not
 #' @param offset integer values. Default is 2. Number of years considered beyond the extremes in order to avoid edge errors 
-#' 
+#' @param no_spline logical value. If \code{TRUE} no spline interpolation is calculated and the daily value corresponds to the monthly averaga value. Default is \code{FALSE}.
 #' @return a matrix with interpolated daily data 
 #' 
 #' @export 
@@ -26,7 +26,7 @@ NULL
 
 
 splineInterpolateMonthlytoDailyforSeveralYears <-
-function(val,start_year=2010,nyear=1,leap=TRUE,offset=2) {
+function(val,start_year=2010,nyear=1,leap=TRUE,offset=2,no_spline=FALSE) {
 	
 	
 	
@@ -68,7 +68,7 @@ function(val,start_year=2010,nyear=1,leap=TRUE,offset=2) {
 	
 	origin <- paste(start_year-offset,"1","1",sep="/")
 	
-	output <- splineInterpolateMonthlytoDaily(nday=nday,val=tval,origin=origin,first_row=offset_day+1,last_row=nday1)
+	output <- splineInterpolateMonthlytoDaily(nday=nday,val=tval,origin=origin,first_row=offset_day+1,last_row=nday1,no_spline=no_spline)
 	
 	
 	

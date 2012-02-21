@@ -1,14 +1,20 @@
 NULL 
 #' 
-#'\code{print} S3 method for \code{GPCA} object
+#'\code{print} S3 method for \code{GPCA} or \code{GPCA_iteration} object
 #'
-#' @param x a \code{GPCA} object 
+#' @param x a \code{GPCA} or \code{GPCAiteration} object 
 #' @param rmin,rmax,cmin,cmax maximum and minimum rows and columns to be printed 
 #' @param ...   passed arguments  
 #' 
 #' @export
-#' 
-#' @seealso \code{\link{GPCA}}
+#' @rdname print
+#' @method print GPCA
+#' @S3method print GPCA
+#' @aliases print
+# @usage print(x, rmin = 1, rmax = 4, cmin = rmin,
+#     cmax = rmax, ...)
+
+#' @seealso \code{\link{GPCA}},\code{\link{GPCA_iteration}}
 #' 
 
 print.GPCA <- function (x,rmin=1,rmax=4,cmin=rmin,cmax=rmax,...) {

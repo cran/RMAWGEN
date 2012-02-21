@@ -10,8 +10,8 @@
 #' \tabular{ll}{
 #' Package: \tab RMAWGEN\cr
 #' Type: \tab Package\cr
-#' Version: \tab 1.2.1\cr
-#' Date: \tab   2012-01-12\cr
+#' Version: \tab 1.2.2\cr
+#' Date: \tab   2012-02-21\cr
 #' License: \tab GPL (>= 2)
 #'  
 
@@ -34,7 +34,10 @@
 #' @author Emanuele Cordano \email{emanuele.cordano@@gmail.org}, Emanuele Eccel \email{emanuele.eccel@@iasma.it}
 # @references 
 #' 
-#' @note RMAWGEN is free software: you can redistribute it and/or modify
+#' @note RMAWGEN has been created in the frame of ACE-SAP (\url{http://www.ace-sap.it/}) and ENVIROCHANGE (\url{http://www.envirochange.eu/}) projects 
+#' funded by Provincia Autonoma di Trento (\url{http://www.provincia.tn.it/}).
+#' 
+#' RMAWGEN is free software: you can redistribute it and/or modify
 #'    it under the terms of the GNU General Public License as published by
 #'    the Free Software Foundation, either version 3 of the License, or
 #'    (at your option) any later version.
@@ -45,7 +48,7 @@
 #'    GNU General Public License for more details.
 #' 
  #'    You should have received a copy of the GNU General Public License
- #'    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ #'    along with this program.  If not, see \url{http://www.gnu.org/licenses/}.
 #' 
 #' @keywords package
 # @seealso \code{\link{is.pseudoprime}}

@@ -9,7 +9,7 @@ NULL
 #' @param origin  date corresponding to the first row of the returned matrix
 #' @param first_row row corresponding the first day of time interval where montlhy mean conservation is applied
 #' @param last_row corresponding the last day of time interval where montlhy mean conservation is applied
-#' 
+#' @param no_spline logical value. If \code{TRUE} no spline interpolation is calculated and the daily value corresponds to the monthly averaga value. Default is \code{FALSE}.
 #' @export 
 #'  
 #' @return a matrix with interpolated daily data 
@@ -19,7 +19,7 @@ NULL
 #' @author Emanuele Cordano, Emanuele Eccel
 
 splineInterpolateMonthlytoDaily <-
-function(nday=365,val=as.matrix(cbind(1*(0.5:11.5)*nday/12,2*(0.5:11.5)*nday/12)),origin="1961-1-1",first_row=1,last_row=nday) {
+function(nday=365,val=as.matrix(cbind(1*(0.5:11.5)*nday/12,2*(0.5:11.5)*nday/12)),origin="1961-1-1",first_row=1,last_row=nday,no_spline=FALSE) {
 	
 	nmonth=nrow(val)
 	
@@ -54,9 +54,11 @@ function(nday=365,val=as.matrix(cbind(1*(0.5:11.5)*nday/12,2*(0.5:11.5)*nday/12)
 			i_months <- extractmonths(data=1:length(out2),when=months[m],origin=origin)
 
 			
-
-			out2[i_months[i_months %in% first_row:last_row]] <-  out1[i_months[i_months %in% first_row:last_row]]-mean(out1[i_months[i_months %in% first_row:last_row]])+val[m,i] 
-
+			if (no_spline) {
+				out2[i_months[i_months %in% first_row:last_row]] <-  val[m,i]
+			} else {
+				out2[i_months[i_months %in% first_row:last_row]] <-  out1[i_months[i_months %in% first_row:last_row]]-mean(out1[i_months[i_months %in% first_row:last_row]])+val[m,i] 
+			}
 	 	}	
 #		for (m in 1:nmonth) {
 			

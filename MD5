@@ -1,7 +1,7 @@
-ec3d64611d451645b0b23a520803d17e *DESCRIPTION
+0613a4c6e655722dc732d609954928aa *DESCRIPTION
 d32239bcb673463ab874e80d47fae504 *LICENSE
-1097051eb9563f89f6ca6e3e875e461d *NAMESPACE
-5ff0e8df1d3f4b83b5f8a8e62cca3570 *R/ComprehensivePrecipitationGenerator.R
+ece792f1b2d404cb0aeed31d8478dd3a *NAMESPACE
+be23b31071c98dcb1f3542ec5919ba53 *R/ComprehensivePrecipitationGenerator.R
 f096021d2665ec33d5400f01c2f49c00 *R/ComprehensiveTemperatureGenerator.R
 b2454a8b33d07f5c1b5fe93039fe45f6 *R/ElevationOf.R
 26ecce561f2f2ae8d7c9b46c9ed4efd2 *R/GPCA.R
@@ -9,7 +9,7 @@ b2454a8b33d07f5c1b5fe93039fe45f6 *R/ElevationOf.R
 eaff6b3b001288583a4af50d4a7cb6c3 *R/NewVAReventRealization.R
 b2327fa120e7f9e5212f33de56772a5a *R/PrecipitationEndDay.R
 af9c3dc7ca1fb290e66c87df2436e4a2 *R/PrecipitationStartDay.R
-2b7c0e8727c0b3fd16797e97f9bc9c3a *R/RMAWGEN-package.R
+37b8b8c68de16b58cdc7bd434f84adc2 *R/RMAWGEN-package.R
 f3e8a990e7de1409bbfd2629e501c63b *R/TemperatureEndDay.R
 8b08e219f4a6db17e32733f2415eab12 *R/TemperatureStartDay.R
 a6aaaeb6b96df9316816c192ace7d2dd *R/VAR_mod.R
@@ -18,7 +18,7 @@ d8b9c6eef9ba9c5ba7e61db07da25cf7 *R/acvWGEN.R
 d830569a8213448dd71c587656f30f67 *R/adddate.R
 bfd2576bb39b7218c6746247b60a8dcb *R/addsuffixes.R
 88e381b497a78d115d68c2197a67cf71 *R/arch_test.varest2.R
-828564496dfdc3ee55cb34dfce3defa9 *R/continuity_ratio.R
+c6e794828fca05931e5531cc99122603 *R/continuity_ratio.R
 c74df60d352d2aa35e242dab3f349a41 *R/countNAs.R
 4bbbb7a5bb150b3ed9b2355a2b5a85ec *R/covariance.R
 726d6ae9e185dba58a8b45532deeb0fc *R/extractTnFromAnomalies.R
@@ -42,10 +42,10 @@ a79b7432cc472b4d9ba2e578c6a055e3 *R/is.monthly.climate.R
 d54401c40977f6f56d9e18622fa5a925 *R/normalizeGaussian_prec.R
 a4315ee58f17c6cc3ad195c8aec321c5 *R/normalizeGaussian_sevaralstations.R
 0517f5bd298e13c0b8dfcc14348f36cd *R/normalizeGaussian_sevaralstations_prec.R
-87d58e02de0dd1a67b39e1e18e685ede *R/plot.sample.R
+11c58defe559032c276d096f3932f8ca *R/plot.sample.R
 a0501b13847bc5c9a9c189930c7a040c *R/plotDailyClimate.R
-8d2929337dbba7343d2fe428f76bb685 *R/print.GPCA.R
-e2c213290c7516aa28c69884dac1693a *R/print.GPCAiteration.R
+f18eaa282cd53fd25ef4aafc8fb5623e *R/print.GPCA.R
+59b7672f21a9e141220c1472562aacbf *R/print.GPCAiteration.R
 45695575c24a1e8505941cd6faf594ec *R/qqplotTnTxWGEN.R
 7321a24014ec70b8d4c4a27eca20afa1 *R/qqplotTnTxWGEN_seasonal.R
 fca8a61af989e18b6c15a7c095e651cf *R/qqplotWGEN.R
@@ -54,8 +54,8 @@ fca8a61af989e18b6c15a7c095e651cf *R/qqplotWGEN.R
 4c7cb21e47b72e0d3d89e33fa8143f1a *R/removeNAs.R
 0318075aabc8b9547eb6784d06922a2c *R/serial_test.varest2.R
 a1bcf9764d1e8465b60e18b230297ecf *R/setWholeTemperatureGeneratorParameters.R
-ee817f1c7fe950fb752863aa1be186e8 *R/splineInterpolateMonthlytoDaily.R
-b97889b48dd6ac2abddff5fba1864386 *R/splineInterpolateMonthlytoDailyforSeveralYears.R
+f3a5892cd462fd1b0e6ebfcd10ee12b0 *R/splineInterpolateMonthlytoDaily.R
+f9c9d42c2627fcc397e265a5c9718a45 *R/splineInterpolateMonthlytoDailyforSeveralYears.R
 efe2b65bc94070c692f0e996b9f8dcc1 *R/zc0_GPCA.R
 c42a47dbdc0eedb87d74a2b75bbf73f8 *R/zc0_GPCAiteration.R
 bbb26677b039c3042d430852cec0f2ce *R/zc0_varest.R
@@ -64,8 +64,8 @@ f200774ec32dbff1b8087401bae5fc66 *R/zc2_GPCAvarest2.R
 1f5e3be5e9ff55d43d3ef7bca523ac92 *data/datalist
 75f56273d4dae48572870d6ed1b8cb70 *data/trentino.rda
 7a0d1d8dc05837e03791dba01499d4cc *inst/doc/examples/precipitation-generator.R
-64bccbd04e85f06c7777ce1f94b67e41 *inst/doc/examples/weather-generator.R
-3ffe1f380f43148878f569c51d961b32 *man/ComprehensivePrecipitationGenerator.Rd
+e839627567c4f4b72abbada42e024de8 *inst/doc/examples/weather-generator.R
+a3c98000177cf574cb8c2f604098b80e *man/ComprehensivePrecipitationGenerator.Rd
 8f91d969b02e71503bf3400db7ebab6a *man/ComprehensiveTemperatureGenerator.Rd
 fc79b6d0f120ea5946ba27899ebe458b *man/ElevationOf.Rd
 cf4c037ba321b28e9836ddb522f2c294 *man/GPCA-class.Rd
@@ -76,7 +76,7 @@ d8e1ab89f4f3f2e1c713354387671737 *man/GPCAiteration-class.Rd
 da21bba30d8a185c70e25ad065b3930c *man/NewVAReventRealization.Rd
 0322dd3e084714f29c5ab2eff0bec010 *man/PrecipitationEndDay.Rd
 843ab42350ad047af8c17b7a92e912fb *man/PrecipitationStartDay.Rd
-ed4f3d4349d17826c147369ab402485c *man/RMAWGEN-package.Rd
+aebc038954724d78d67fd1700e4243f4 *man/RMAWGEN-package.Rd
 45ac54094d13fe286c64eb9793349ea7 *man/TemperatureEndDay.Rd
 6fc1a4685f1dae7b4b03649bd702b46f *man/TemperatureStartDay.Rd
 5f72be7bee6b067f10d50b44af7ac5c3 *man/VAR_mod.Rd
@@ -85,7 +85,7 @@ cb7d1203ea2c717c82c0d8f9a693c9f8 *man/acvWGEN.Rd
 4c34eb7457aed1d20a242f1089f22f6a *man/adddate.Rd
 4918d16f3c2dbfeb829477ee4eef9724 *man/addsuffixes.Rd
 516e09186569177f119e580fc7217342 *man/arch_test.Rd
-7cd7c3974af0700fa8b838501c750919 *man/continuity_ratio.Rd
+0ae36d017f83dae021a0e488d038950b *man/continuity_ratio.Rd
 1cdb1d5f51f7e1560f727866e776564d *man/countNAs.Rd
 9b79d10c17d1a014a537734517585b52 *man/covariance.Rd
 9cb7ff1bdf64ef70d7ce3010a339d350 *man/extractTnFromAnomalies.Rd
@@ -110,9 +110,8 @@ a223f36e093ea08b1c64dc89ab5888ff *man/normalizeGaussian_prec.Rd
 eeaa34a3c0f8e918592dfccafc0ad97d *man/normalizeGaussian_severalstations.Rd
 a4ecee85af91164fce09d15bb06ed0e9 *man/normalizeGaussian_severalstations_prec.Rd
 8ddc052746df62874258aad3e30d5954 *man/plotDailyClimate.Rd
-d52cb1483e552a40a0576a8fb4fff999 *man/plot_sample.Rd
-bad7dbe45163a526841d2142177eee5f *man/print.GPCA.Rd
-03dd63a56d739337d46a7056f7bcbc64 *man/print.GPCAiteration.Rd
+590c83ecc9b86e03b3f54c14946c3464 *man/plot_sample.Rd
+45afc5907f667c6e9e1197b13ac8acb4 *man/print.Rd
 184f1d4ee4d3488e2905df3b0734a54e *man/qqplotTnTxWGEN.Rd
 96ca0b4c6108397a4fee65d8f85514c3 *man/qqplotTnTxWGEN_seasonal.Rd
 cfad3190a71fd7109299bfde388f985a *man/qqplotWGEN.Rd
@@ -121,8 +120,8 @@ cfad3190a71fd7109299bfde388f985a *man/qqplotWGEN.Rd
 4ddd41a26ac503e114fe66ef9ae94923 *man/removeNAs.Rd
 6bb0df5852d87bd30f5c2cd2867f9e6b *man/serial_test.Rd
 f61d40c7adff3ef68d558e3bd52d0a1d *man/setComprehensiveTemperatureGeneratorParameters.Rd
-73bc3d0206574cdadcd55a589129b6fc *man/splineInterpolateMonthlytoDaily.Rd
-22d6271e630f40a47be63c1e25aa0552 *man/splineInterpolateMonthlytoDailyforSeveralYears.Rd
+73c1f6a1a0c184f23946595d5172fdc6 *man/splineInterpolateMonthlytoDaily.Rd
+f54a1b1dc4f8aa0ac01a441bd1e9ce58 *man/splineInterpolateMonthlytoDailyforSeveralYears.Rd
 0426f83ff699f81f0875a6b91ec75cb0 *man/trentino.Rd
 a071e52d14ae7d2bc9ae39b294bdf658 *man/varest-class.Rd
 c56d4df8df7244dfd2a8fe994ec95d7f *man/varest2-class.Rd

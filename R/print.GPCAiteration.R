@@ -1,12 +1,19 @@
 NULL 
 #' 
-#'\code{print} S3 method for \code{GPCAiteretion} object
+#\code{print} S3 method for \code{GPCAiteretion} object
 #'
-#' @param x a \code{GPCAiteration} object 
-#' @param rmin,rmax,cmin,cmax maximum and minimum rows and columns to be printed 
-#' @param ...   passed arguments  
-#' 
+# @param x a \code{GPCAiteration} object 
+# @param rmin,rmax,cmin,cmax maximum and minimum rows and columns to be printed 
+# @param ...   passed arguments  
+# 
+#' @rdname print
 #' @export
+#' @method print GPCAiteration
+#' @S3method print GPCAiteration
+#' @aliases print
+# @usage print(x, rmin = 1, rmax = 4, cmin = rmin,
+#     cmax = rmax, ...)
+
 #' 
 #' @seealso \code{\link{GPCA_iteration}}
 #' 

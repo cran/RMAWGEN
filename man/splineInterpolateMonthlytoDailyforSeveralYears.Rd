@@ -3,7 +3,8 @@
 \title{Interpolates monthly data to daily data using \code{\link{splineInterpolateMonthlytoDaily}}  for several years}
 \usage{
   splineInterpolateMonthlytoDailyforSeveralYears(val,
-    start_year = 2010, nyear = 1, leap = TRUE, offset = 2)
+    start_year = 2010, nyear = 1, leap = TRUE, offset = 2,
+    no_spline = FALSE)
 }
 \arguments{
   \item{val}{matrix containing monthly mean data for one
@@ -19,6 +20,11 @@
   \item{offset}{integer values. Default is 2. Number of
   years considered beyond the extremes in order to avoid
   edge errors}
+
+  \item{no_spline}{logical value. If \code{TRUE} no spline
+  interpolation is calculated and the daily value
+  corresponds to the monthly averaga value. Default is
+  \code{FALSE}.}
 }
 \value{
   a matrix with interpolated daily data

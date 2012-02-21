@@ -14,7 +14,8 @@
     valmin = 0.5, step = 0, n_GPCA_iteration = 0,
     n_GPCA_iteration_residuals = n_GPCA_iteration,
     sample = NULL, extremes = TRUE, exogen_all = NULL,
-    exogen_all_col = station, option_temp = 0)
+    exogen_all_col = station, option_temp = 0,
+    no_spline = TRUE)
 }
 \arguments{
   \item{station}{character vector of the IDs of the
@@ -115,6 +116,10 @@
 
   \item{exogen_all_col}{vector of considered columns of
   \code{exogen_all}. Default is \code{station}.}
+
+  \item{no_spline}{logical value. See
+  \code{\link{splineInterpolateMonthlytoDailyforSeveralYears}}.
+  Default is \code{TRUE}.}
 }
 \value{
   A list of the following variables:

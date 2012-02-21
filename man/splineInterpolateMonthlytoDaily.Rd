@@ -4,7 +4,8 @@
 \usage{
   splineInterpolateMonthlytoDaily(nday = 365,
     val = as.matrix(cbind(1 * (0.5:11.5) * nday/12, 2 * (0.5:11.5) * nday/12)),
-    origin = "1961-1-1", first_row = 1, last_row = nday)
+    origin = "1961-1-1", first_row = 1, last_row = nday,
+    no_spline = FALSE)
 }
 \arguments{
   \item{nday}{number of days on which the daily data is
@@ -20,6 +21,11 @@
 
   \item{last_row}{corresponding the last day of time
   interval where montlhy mean conservation is applied}
+
+  \item{no_spline}{logical value. If \code{TRUE} no spline
+  interpolation is calculated and the daily value
+  corresponds to the monthly averaga value. Default is
+  \code{FALSE}.}
 }
 \value{
   a matrix with interpolated daily data

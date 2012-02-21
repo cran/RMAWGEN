@@ -30,6 +30,7 @@ NULL
 #' @param exogen_all data frame containing exogenous variable formatted like \code{prec_all}. Default is \code{NULL}. 
 #' It is alternative to \code{exogen} and if it not \code{NULL},\code{is_exogen_gaussian} is automatically set \code{FALSE}	
 #' @param exogen_all_col vector of considered  columns of \code{exogen_all}. Default is \code{station}.
+#' @param no_spline logical value. See \code{\link{splineInterpolateMonthlytoDailyforSeveralYears}}. Default is \code{TRUE}.
 #' 
 #' @export 
 
@@ -134,8 +135,8 @@ function(
 		exogen_all_col=station,
 		
 		
-		option_temp=0
-		
+		option_temp=0,
+		no_spline=TRUE
 
 ) {
 	
@@ -151,7 +152,8 @@ function(
 	nyear <- year_max-year_min+1
 	if (!is.monthly.climate(mean_climate_prec,nstation=length(station),nmonth=nmonth,verbose=verbose)) mean_climate_prec <- getMonthlyMean(prec_all,year_min=year_min,year_max=year_max,station=station)
 	MEAN_CLIMATE_prec_SAVED <- mean_climate_prec
-	prec_spline <- as.data.frame(splineInterpolateMonthlytoDailyforSeveralYears(val=mean_climate_prec,start_year=year_min,nyear=nyear,leap=leap))	
+	# TO DO SOME MODIFICATIONS
+	prec_spline <- as.data.frame(splineInterpolateMonthlytoDailyforSeveralYears(val=mean_climate_prec,start_year=year_min,nyear=nyear,leap=leap,no_spline=no_spline))	
 	names(prec_spline) <- names(mean_climate_prec)
 	
 	if (min(prec_spline)<=0) {
@@ -192,7 +194,7 @@ function(
 				
 	if (is.null(mean_climate_prec_sim)) mean_climate_prec_sim <- mean_climate_prec
 	nyear_sim <- year_max_sim-year_min_sim+1
-	prec_spline_sim <- as.data.frame(splineInterpolateMonthlytoDailyforSeveralYears(val=mean_climate_prec_sim,start_year=year_min_sim,nyear=nyear_sim,leap=leap))	
+	prec_spline_sim <- as.data.frame(splineInterpolateMonthlytoDailyforSeveralYears(val=mean_climate_prec_sim,start_year=year_min_sim,nyear=nyear_sim,leap=leap,no_spline=no_spline))	
 	names(prec_spline_sim) <- colnames(mean_climate_prec_sim)	
 	if (is.null(exogen_sim)) exogen_sim <- exogen 
 	if (!is.null(exogen_sim) & (!is_exogen_gaussian)) {

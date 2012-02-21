@@ -77,4 +77,4 @@ c_mes <- continuity_ratio(data_gen,valmin=1.0)
 c_gen <- continuity_ratio(data_mes,valmin=1.0)
 
 print(generation00_temp$var)
-
+plot_sample(vprec_mes,vprec_gen,sample="monthly",origin=origin,sort=TRUE)
