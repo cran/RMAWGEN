@@ -11,7 +11,10 @@ NULL
 #' @param leap logical variable If \code{TRUE} (default) leap years are considered, otherwise they are not
 #' @param offset integer values. Default is 2. Number of years considered beyond the extremes in order to avoid edge errors 
 #' @param no_spline logical value. If \code{TRUE} no spline interpolation is calculated and the daily value corresponds to the monthly averaga value. Default is \code{FALSE}.
-#' @return a matrix with interpolated daily data 
+#' @param yearly logical value. If \code{TRUE} the result with men value per each month per each year. Default is \code{FALSE}.
+#' 
+#' 
+#'  @return a matrix or data frame with interpolated daily data 
 #' 
 #' @export 
 #' 
@@ -26,20 +29,46 @@ NULL
 
 
 splineInterpolateMonthlytoDailyforSeveralYears <-
-function(val,start_year=2010,nyear=1,leap=TRUE,offset=2,no_spline=FALSE) {
+function(val,start_year=2010,nyear=1,leap=TRUE,offset=2,no_spline=FALSE,yearly=FALSE) {
 	
 	
 	
 	tval <- val 
 	
 	
-	nyear_sim=nyear+2*offset
-	
-	if (nyear_sim>1) for (i in 2:nyear_sim) tval <- rbind(tval,val)
-	
-	
-	
-	
+	if (yearly) {
+		nyear_sim=length(val)+2*offset 
+		
+		tval <- val[[1]]
+		for(i in 2:nyear_sim) {
+			
+			if (i<=offset) {
+				tval <- rbind(tval,val[[1]])
+			} else if (i>length(val)) {
+				
+				tval <- rbind(tval,val[[length(val)]])
+				
+			} else {
+				tval <- rbind(tval,val[[i]])
+			}
+			
+			
+		}
+		
+		
+		
+	} else {
+		
+		nyear_sim=nyear+2*offset
+		
+		if (nyear_sim>1) for (i in 2:nyear_sim) tval <- rbind(tval,val)
+		
+		
+	}
+#	  
+#	
+#	
+#	
 	end_year=start_year+nyear-1
 	
 	count=0
@@ -60,19 +89,32 @@ function(val,start_year=2010,nyear=1,leap=TRUE,offset=2,no_spline=FALSE) {
 		}
 		
 	}
-#	print(offset_day)
+#	print(offset_day) class
 	nday=count
 	nday1=count1
 #	offset_day=offset*365
 #	nday=count+2*offset_day
 	
 	origin <- paste(start_year-offset,"1","1",sep="/")
+	if (yearly) {
+		no_mean=TRUE
+	} else {
+		no_mean=FALSE
+	}
+	output <- splineInterpolateMonthlytoDaily(nday=nday,val=tval,origin=origin,first_row=offset_day+1,last_row=nday1,no_spline=no_spline,no_mean=no_mean)
 	
-	output <- splineInterpolateMonthlytoDaily(nday=nday,val=tval,origin=origin,first_row=offset_day+1,last_row=nday1,no_spline=no_spline)
+	if (!yearly) {
+		
+		out <- output[(offset_day+1):nday1,]
+		
+	} else {
+		
+		origin_rescaling <- paste(start_year,"1","1",sep="/")
+		out <- rescaling_monthly(data=output[(offset_day+1):nday1,],origin=origin_rescaling,val=val)
+		
+	}
 	
-	
-	
-	return(output[(offset_day+1):nday1,])
+	return(out)
 
 }
 

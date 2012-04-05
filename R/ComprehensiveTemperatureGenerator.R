@@ -3,15 +3,18 @@ NULL
 #' The comprehensive Temperature Generator
 #' 
 #' @param station see respective input parameter on \code{\link{setComprehensiveTemperatureGeneratorParameters}}
-#' @param Tx_all,Tn_all,mean_climate_Tn,mean_climate_Tx see respective input parameter on \code{\link{setComprehensiveTemperatureGeneratorParameters}}
+#' @param Tx_all,Tn_all,mean_climate_Tn,mean_climate_Tx,Tx_spline,Tn_spline see respective input parameter on \code{\link{setComprehensiveTemperatureGeneratorParameters}}
 #' @param year_max,year_min,leap,nmonth,verbose see respective input parameter on \code{\link{setComprehensiveTemperatureGeneratorParameters}}
 #' @param p,type,lag.max,ic,activateVARselect see respective input parameter on \code{\link{getVARmodel}}
 #' @param year_max_sim last year of the simulation period. Default is equal to \code{year_max} 
 #' @param year_min_sim fist year of the simulation period. Default is equal to \code{year_min}
 #' @param mean_climate_Tn_sim monthly avaraged daily minimum temperatures for the simulated scenario and used by the random generator .  Default is \code{mean_climate_Tn}
 #' @param mean_climate_Tx_sim monthly avaraged daily maximum temperatures for the simulated scenario and used by the random generator .  Default is \code{mean_climate_Tx}
+#' @param Tx_spline_sim daily timeseries (from the first day of \code{year_min_sim} to the last day of \code{year_max_sim}) of averaged maximum temperature which can be obtained by a spline interpolation of monthly mean values (for the generation period). Default is \code{Tx_spline}.
+#' @param Tn_spline_sim daily timeseries (from the first day of \code{year_min_sim} to the last day of \code{year_max_sim}) of averaged minimum temperature which can be obtained by a spline interpolation of monthly mean values (for the generation period). Default is \code{Tn_spline}.
+
 #' @param onlygeneration logical variable. If \code{TRUE} the VAR model \code{varmodel} is given as input and only random generation is done, otherwise (default) is calculated from measured data 
-#' @param varmodel the VAR model as a \code{varest} object. If \code{NULL}, it is  given as input and only random generation is done, otherwise (default) is calculated from measured data 
+#' @param varmodel the VAR model as a \code{\link{varest2}}  or a \code{\link{GPCAvarest2}} object. If \code{NULL}, it is  given as input and only random generation is done, otherwise (default) is calculated from measured data 
 #' @param normalize,sample,extremes see \code{\link{normalizeGaussian_severalstations}} or \code{\link{setComprehensiveTemperatureGeneratorParameters}}
 #' @param type_quantile see \code{type} on \code{\link{quantile}}
 #' @param option integer value. If 1, the generator works with minimun and maximum temperature, if 2 (default) it works with the average value between maximum and minimum temparature and the respective daily thermal range.
@@ -23,7 +26,11 @@ NULL
 #' @param exogen_all data frame containing exogenous variable formatted like \code{Tx_all} and {Tn_all}. Default is \code{NULL}. 
 #' It is alternative to \code{exogen} and if it not \code{NULL},\code{is_exogen_gaussian} is automatically set \code{FALSE}	
 #' @param exogen_all_col vector of considered  columns of \code{exogen_all}. Default is \code{station}.
-#' 
+#' @param nscenario number of possible generated scenarios for daily maximum and minimum temperature
+#' @param yearly  logical value. If \code{TRUE} the monthly mean values are calculated for each year from \code{year_min} to \code{year_max} separately. Default is \code{FALSE}.  
+#' @param yearly_sim logical value. If \code{TRUE} the monthly mean values are calculated for each year from \code{year_min_sim} to \code{year_max_sim} separately. Default is \code{yearly}. 
+#' @param seed seed 
+#'   
 #' @export 
 #' 
 #' @author  Emanuele Cordano, Emanuele Eccel
@@ -58,8 +65,9 @@ NULL
 #' CN <- generation0$input$monthly_mean_Tn
 #' generation1 <- ComprehensiveTemperatureGenerator(station=vstation[5:8],varmodel=generation0$var,
 #' onlygeneration=TRUE,year_min=1961,year_max=1990,mean_climate_Tn_sim=CN,mean_climate_Tx_sim=CX,year_min_sim=1961,year_max_sim=1990,
-#' Tx_all=TEMPERATURE_MAX,Tn_all=TEMPERATURE_MIN)
-#'
+#' Tx_all=TEMPERATURE_MAX,Tn_all=TEMPERATURE_MIN,nscenario=3)
+# CHANGE EXAMPLE WITH generation_per_year
+# generation_per_year <- ComprehensiveTemperatureGenerator(station=vstation[5:8],Tx_all=TEMPERATURE_MAX,Tn_all=TEMPERATURE_MIN,year_min=1961,year_max=1990,yearly=TRUE)
 #' str(generation0)
 #' str(generation1)
 
@@ -73,6 +81,8 @@ function(
 		Tn_all,
 		mean_climate_Tn=NULL,
 		mean_climate_Tx=NULL,
+		Tx_spline=NULL,
+		Tn_spline=NULL,
 		year_max=1990,
 		year_min=1961,
 		leap=TRUE,
@@ -87,19 +97,25 @@ function(
 		year_min_sim=year_min,
 		mean_climate_Tn_sim=NULL,
 		mean_climate_Tx_sim=NULL,
+		Tn_spline_sim=NULL,
+		Tx_spline_sim=NULL,
 		onlygeneration=FALSE,
 		varmodel=NULL,normalize=TRUE,
 		type_quantile=3,
 		sample=NULL,
 		extremes=TRUE,
 		option=2,
+		yearly=FALSE,
+		yearly_sim=yearly,
 		n_GPCA_iteration=0,
 		n_GPCA_iteration_residuals=n_GPCA_iteration,
 		exogen=NULL,
 		exogen_sim=exogen,
 		is_exogen_gaussian=FALSE,
 		exogen_all=NULL,
-		exogen_all_col=station
+		exogen_all_col=station,
+		nscenario=1,
+		seed=NULL
 	
 ) {
 	
@@ -118,13 +134,15 @@ function(
 				Tn_all=Tn_all,
 				mean_climate_Tn=mean_climate_Tn,
 				mean_climate_Tx=mean_climate_Tx,
+				Tx_spline=Tx_spline,
+				Tn_spline=Tn_spline,
 				year_max=year_max,
 				year_min=year_min,
 				leap=leap,
 				nmonth=nmonth,
 				verbose=verbose,
 				cpf=NULL,
-				normalize=normalize,sample=sample,option=option)
+				normalize=normalize,sample=sample,option=option,yearly=yearly)
 		
 		# PUT HERE CHECK FOR exogen 
 	if (!onlygeneration){
@@ -151,32 +169,100 @@ function(
 		var <- varmodel
 	}
 	
+	if(is.null(Tx_spline)) Tx_spline <- param[['Tx_spline']]
+	if(is.null(Tn_spline)) Tn_spline <- param[['Tn_spline']]
 	
-	
-	if (is.null(mean_climate_Tn_sim)) mean_climate_Tn_sim <- param[['monthly_mean_Tn']]
-	if (is.null(mean_climate_Tx_sim)) mean_climate_Tx_sim <- param[['monthly_mean_Tx']]
+
 	
 	
 	nyear_sim <- year_max_sim-year_min_sim+1
 	
-	SplineAdvTx_sim <- as.data.frame(splineInterpolateMonthlytoDailyforSeveralYears(val=mean_climate_Tx_sim,start_year=year_min_sim,nyear=nyear_sim,leap=leap))
-	SplineAdvTn_sim <- as.data.frame(splineInterpolateMonthlytoDailyforSeveralYears(val=mean_climate_Tn_sim,start_year=year_min_sim,nyear=nyear_sim,leap=leap))
+	
+	
+# TO BE MODIFIED 	
+	if (is.null(Tx_spline_sim)) {
+		if (is.null(mean_climate_Tx_sim)) mean_climate_Tx_sim <- param[['monthly_mean_Tx']]
+		Tx_spline_sim <- as.data.frame(splineInterpolateMonthlytoDailyforSeveralYears(val=mean_climate_Tx_sim,start_year=year_min_sim,nyear=nyear_sim,leap=leap,yearly=yearly_sim))
+#		str(Tx_spline_sim)
+#		str(mean_climate_Tx_sim)
+#		str(names(Tx_spline_sim))
+#		str(names(mean_climate_Tx_sim))
+#		names(Tx_spline_sim) <- names(mean_climate_Tx_sim)
+		
+		if (yearly_sim) {
+			
+			names(Tx_spline_sim) <- names(mean_climate_Tx_sim[[1]])
+		} else {
+			names(Tx_spline_sim) <- names(mean_climate_Tx_sim)
+		}
+		
+	}
+	
+	if (is.null(Tn_spline_sim)) {
+		
+		if (is.null(mean_climate_Tn_sim)) mean_climate_Tn_sim <- param[['monthly_mean_Tn']]
+		Tn_spline_sim <- as.data.frame(splineInterpolateMonthlytoDailyforSeveralYears(val=mean_climate_Tn_sim,start_year=year_min_sim,nyear=nyear_sim,leap=leap,yearly=yearly_sim))
+	#	names(Tn_spline_sim) <- names(mean_climate_Tn_sim)
+		if (yearly_sim) {
+		
+			names(Tn_spline_sim) <- names(mean_climate_Tn_sim[[1]])
+		} else {
+			names(Tn_spline_sim) <- names(mean_climate_Tn_sim)
+		}
+	
+	
+	}
+
+#	if (is.null(Tx_spline_sim)) Tx_spline_sim <- Tx_spline
+#	if (is.null(Tn_spline_sim)) Tn_spline_sim <- Tn_spline	
 	
 	
 	
-	names(SplineAdvTx_sim) <- names(mean_climate_Tx_sim)
-	names(SplineAdvTn_sim) <- names(mean_climate_Tn_sim) 
 	
-	SplineAdvTm_sim <- (SplineAdvTx_sim+SplineAdvTn_sim)/2.0
-	SplineAdvDeltaT_sim <- (SplineAdvTx_sim-SplineAdvTn_sim)
+	 
+	
+	SplineAdvTm_sim <- (Tx_spline_sim+Tn_spline_sim)/2.0
+	SplineAdvDeltaT_sim <- (Tx_spline_sim-Tn_spline_sim)
 	if (!is.null(exogen_sim) & (!is_exogen_gaussian))  {
 		
 		exogen0_sim <- exogen_sim
 		exogen_sim <- normalizeGaussian_severalstations(x=exogen0_sim,data=exogen0_sim,sample=sample,cpf=NULL,origin_x=origin_sim,origin_data=origin_sim,extremes=extremes)					
 	}
-		
-	results <- generateTemperatureTimeseries(std_tn=param[['stdTn']],std_tx=param[['stdTx']],SplineTx=SplineAdvTx_sim,SplineTn=SplineAdvTn_sim,SplineTm=SplineAdvTm_sim,SplineDeltaT=SplineAdvDeltaT_sim,std_tm=param[['stdTm']],var=var,normalize=normalize,type=type_quantile,sample=sample,option=option,original_data=param[['data_original']],origin_x=origin_sim,origin_data=origin,exogen=exogen_sim,extremes=extremes)	
+	if (!is.null(seed))	set.seed(seed)
+	original_data <- param[['data_original']]
 	
+	if (option==2) { 
+	#	print(class(original_data))
+		
+		
+		
+	
+		ntall <- as.integer(ncol(original_data))
+		ntn <- as.integer(ncol(original_data)/2)+1
+	#	str(Tx_spline)
+	#	str(Tx_spline_sim)
+		ntn_rows <- 1:nrow(original_data)
+	#	str(ntn_rows)
+		original_data[,ntn:ntall] <- original_data[,ntn:ntall]/ (Tx_spline[ntn_rows,station]-Tn_spline[ntn_rows,station])*(Tx_spline_sim[ntn_rows,station]-Tn_spline_sim[ntn_rows,station])
+	}
+	
+
+	
+	results <- generateTemperatureTimeseries(std_tn=param[['stdTn']],std_tx=param[['stdTx']],SplineTx=Tx_spline_sim,SplineTn=Tn_spline_sim,SplineTm=SplineAdvTm_sim,SplineDeltaT=SplineAdvDeltaT_sim,std_tm=param[['stdTm']],var=var,normalize=normalize,type=type_quantile,sample=sample,option=option,original_data=original_data,origin_x=origin_sim,origin_data=origin,exogen=exogen_sim,extremes=extremes)	
+	
+	if (nscenario>1) {
+		
+		# TO BE PARALLELIZED SOMEHOW
+		
+		for (kk in 2:nscenario) {
+			results_temp <- generateTemperatureTimeseries(std_tn=param[['stdTn']],std_tx=param[['stdTx']],SplineTx=Tx_spline_sim,SplineTn=Tn_spline_sim,SplineTm=SplineAdvTm_sim,SplineDeltaT=SplineAdvDeltaT_sim,std_tm=param[['stdTm']],var=var,normalize=normalize,type=type_quantile,sample=sample,option=option,original_data=param[['data_original']],origin_x=origin_sim,origin_data=origin,exogen=exogen_sim,extremes=extremes)	
+			Tx_index <- sprintf("Tx_gen%05d",kk)
+			Tn_index <- sprintf("Tn_gen%05d",kk)
+			results[[Tx_index]] <- results_temp$Tx_gen
+			results[[Tn_index]] <- results_temp$Tn_gen
+			
+		}
+	} 
 
 	if (onlygeneration) {
 		

@@ -4,25 +4,28 @@
 \usage{
   ComprehensiveTemperatureGenerator(station = c("T0001", "T0010", "T0099"),
     Tx_all, Tn_all, mean_climate_Tn = NULL,
-    mean_climate_Tx = NULL, year_max = 1990,
-    year_min = 1961, leap = TRUE, nmonth = 12,
-    verbose = TRUE, p = 1, type = "none", lag.max = NULL,
-    ic = "AIC", activateVARselect = FALSE,
-    year_max_sim = year_max, year_min_sim = year_min,
-    mean_climate_Tn_sim = NULL, mean_climate_Tx_sim = NULL,
-    onlygeneration = FALSE, varmodel = NULL,
-    normalize = TRUE, type_quantile = 3, sample = NULL,
-    extremes = TRUE, option = 2, n_GPCA_iteration = 0,
+    mean_climate_Tx = NULL, Tx_spline = NULL,
+    Tn_spline = NULL, year_max = 1990, year_min = 1961,
+    leap = TRUE, nmonth = 12, verbose = TRUE, p = 1,
+    type = "none", lag.max = NULL, ic = "AIC",
+    activateVARselect = FALSE, year_max_sim = year_max,
+    year_min_sim = year_min, mean_climate_Tn_sim = NULL,
+    mean_climate_Tx_sim = NULL, Tn_spline_sim = NULL,
+    Tx_spline_sim = NULL, onlygeneration = FALSE,
+    varmodel = NULL, normalize = TRUE, type_quantile = 3,
+    sample = NULL, extremes = TRUE, option = 2,
+    yearly = FALSE, yearly_sim = yearly,
+    n_GPCA_iteration = 0,
     n_GPCA_iteration_residuals = n_GPCA_iteration,
     exogen = NULL, exogen_sim = exogen,
     is_exogen_gaussian = FALSE, exogen_all = NULL,
-    exogen_all_col = station)
+    exogen_all_col = station, nscenario = 1, seed = NULL)
 }
 \arguments{
   \item{station}{see respective input parameter on
   \code{\link{setComprehensiveTemperatureGeneratorParameters}}}
 
-  \item{Tx_all,Tn_all,mean_climate_Tn,mean_climate_Tx}{see
+  \item{Tx_all,Tn_all,mean_climate_Tn,mean_climate_Tx,Tx_spline,Tn_spline}{see
   respective input parameter on
   \code{\link{setComprehensiveTemperatureGeneratorParameters}}}
 
@@ -47,15 +50,29 @@
   temperatures for the simulated scenario and used by the
   random generator .  Default is \code{mean_climate_Tx}}
 
+  \item{Tx_spline_sim}{daily timeseries (from the first day
+  of \code{year_min_sim} to the last day of
+  \code{year_max_sim}) of averaged maximum temperature
+  which can be obtained by a spline interpolation of
+  monthly mean values (for the generation period). Default
+  is \code{Tx_spline}.}
+
+  \item{Tn_spline_sim}{daily timeseries (from the first day
+  of \code{year_min_sim} to the last day of
+  \code{year_max_sim}) of averaged minimum temperature
+  which can be obtained by a spline interpolation of
+  monthly mean values (for the generation period). Default
+  is \code{Tn_spline}.}
+
   \item{onlygeneration}{logical variable. If \code{TRUE}
   the VAR model \code{varmodel} is given as input and only
   random generation is done, otherwise (default) is
   calculated from measured data}
 
-  \item{varmodel}{the VAR model as a \code{varest} object.
-  If \code{NULL}, it is given as input and only random
-  generation is done, otherwise (default) is calculated
-  from measured data}
+  \item{varmodel}{the VAR model as a \code{\link{varest2}}
+  or a \code{\link{GPCAvarest2}} object. If \code{NULL}, it
+  is given as input and only random generation is done,
+  otherwise (default) is calculated from measured data}
 
   \item{normalize,sample,extremes}{see
   \code{\link{normalizeGaussian_severalstations}} or
@@ -99,6 +116,21 @@
 
   \item{exogen_all_col}{vector of considered columns of
   \code{exogen_all}. Default is \code{station}.}
+
+  \item{nscenario}{number of possible generated scenarios
+  for daily maximum and minimum temperature}
+
+  \item{yearly}{logical value. If \code{TRUE} the monthly
+  mean values are calculated for each year from
+  \code{year_min} to \code{year_max} separately. Default is
+  \code{FALSE}.}
+
+  \item{yearly_sim}{logical value. If \code{TRUE} the
+  monthly mean values are calculated for each year from
+  \code{year_min_sim} to \code{year_max_sim} separately.
+  Default is \code{yearly}.}
+
+  \item{seed}{seed}
 }
 \value{
   A list of the following variables:
@@ -135,8 +167,7 @@ CX <- generation0$input$monthly_mean_Tx
 CN <- generation0$input$monthly_mean_Tn
 generation1 <- ComprehensiveTemperatureGenerator(station=vstation[5:8],varmodel=generation0$var,
 onlygeneration=TRUE,year_min=1961,year_max=1990,mean_climate_Tn_sim=CN,mean_climate_Tx_sim=CX,year_min_sim=1961,year_max_sim=1990,
-Tx_all=TEMPERATURE_MAX,Tn_all=TEMPERATURE_MIN)
-
+Tx_all=TEMPERATURE_MAX,Tn_all=TEMPERATURE_MIN,nscenario=3)
 str(generation0)
 str(generation1)
 }

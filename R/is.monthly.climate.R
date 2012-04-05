@@ -33,8 +33,24 @@ function (climate,nstation=3,nmonth=12,verbose=TRUE) {
 	if (is.null(climate)) {
 		return(FALSE)
 	} else if (!is.matrix(climate)) {
-		if (verbose) print("Error: The format for monthly mean climate is not a matrix !!")
-		return(FALSE)
+		if (is.list(climate)) {
+			
+			vec <- array(FALSE,length(climate))
+			if (is.matrix(vec[[1]])) {
+				for (i in 1:length(vec)) {
+					vec[i] <- is.monthly.climate(vec[[i]],nstation=nstation,nmonth=nmonth,verbose=verbose)
+				}
+				return(as.logical(max(vec)))			
+			} else {
+				if (verbose) print("Error: The format for monthly mean climate is not a matrix !!")
+			}
+			
+			
+			
+		} else {
+			if (verbose) print("Error: The format for monthly mean climate is not a matrix !!")
+			return(FALSE)
+		}
 	} else {
 		v <- dim(climate)
 		if ((v[1]!=nmonth) | (v[2]!=nstation)) {

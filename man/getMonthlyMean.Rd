@@ -4,7 +4,7 @@
 \usage{
   getMonthlyMean(data, year_min = 1961, year_max = 1990,
     station = names(data), no_date = FALSE,
-    origin = "1961-1-1")
+    origin = "1961-1-1", yearly = FALSE)
 }
 \arguments{
   \item{data}{a dataframe containing daily data.}
@@ -21,12 +21,19 @@
   is recommended if \code{data} does not contain columns
   for the dates.}
 
+  \item{yearly}{logical value. If \code{TRUE} the monthly
+  mean values are calculated for each year from
+  \code{year_min} to \code{year_max} separately. Default is
+  \code{FALSE}.}
+
   \item{origin}{date corresponding to the first row}
 }
 \value{
   a matrix containing the requested monthly mean data where
   each month corresponds to a row and each station
-  corresponds to a column
+  corresponds to a column or a list of such type of matrix
+  in case the monthly mean values are calculated separetely
+  for each year (if \code{yearly} is \code{TRUE})
 }
 \description{
   Calclates the monthly means of a data frame corresponding
@@ -40,7 +47,9 @@
   where the fields \code{,variables_ID1,variables_ID2,...}
   contain the daily variables referred to the respective
   stations and the field names are replaced with the
-  respective station ID.
+  respective station ID. In case \code{yearly} is
+  \code{TRUE} the returned output is a list of matrices
+  whose names are the correspomding year.
 }
 \author{
   Emanuele Cordano, Emanuele Eccel

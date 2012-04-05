@@ -10,8 +10,10 @@ NULL
 #' @param station character vector of the IDs of the considered meteorological stations
 #' @param Tx_all data frame containing daily maximum temperature of all meteorological station. See \code{\link{TEMPERATURE_MAX}} for formatting.
 #' @param Tn_all data frame containing daily minimum temperature of all meteorological station. See \code{\link{TEMPERATURE_MIN}} for formatting.
-#' @param mean_climate_Tn a matrix containing monthly mean minimum daily temperature for the considered station. If \code{NULL}, it is calculated. See input of \code{\link{is.monthly.climate}}
-#' @param mean_climate_Tx a matrix containing monthly mean maximum daily temperature for the considered station. If \code{NULL}, it is calculated. See input of \code{\link{is.monthly.climate}}
+#' @param mean_climate_Tn a matrix containing monthly mean minimum daily temperature for the considered station or an object as returned by \code{\link{getMonthlyMean}}. If \code{NULL}, it is calculated. See input of \code{\link{is.monthly.climate}}
+#' @param mean_climate_Tx a matrix containing monthly mean maximum daily temperature for the considered station or an object as returned by \code{\link{getMonthlyMean}}. If \code{NULL}, it is calculated. See input of \code{\link{is.monthly.climate}}
+#' @param Tx_spline daily timeseries (from the first day of \code{year_min} to the last day of \code{year_max}) of averaged maximum temperature which can be obtained by a spline interpolation of monthly mean values. Default is \code{NULL} and returned as output.
+#' @param Tn_spline daily timeseries (from the first day of \code{year_min} to the last day of \code{year_max}) of averaged minimum temperature which can be obtained by a spline interpolation of monthly mean values. Default is \code{NULL} and returned as output.
 #' @param year_max start year of the recorded (calibration) period 
 #' @param year_min end year of the recorded (calibration) period
 #' @param leap logical variables. It is \code{TRUE} (Default) if leap years are considered
@@ -21,7 +23,7 @@ NULL
 #' @param normalize logical variable If \code{TRUE} \code{\link{normalizeGaussian_severalstations}} is used, otherwise it is not. If \code{option} is 2, it is always \code{TRUE}.
 #' @param sample see \code{\link{normalizeGaussian_severalstations}}
 #' @param option integer value. If 1, the generator works with minimun and maximum temperature, if 2 (default) it works with the average value between maximum and minimum temparature and the respective daily thermal range.
-#'
+#' @param yearly  logical value. If \code{TRUE} the monthly mean values are calculated for each year from \code{year_min} to \code{year_max} separately. Default is \code{FALSE}. 
 #'   
 #' 
 #' @export   
@@ -46,10 +48,10 @@ NULL
 #'
 #' \code{monthly_mean_Tx} matrix containing monthly mean maximum daily temperature for the considered station. It is calculated according to the input format \code{\link{is.monthly.climate}} if \code{saveMonthlyClimate} is  \code{TRUE}. 
 #'
-#' \code{SplineAdvTx} matrix containing the averaged  daily values of maximimun temperature obtained by a spline interpolation of the monthly climate \code{monthly_mean_Tx} or \code{mean_climate_Tx} 
+#' \code{Tx_spline} matrix containing the averaged  daily values of maximimun temperature obtained by a spline interpolation of the monthly climate \code{monthly_mean_Tx} or \code{mean_climate_Tx} 
 #' using \code{\link{splineInterpolateMonthlytoDailyforSeveralYears}} ( \eqn{Tx_{s}}) 
 #'
-#' \code{SplineAdvTn} matrix containing the averaged  daily values of minimun temperature obtained by a spline interpolation of the monthly climate \code{monthly_mean_Tn} or \code{mean_climate_Tn}  
+#' \code{Tn_spline} matrix containing the averaged  daily values of minimun temperature obtained by a spline interpolation of the monthly climate \code{monthly_mean_Tn} or \code{mean_climate_Tn}  
 #' using \code{\link{splineInterpolateMonthlytoDailyforSeveralYears}} ( \eqn{Tn_{s}})
 #' 
 #' \code{SplineAdvTm} matrix calculated as \eqn{\frac{Tx_{s}+Tn_{s}}{2}}
@@ -80,7 +82,7 @@ NULL
 
 #Value 0 (integer) in case of success, -1 otherwise
 
-
+# str
 
 setComprehensiveTemperatureGeneratorParameters <-
 function(station,
@@ -88,6 +90,8 @@ function(station,
 		Tn_all,
 		mean_climate_Tn=NULL,
 		mean_climate_Tx=NULL,
+		Tx_spline=NULL,
+		Tn_spline=NULL,
 		year_max=1990,
 		year_min=1961,
 		leap=TRUE,
@@ -96,10 +100,11 @@ function(station,
 		cpf=NULL,
 		normalize=TRUE,
 		sample=NULL,
-		option=2
+		option=2,
+		yearly=FALSE
 		
 ) {
-
+	
 	station <- station[(station %in% names(Tx_all)) & (station %in% names(Tn_all))]
 	
 	origin <- paste(year_min,"1","1",sep="-") # All cutoff timeseries starts from January 1st of the year_min 
@@ -110,8 +115,8 @@ function(station,
 	Tm_mes <- (Tn_mes+Tx_mes)/2.0
 	DeltaT_mes <- Tx_mes-Tn_mes
 	
-	if (!is.monthly.climate(mean_climate_Tx,nstation=length(station),nmonth=nmonth,verbose=verbose)) mean_climate_Tx <- getMonthlyMean(as.data.frame(Tx_mes),year_min=year_min,year_max=year_max,station=station,no_date=TRUE,origin=origin)
-	if (!is.monthly.climate(mean_climate_Tn,nstation=length(station),nmonth=nmonth,verbose=verbose)) mean_climate_Tn <- getMonthlyMean(as.data.frame(Tn_mes),year_min=year_min,year_max=year_max,station=station,no_date=TRUE,origin=origin)
+	if (!is.monthly.climate(mean_climate_Tx,nstation=length(station),nmonth=nmonth,verbose=verbose)) mean_climate_Tx <- getMonthlyMean(as.data.frame(Tx_mes),year_min=year_min,year_max=year_max,station=station,no_date=TRUE,origin=origin,yearly=yearly)
+	if (!is.monthly.climate(mean_climate_Tn,nstation=length(station),nmonth=nmonth,verbose=verbose)) mean_climate_Tn <- getMonthlyMean(as.data.frame(Tn_mes),year_min=year_min,year_max=year_max,station=station,no_date=TRUE,origin=origin,yearly=yearly)
 	
 
 		
@@ -122,23 +127,43 @@ function(station,
 	
 	nyear <- year_max-year_min+1
 	
+	if (is.null(Tx_spline)) {
+		
+		Tx_spline <- as.data.frame(splineInterpolateMonthlytoDailyforSeveralYears(val=mean_climate_Tx,start_year=year_min,nyear=nyear,leap=leap,yearly=yearly))
+
+#		print(names(mean_climate_Tx))
+#		str(mean_climate_Tx)
+		if (yearly) {
+		
+			names(Tx_spline) <- names(mean_climate_Tx[[1]])
+		} else {
+			names(Tx_spline) <- names(mean_climate_Tx)
+		}
+		
+	}
 	
-	SplineAdvTx <- as.data.frame(splineInterpolateMonthlytoDailyforSeveralYears(val=mean_climate_Tx,start_year=year_min,nyear=nyear,leap=leap))
-	SplineAdvTn <- as.data.frame(splineInterpolateMonthlytoDailyforSeveralYears(val=mean_climate_Tn,start_year=year_min,nyear=nyear,leap=leap))
+	if (is.null(Tn_spline)) {
+		
+		Tn_spline <- as.data.frame(splineInterpolateMonthlytoDailyforSeveralYears(val=mean_climate_Tn,start_year=year_min,nyear=nyear,leap=leap,yearly=yearly))
+		if (yearly) {
+			names(Tn_spline) <- names(mean_climate_Tn[[1]]) 
+		} else {
+			names(Tn_spline) <- names(mean_climate_Tn) 
+		}
+		
+		
+	}
 	
+
 	
-	
-	names(SplineAdvTx) <- names(mean_climate_Tx)
-	names(SplineAdvTn) <- names(mean_climate_Tn) 
-	
-	SplineAdvTm <- (SplineAdvTx+SplineAdvTn)/2.0
-	SplineAdvDeltaT <- (SplineAdvTx-SplineAdvTn)
+	SplineAdvTm <- (Tx_spline+Tn_spline)/2.0
+	SplineAdvDeltaT <- (Tx_spline-Tn_spline)
 	
 	
 	nstation=length(station)
 	
-	Tn_mes_res <- Tn_mes -SplineAdvTn
-	Tx_mes_res <- Tx_mes- SplineAdvTx 
+	Tn_mes_res <- Tn_mes -Tn_spline
+	Tx_mes_res <- Tx_mes- Tx_spline 
 	Tm_mes_res <- Tm_mes- SplineAdvTm 
 	DeltaT_mes_res <- DeltaT_mes
 	
@@ -149,8 +174,8 @@ function(station,
 	
 	for (s in 1:nstation) {
 		
-		Tn_mes_res[,s] <- (Tn_mes[,s]-SplineAdvTn[,s])/stdTn[s]	
-		Tx_mes_res[,s] <- (Tx_mes[,s]-SplineAdvTx[,s])/stdTx[s]
+		Tn_mes_res[,s] <- (Tn_mes[,s]-Tn_spline[,s])/stdTn[s]	
+		Tx_mes_res[,s] <- (Tx_mes[,s]-Tx_spline[,s])/stdTx[s]
 		Tm_mes_res[,s] <- (Tm_mes[,s]-SplineAdvTm[,s])/stdTm[s]
 		
 		
@@ -190,12 +215,12 @@ function(station,
 	
 	out <- list(data_for_var,data_original,
 			Tn_mes_res,Tx_mes_res,Tm_mes_res,DeltaT_mes_res,stdTn,stdTx,stdTm,
-			SplineAdvTn,SplineAdvTx,SplineAdvTm,SplineAdvDeltaT,Tn_mes,Tx_mes,Tm_mes,DeltaT_mes,
+			Tn_spline,Tx_spline,SplineAdvTm,SplineAdvDeltaT,Tn_mes,Tx_mes,Tm_mes,DeltaT_mes,
 			monthly_mean_Tx,monthly_mean_Tn)
 	
 	names(out) <- c("data_for_var","data_original",
 			"Tn_mes_res","Tx_mes_res","Tm_mes_res","DeltaT_mes_res","stdTn","stdTx","stdTm",
-			"SplineAdvTn","SplineAdvTx","SplineAdvTm","SplineAdvDeltaT","Tn_mes","Tx_mes","Tm_mes","DeltaT_mes",
+			"Tn_spline","Tx_spline","SplineAdvTm","SplineAdvDeltaT","Tn_mes","Tx_mes","Tm_mes","DeltaT_mes",
 			"monthly_mean_Tx","monthly_mean_Tn")
 	
 	return(out)

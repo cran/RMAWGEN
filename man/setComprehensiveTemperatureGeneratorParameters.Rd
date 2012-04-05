@@ -4,10 +4,11 @@
 \usage{
   setComprehensiveTemperatureGeneratorParameters(station,
     Tx_all, Tn_all, mean_climate_Tn = NULL,
-    mean_climate_Tx = NULL, year_max = 1990,
-    year_min = 1961, leap = TRUE, nmonth = 12,
-    verbose = FALSE, cpf = NULL, normalize = TRUE,
-    sample = NULL, option = 2)
+    mean_climate_Tx = NULL, Tx_spline = NULL,
+    Tn_spline = NULL, year_max = 1990, year_min = 1961,
+    leap = TRUE, nmonth = 12, verbose = FALSE, cpf = NULL,
+    normalize = TRUE, sample = NULL, option = 2,
+    yearly = FALSE)
 }
 \arguments{
   \item{station}{character vector of the IDs of the
@@ -22,14 +23,28 @@
   \code{\link{TEMPERATURE_MIN}} for formatting.}
 
   \item{mean_climate_Tn}{a matrix containing monthly mean
-  minimum daily temperature for the considered station. If
+  minimum daily temperature for the considered station or
+  an object as returned by \code{\link{getMonthlyMean}}. If
   \code{NULL}, it is calculated. See input of
   \code{\link{is.monthly.climate}}}
 
   \item{mean_climate_Tx}{a matrix containing monthly mean
-  maximum daily temperature for the considered station. If
+  maximum daily temperature for the considered station or
+  an object as returned by \code{\link{getMonthlyMean}}. If
   \code{NULL}, it is calculated. See input of
   \code{\link{is.monthly.climate}}}
+
+  \item{Tx_spline}{daily timeseries (from the first day of
+  \code{year_min} to the last day of \code{year_max}) of
+  averaged maximum temperature which can be obtained by a
+  spline interpolation of monthly mean values. Default is
+  \code{NULL} and returned as output.}
+
+  \item{Tn_spline}{daily timeseries (from the first day of
+  \code{year_min} to the last day of \code{year_max}) of
+  averaged minimum temperature which can be obtained by a
+  spline interpolation of monthly mean values. Default is
+  \code{NULL} and returned as output.}
 
   \item{year_max}{start year of the recorded (calibration)
   period}
@@ -60,6 +75,11 @@
   with minimun and maximum temperature, if 2 (default) it
   works with the average value between maximum and minimum
   temparature and the respective daily thermal range.}
+
+  \item{yearly}{logical value. If \code{TRUE} the monthly
+  mean values are calculated for each year from
+  \code{year_min} to \code{year_max} separately. Default is
+  \code{FALSE}.}
 }
 \value{
   This function creates and returns the following gloabal
@@ -97,14 +117,14 @@
   \code{\link{is.monthly.climate}} if
   \code{saveMonthlyClimate} is \code{TRUE}.
 
-  \code{SplineAdvTx} matrix containing the averaged daily
+  \code{Tx_spline} matrix containing the averaged daily
   values of maximimun temperature obtained by a spline
   interpolation of the monthly climate
   \code{monthly_mean_Tx} or \code{mean_climate_Tx} using
   \code{\link{splineInterpolateMonthlytoDailyforSeveralYears}}
   ( \eqn{Tx_{s}})
 
-  \code{SplineAdvTn} matrix containing the averaged daily
+  \code{Tn_spline} matrix containing the averaged daily
   values of minimun temperature obtained by a spline
   interpolation of the monthly climate
   \code{monthly_mean_Tn} or \code{mean_climate_Tn} using

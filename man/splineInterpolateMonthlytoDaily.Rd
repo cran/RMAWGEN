@@ -5,7 +5,7 @@
   splineInterpolateMonthlytoDaily(nday = 365,
     val = as.matrix(cbind(1 * (0.5:11.5) * nday/12, 2 * (0.5:11.5) * nday/12)),
     origin = "1961-1-1", first_row = 1, last_row = nday,
-    no_spline = FALSE)
+    no_spline = FALSE, no_mean = FALSE)
 }
 \arguments{
   \item{nday}{number of days on which the daily data is
@@ -26,9 +26,12 @@
   interpolation is calculated and the daily value
   corresponds to the monthly averaga value. Default is
   \code{FALSE}.}
+
+  \item{no_mean}{logical value. If \code{TRUE} output is
+  not rescaled with mean monthly values}
 }
 \value{
-  a matrix with interpolated daily data
+  a matrix or data frame with interpolated daily data
 }
 \description{
   Interpolates monthly data to daily data using
