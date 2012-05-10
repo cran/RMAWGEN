@@ -49,8 +49,11 @@ function(var,xprev=rnorm(var@VAR$K*var@VAR$p),exogen=NULL,nrealization=10,B=t(ch
 	
 	if ((is.null(exogen)) & (nexogen!=0)) {
 		print("Error exogen variables (predictors) are needed to new VAR multirealization") 
-	} else if (!is.null(exogen)) if (nexogen!=ncol(exogen)) print("Error corrected exogen variables (predictors) are needed to new VAR multirealization") 
-	#if (nexogen!=ncol(exogen)) names
+		print("Check VAR and exogen variables!!!")
+	} else if (!is.null(exogen)) if (nexogen!=ncol(exogen)) {
+			print("Error corrected exogen variables (predictors) are needed to new VAR multirealization") 
+			print("Check VAR and exogen variables!!!")
+		}#if (nexogen!=ncol(exogen)) names
 	
 	out <- array(NA,c(nrealization,K))
 	

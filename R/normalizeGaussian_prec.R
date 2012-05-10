@@ -27,11 +27,33 @@ NULL
 #' @return the normalized variable or its inverse   
 #'   
 #' @seealso \code{\link{normalizeGaussian}}     
-#' @note This function makes a Marginal Gaussianization accounting for the days with zero precipitation. See the R code for further details
+#' @note In the version 1.2.5 of \pkg{RMAWGEN} This function is deprecated and not used.
+# This function makes a Marginal Gaussianization accounting for the days with zero precipitation. See the R code for further details
 #' 
 #' 
 #' 
 #' 
+#' 
+#' @examples 
+#' library(RMAWGEN)
+#' NDATA <- 1000
+#' occurence <- as.logical(runif(NDATA)>0.5)
+#' prec <- rexp(NDATA,rate=1/3)
+#' prec[!occurence] <- 0
+#' valmin <- 0.5 #0.01
+#' x <- normalizeGaussian_prec(x=prec,valmin=valmin)
+#' prec2 <- normalizeGaussian_prec(x=x,data=prec,valmin=valmin,inverse=TRUE)
+#' qqplot(prec,prec2)
+#'
+#' occurence3 <- as.logical(runif(NDATA)>0.5)
+#' prec3 <- rexp(NDATA,rate=1/3)
+#' prec3[!occurence3] <- 0
+#' x3 <- normalizeGaussian_prec(x=prec3,valmin=valmin) 
+#' 
+#' qqplot(x,x3)
+#' abline(0,1)
+#' 
+
 #' 
 
 

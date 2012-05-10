@@ -1,6 +1,6 @@
 \name{normalizeGaussian_severalstations_prec}
 \alias{normalizeGaussian_severalstations_prec}
-\title{Converts several samples \code{x} random variable (daily precipitation values) extracted by populations represented by the columns of \code{data} respectively or \code{sample}
+\title{DEPRECATED Converts several samples \code{x} random variable (daily precipitation values) extracted by populations represented by the columns of \code{data} respectively or \code{sample}
  to a normally-distributed samples with assinged mean and standard deviation or vice versa in case \code{inverse} is \code{TRUE} using the function \code{\link{normalizeGaussian_prec}}}
 \usage{
   normalizeGaussian_severalstations_prec(x, data = x,
@@ -55,18 +55,17 @@
   its inverse
 }
 \description{
-  Converts several samples \code{x} random variable (daily
-  precipitation values) extracted by populations
-  represented by the columns of \code{data} respectively or
-  \code{sample} to a normally-distributed samples with
-  assinged mean and standard deviation or vice versa in
-  case \code{inverse} is \code{TRUE} using the function
-  \code{\link{normalizeGaussian_prec}}
+  DEPRECATED Converts several samples \code{x} random
+  variable (daily precipitation values) extracted by
+  populations represented by the columns of \code{data}
+  respectively or \code{sample} to a normally-distributed
+  samples with assinged mean and standard deviation or vice
+  versa in case \code{inverse} is \code{TRUE} using the
+  function \code{\link{normalizeGaussian_prec}}
 }
 \note{
-  It applies \code{\link{normalizeGaussian}} for each
-  column of \code{x} and \code{data}. See the R code for
-  further details
+  In the version 1.2.5 of \pkg{RMAWGEN} This function is
+  deprecated and not used.
 }
 \author{
   Emanuele Cordano, Emanuele Eccel

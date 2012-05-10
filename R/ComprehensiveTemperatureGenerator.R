@@ -29,7 +29,7 @@ NULL
 #' @param nscenario number of possible generated scenarios for daily maximum and minimum temperature
 #' @param yearly  logical value. If \code{TRUE} the monthly mean values are calculated for each year from \code{year_min} to \code{year_max} separately. Default is \code{FALSE}.  
 #' @param yearly_sim logical value. If \code{TRUE} the monthly mean values are calculated for each year from \code{year_min_sim} to \code{year_max_sim} separately. Default is \code{yearly}. 
-#' @param seed seed 
+#' @param seed seed for stochastic random generation see \code{\link{set.seed}}
 #'   
 #' @export 
 #' 
@@ -59,17 +59,18 @@ NULL
 #' "T0010","T0014","T0018","T0032","T0064","T0083","T0090","T0092","T0094","T0099",
 #' "T0102","T0110","T0129","T0139","T0147","T0149","T0152","T0157","T0168","T0179","T0189","T0193","T0204","T0210","T0211","T0327","T0367","T0373")		
 #' 
-#' generation0 <- ComprehensiveTemperatureGenerator(station=vstation[5:8],Tx_all=TEMPERATURE_MAX,Tn_all=TEMPERATURE_MIN,year_min=1961,year_max=1990)
-#' VAR_model <- generation0$var
-#' CX <- generation0$input$monthly_mean_Tx
-#' CN <- generation0$input$monthly_mean_Tn
-#' generation1 <- ComprehensiveTemperatureGenerator(station=vstation[5:8],varmodel=generation0$var,
-#' onlygeneration=TRUE,year_min=1961,year_max=1990,mean_climate_Tn_sim=CN,mean_climate_Tx_sim=CX,year_min_sim=1961,year_max_sim=1990,
-#' Tx_all=TEMPERATURE_MAX,Tn_all=TEMPERATURE_MIN,nscenario=3)
+#' station <- c("T0083","T0090")
+#' generation0 <- ComprehensiveTemperatureGenerator(station=station,Tx_all=TEMPERATURE_MAX,Tn_all=TEMPERATURE_MIN,year_min=1961,year_max=1990)
+# VAR_model <- generation0$var
+# CX <- generation0$input$monthly_mean_Tx
+# CN <- generation0$input$monthly_mean_Tn
+# generation1 <- ComprehensiveTemperatureGenerator(station=station,varmodel=generation0$var,
+# onlygeneration=TRUE,year_min=1961,year_max=1990,mean_climate_Tn_sim=CN,mean_climate_Tx_sim=CX,year_min_sim=1961,year_max_sim=1990,
+# Tx_all=TEMPERATURE_MAX,Tn_all=TEMPERATURE_MIN,nscenario=3)
 # CHANGE EXAMPLE WITH generation_per_year
 # generation_per_year <- ComprehensiveTemperatureGenerator(station=vstation[5:8],Tx_all=TEMPERATURE_MAX,Tn_all=TEMPERATURE_MIN,year_min=1961,year_max=1990,yearly=TRUE)
 #' str(generation0)
-#' str(generation1)
+# str(generation1)
 
 
 	
@@ -191,9 +192,9 @@ function(
 		
 		if (yearly_sim) {
 			
-			names(Tx_spline_sim) <- names(mean_climate_Tx_sim[[1]])
+			names(Tx_spline_sim) <- colnames(mean_climate_Tx_sim[[1]])
 		} else {
-			names(Tx_spline_sim) <- names(mean_climate_Tx_sim)
+			names(Tx_spline_sim) <- colnames(mean_climate_Tx_sim)
 		}
 		
 	}
@@ -205,9 +206,9 @@ function(
 	#	names(Tn_spline_sim) <- names(mean_climate_Tn_sim)
 		if (yearly_sim) {
 		
-			names(Tn_spline_sim) <- names(mean_climate_Tn_sim[[1]])
+			names(Tn_spline_sim) <- colnames(mean_climate_Tn_sim[[1]])
 		} else {
-			names(Tn_spline_sim) <- names(mean_climate_Tn_sim)
+			names(Tn_spline_sim) <- colnames(mean_climate_Tn_sim)
 		}
 	
 	
@@ -239,11 +240,14 @@ function(
 	
 		ntall <- as.integer(ncol(original_data))
 		ntn <- as.integer(ncol(original_data)/2)+1
-	#	str(Tx_spline)
-	#	str(Tx_spline_sim)
+#		str(Tx_spline)
+#		str(Tx_spline_sim)
+#		str(Tn_spline)
+#		str(Tn_spline_sim)
 		ntn_rows <- 1:nrow(original_data)
-	#	str(ntn_rows)
-		original_data[,ntn:ntall] <- original_data[,ntn:ntall]/ (Tx_spline[ntn_rows,station]-Tn_spline[ntn_rows,station])*(Tx_spline_sim[ntn_rows,station]-Tn_spline_sim[ntn_rows,station])
+#		str(ntn_rows)
+		original_data[,ntn:ntall] <- original_data[,ntn:ntall]/(Tx_spline[ntn_rows,station]-Tn_spline[ntn_rows,station])*(Tx_spline_sim[ntn_rows,station]-Tn_spline_sim[ntn_rows,station])
+	
 	}
 	
 
@@ -270,7 +274,7 @@ function(
 		
 	} else {
 		
-		return(list(input=param,var=var,output=results))
+		return(list(input=param,var=var,output=results,temporary=original_data))
 		
 	}
 	return(list(input=param,var=var,output=results))	

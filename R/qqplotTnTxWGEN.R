@@ -39,7 +39,7 @@ function (measured,simulated,xlab="simulated[degC]",ylab="measured[degC]",titles
 	
 	nrows=2
 	ncols=ncol(measured)/2
-	str(measured)
+#	str(measured)
 	name <- names(simulated)
 	if (is.null(station)) {
 		ncols=ncol(measured)/2
@@ -47,7 +47,7 @@ function (measured,simulated,xlab="simulated[degC]",ylab="measured[degC]",titles
 	} else {
 		
 		istation=which(name %in% station)
-		str(istation)
+#		str(istation)
 		ncols=length(istation)/2
 	}
 	

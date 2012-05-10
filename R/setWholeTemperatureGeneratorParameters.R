@@ -131,13 +131,12 @@ function(station,
 		
 		Tx_spline <- as.data.frame(splineInterpolateMonthlytoDailyforSeveralYears(val=mean_climate_Tx,start_year=year_min,nyear=nyear,leap=leap,yearly=yearly))
 
-#		print(names(mean_climate_Tx))
-#		str(mean_climate_Tx)
+	
 		if (yearly) {
 		
-			names(Tx_spline) <- names(mean_climate_Tx[[1]])
+			names(Tx_spline) <- colnames(mean_climate_Tx[[1]])
 		} else {
-			names(Tx_spline) <- names(mean_climate_Tx)
+			names(Tx_spline) <- colnames(mean_climate_Tx)
 		}
 		
 	}
@@ -145,18 +144,19 @@ function(station,
 	if (is.null(Tn_spline)) {
 		
 		Tn_spline <- as.data.frame(splineInterpolateMonthlytoDailyforSeveralYears(val=mean_climate_Tn,start_year=year_min,nyear=nyear,leap=leap,yearly=yearly))
+		
 		if (yearly) {
-			names(Tn_spline) <- names(mean_climate_Tn[[1]]) 
+			names(Tn_spline) <- colnames(mean_climate_Tn[[1]]) 
 		} else {
-			names(Tn_spline) <- names(mean_climate_Tn) 
+			names(Tn_spline) <- colnames(mean_climate_Tn) 
 		}
 		
 		
 	}
 	
-
 	
 	SplineAdvTm <- (Tx_spline+Tn_spline)/2.0
+	
 	SplineAdvDeltaT <- (Tx_spline-Tn_spline)
 	
 	

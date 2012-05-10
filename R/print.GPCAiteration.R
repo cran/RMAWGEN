@@ -22,7 +22,12 @@ print.GPCAiteration <- function(x,rmin=1,rmax=4,cmin=rmin,cmax=rmax,...) {
 	
 
 	print("GPCA Iteration, matrix rotation:")
-	print(x$B_prev[rmin:rmax,cmin:cmax])
+	
+	row <- (1:nrow(x$B_prev) %in% rmin:rmax)
+	col <- (1:ncol(x$B_prev) %in% cmin:cmax)
+	
+		
+	print(x$B_prev[row,col])
 
 	return(0)
 	

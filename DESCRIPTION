@@ -13,18 +13,21 @@ Description: This package contains S3 and S4 functions for spatial
         then works with monthly timeseries as input.
         Bugs/comments/questions/collaboration of any kind are warmly
         welcomed.
-Version: 1.2.4
+Version: 1.2.5
 In views: Environmetrics,TimeSeries
 Repository: CRAN
-Date/Publication: 2012-04-05 14:06:25
-Packaged: 2012-04-05 11:47:43 UTC; ecor
-Date: 2012-04-05
+Date/Publication: 2012-05-11 05:13:42
+Packaged: 2012-05-10 13:57:52 UTC; ecor
+Date: 2012-05-10
 Depends: R (>= 2.10), chron, date, vars, MASS, strucchange, urca,
         methods,lmtest (>= 0.9-26), sandwich (>= 2.2-4)
 Imports: chron, date, vars, MASS, strucchange, urca, methods,lmtest (>=
         0.9-26), sandwich (>= 2.2-4)
+Suggests: RgoogleMaps
 URL:
-        http://cri.gmpf.eu/Research/Sustainable-Agro-Ecosystems-and-Bioresources/Dynamics-in-the-agro-ecosystems
+        http://cri.gmpf.eu/Research/Sustainable-Agro-Ecosystems-and-Bioresources/Dynamics-in-the-agro-ecosystems,
+        http://presentations.copernicus.org/EGU2012-14026_presentation.pdf,
+        http://presentations.copernicus.org/EGU2012-5404_presentation.pdf
 Collate: 'acvWGEN.R' 'adddate.R' 'addsuffixes.R' 'arch_test.varest2.R'
         'ComprehensivePrecipitationGenerator.R'
         'ComprehensiveTemperatureGenerator.R' 'continuity_ratio.R'
@@ -42,10 +45,11 @@ Collate: 'acvWGEN.R' 'adddate.R' 'addsuffixes.R' 'arch_test.varest2.R'
         'normalizeGaussian_sevaralstations.R' 'plotDailyClimate.R'
         'plot.sample.R' 'PrecipitationEndDay.R'
         'PrecipitationStartDay.R' 'print.GPCAiteration.R'
-        'print.GPCA.R' 'qqplotprecWGEN.R' 'qqplotprecWGEN_seasonal.R'
-        'qqplotTnTxWGEN.R' 'qqplotTnTxWGEN_seasonal.R' 'qqplotWGEN.R'
-        'removeNAs.R' 'rescaling_monthly.R' 'residuals.varest2.R'
-        'RMAWGEN-package.R' 'serial_test.varest2.R'
+        'print.GPCA.R' 'qqplot.lagged.R' 'qqplotprecWGEN.R'
+        'qqplotprecWGEN_seasonal.R' 'qqplotTnTxWGEN.R'
+        'qqplotTnTxWGEN_seasonal.R' 'qqplotWGEN.R' 'removeNAs.R'
+        'rescaling_monthly.R' 'residuals.varest2.R' 'RMAWGEN-package.R'
+        'serial_test.varest2.R'
         'setWholeTemperatureGeneratorParameters.R'
         'splineInterpolateMonthlytoDailyforSeveralYears.R'
         'splineInterpolateMonthlytoDaily.R' 'TemperatureEndDay.R'

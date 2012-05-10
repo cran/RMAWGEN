@@ -1,4 +1,4 @@
-# file precipitation-generator.R
+# file precipitation-generator-enviro.R
 #
 # This file contains a script example with a precipitation stochastic generation 
 #
@@ -30,23 +30,80 @@ year_max <- 1990
 year_min <- 1961
 origin <- "1961-1-1"
 
-n_GPCA_iter <- 20
+n_GPCA_iter <- 10
+nscenario=30
+station <- c("T0090","T0083") #,"T0099","T0001") 
 
-station <- c("T0090","T0083","T0099","T0001") 
+#vstation <- 	vstation <- c("B2440","B6130","B8570","B9100","LAVIO","POLSA","SMICH","T0001",
+#		"T0010","T0014","T0018","T0032","T0064","T0083","T0090","T0092","T0094","T0099",
+#		"T0102","T0110","T0129","T0139","T0147","T0149","T0152","T0157","T0168","T0179","T0189","T0193","T0204","T0210","T0211","T0327","T0367","T0373")		
+#
+#station <- vstation
+generation00 <- ComprehensivePrecipitationGenerator(station=station,prec_all=PRECIPITATION,year_min=year_min,year_max=year_max,p=3,n_GPCA_iteration=n_GPCA_iter,n_GPCA_iteration_residuals=0,sample="monthly",nscenario=nscenario,no_spline=FALSE)#VARselect(generation00$var@GPCA_data$final_results)
 
-vstation <- 	vstation <- c("B2440","B6130","B8570","B9100","LAVIO","POLSA","SMICH","T0001",
-		"T0010","T0014","T0018","T0032","T0064","T0083","T0090","T0092","T0094","T0099",
-		"T0102","T0110","T0129","T0139","T0147","T0149","T0152","T0157","T0168","T0179","T0189","T0193","T0204","T0210","T0211","T0327","T0367","T0373")		
+		
 
-station <- vstation
-generation00 <- ComprehensivePrecipitationGenerator(station=station,prec_all=PRECIPITATION,year_min=year_min,year_max=year_max,p=1,n_GPCA_iteration=n_GPCA_iter,n_GPCA_iteration_residuals=0,sample="monthly")
+DJF <- extractmonths(data=1:nrow(generation00$prec_gen),when=c("Dec","Jan","Feb"),origin="1961-1-1")
+MAM <- extractmonths(data=1:nrow(generation00$prec_gen),when=c("Mar","Apr","May"),origin="1961-1-1")
+JJA <- extractmonths(data=1:nrow(generation00$prec_gen),when=c("Jun","Jul","Aug"),origin="1961-1-1")
+SON <- extractmonths(data=1:nrow(generation00$prec_gen),when=c("Sep","Oct","Nov"),origin="1961-1-1")
+
+istation <- "T0090"
+iseason <- DJF
+title <- "DJF"
+cex <- 0.5
+pch <- 1
+lag <- 2
+
+prec <- data.frame(prec_mes=generation00$prec_mes[,istation],prec_gen=generation00$prec_gen[,istation])
+
+for (i in 1:nscenario) {
+	
+	str <- sprintf("prec_gen%05d",i)
+	prec[,str] <- generation00[[str]][,istation]
+	print(str)
+	
+}
 
 
-data_gen <- extractmonths(data=generation00$prec_gen,when=c("Jun","Jul","Aug"),origin="1961-1-1")
-data_mes <- extractmonths(data=generation00$prec_mes,when=c("Jun","Jul","Aug"),origin="1961-1-1")
+# check observed vs generated with Wilcoxon test
+wilcox.test(generation00$prec_mes[iseason,istation],generation00$prec_gen[iseason,istation])
 
-c_mes <- continuity_ratio(data_gen,valmin=1.0)
-c_gen <- continuity_ratio(data_mes,valmin=1.0)
+# check observed vs generated with Kolgomorov-Smirnov
+ks.test(generation00$prec_mes[iseason,istation],generation00$prec_gen[iseason,istation])
 
-print(generation00$var)
+# CHECK lagged-averaged 
+
+lag <- 1 
+titlelag <- paste(title,lag,"day lag",sep=" ")
+
+
+qqplot.lagged(x=prec,when=iseason,lag=lag,main=titlelag,xlab="observed",ylab="generated",cex=cex,pch=pch)
+abline(0,1)
+
+
+
+
+
+
+#prec_gen <- extractmonths(data=generation00$prec_gen,when=c("Jun","Jul","Aug"),origin="1961-1-1")[,i]
+#prec_mes <- extractmonths(data=generation00$prec_mes,when=c("Jun","Jul","Aug"),origin="1961-1-1")[,i]
+
+
+# GAUSSIANIZED 
+
+qqplot(generation00$data_prec[iseason,istation],generation00$data_prec_gen[iseason,istation],main=title,xlab="observed",ylab="generated",cex=cex,pch=pch)
+abline(0,1)
+# FARE ISTOGRAMMI!!!
+#c_mes <- continuity_ratio(data_gen,valmin=1.0)
+#c_gen <- continuity_ratio(data_mes,valmin=1.0)
+
+#print(generation00$var,rmax=2)
+
+#prec_gen <- generation00$prec_gen[date_gen,2] 
+#prec_mes <- generation00$prec_mes[date_mes,2]
+#qqplot(prec_mes,prec_gen)
+#abline(0,1)
+
+
 

@@ -15,7 +15,7 @@
     n_GPCA_iteration_residuals = n_GPCA_iteration,
     sample = NULL, extremes = TRUE, exogen_all = NULL,
     exogen_all_col = station, option_temp = 0,
-    no_spline = TRUE)
+    no_spline = FALSE, nscenario = 1, seed = NULL)
 }
 \arguments{
   \item{station}{character vector of the IDs of the
@@ -120,6 +120,12 @@
   \item{no_spline}{logical value. See
   \code{\link{splineInterpolateMonthlytoDailyforSeveralYears}}.
   Default is \code{TRUE}.}
+
+  \item{nscenario}{number of possible generated scenarios
+  for daily maximum and minimum temperature}
+
+  \item{seed}{seed for stochastic random generation see
+  \code{\link{set.seed}}}
 }
 \value{
   A list of the following variables:

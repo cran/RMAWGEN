@@ -1,9 +1,11 @@
 NULL
 
 #'
-#'  Converts several samples \code{x} random variable (daily precipitation values) extracted by populations represented by the columns of \code{data} respectively or \code{sample}
+#'  DEPRECATED Converts several samples \code{x} random variable (daily precipitation values) extracted by populations represented by the columns of \code{data} respectively or \code{sample}
 #'  to a normally-distributed samples with assinged mean and standard deviation or vice versa in case \code{inverse} is \code{TRUE} using the function \code{\link{normalizeGaussian_prec}}
-#'    
+#'  
+#' 
+  
 #' @param x value to be converted 
 #' @param data a sample of data on which a non-parametric probility distribution is estimated
 #' @param cpf cumulative probability distribution. If \code{NULL} (default) is calaculated as \code{\link{ecdf}(data)}
@@ -32,9 +34,10 @@ NULL
 #' @seealso   \code{\link{normalizeGaussian_prec}}
 #'   
 #'     
-#' @note It applies \code{\link{normalizeGaussian}} for each column of \code{x} and \code{data}.
-#' See the R code for further details
-
+#' @note In the version 1.2.5 of \pkg{RMAWGEN} This function is deprecated and not used.
+# It applies \code{\link{normalizeGaussian}} for each column of \code{x} and \code{data}.
+# See the R code for further details
+#' 
 
 
 

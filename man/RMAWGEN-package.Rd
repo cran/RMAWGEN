@@ -46,7 +46,7 @@
 
   \tabular{ll}{ Package: \tab RMAWGEN\cr Type: \tab
   Package\cr Version: \tab 1.2.2\cr Date: \tab
-  2012-04-05\cr License: \tab GPL (>= 2)
+  2012-05-10\cr License: \tab GPL (>= 2)
 
   \cr LazyLoad: \tab yes\cr Depends:
   R(>=2.12),time,chron,vars \cr }

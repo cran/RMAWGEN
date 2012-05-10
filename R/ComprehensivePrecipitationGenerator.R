@@ -31,6 +31,11 @@ NULL
 #' It is alternative to \code{exogen} and if it not \code{NULL},\code{is_exogen_gaussian} is automatically set \code{FALSE}	
 #' @param exogen_all_col vector of considered  columns of \code{exogen_all}. Default is \code{station}.
 #' @param no_spline logical value. See \code{\link{splineInterpolateMonthlytoDailyforSeveralYears}}. Default is \code{TRUE}.
+#' @param nscenario number of possible generated scenarios for daily maximum and minimum temperature
+#' @param seed seed for stochastic random generation see \code{\link{set.seed}}
+#'   
+#' 
+#' 
 #' 
 #' @export 
 
@@ -136,7 +141,9 @@ function(
 		
 		
 		option_temp=0,
-		no_spline=TRUE
+		no_spline=FALSE,
+		nscenario=1,
+		seed=NULL
 
 ) {
 	
@@ -162,8 +169,8 @@ function(
 		return(-1)
 	}
 	
-	data_prec <- normalizeGaussian_severalstations_prec(x=prec_mes,data=prec_mes,sample=sample,cpf=cpf,qnull=qnull,valmin=valmin,origin_x=origin,origin_data=origin,extremes=extremes)
-	
+	data_prec <- normalizeGaussian_severalstations(x=prec_mes,data=prec_mes,sample=sample,cpf=cpf,step=step,origin_x=origin,origin_data=origin,extremes=extremes)
+#	data_prec <- normalizeGaussian_severalstations_prec(x=prec_mes,data=prec_mes,sample=sample,cpf=cpf,qnull=qnull,valmin=valmin,origin_x=origin,origin_data=origin,extremes=extremes)
 	if (!onlygeneration){
 
 		if (!is.null(exogen_all)) {
@@ -194,8 +201,11 @@ function(
 				
 	if (is.null(mean_climate_prec_sim)) mean_climate_prec_sim <- mean_climate_prec
 	nyear_sim <- year_max_sim-year_min_sim+1
+	
 	prec_spline_sim <- as.data.frame(splineInterpolateMonthlytoDailyforSeveralYears(val=mean_climate_prec_sim,start_year=year_min_sim,nyear=nyear_sim,leap=leap,no_spline=no_spline))	
 	names(prec_spline_sim) <- colnames(mean_climate_prec_sim)	
+	
+	
 	if (is.null(exogen_sim)) exogen_sim <- exogen 
 	if (!is.null(exogen_sim) & (!is_exogen_gaussian)) {
 		
@@ -204,13 +214,18 @@ function(
 		
 	}
 
+	if (!is.null(seed))	set.seed(seed)
+	
 	data_prec_gen <- newVARmultieventRealization(var,exogen=exogen_sim,nrealization=nrow(prec_spline_sim),extremes=extremes,type=type_quantile) 
 	
+	precrows <- 1:(min(c(nrow(prec_mes),nrow(prec_spline),nrow(prec_spline_sim))))
 	
-	prec_mes_rescaled <- prec_mes/prec_spline*prec_spline_sim	
+	prec_mes_rescaled <- prec_mes[precrows,]/prec_spline[precrows,]*prec_spline_sim[precrows,]	
 		
-	prec_gen <- as.data.frame(normalizeGaussian_severalstations_prec(x=data_prec_gen,data=prec_mes_rescaled,inverse=TRUE,type=type_quantile,qnull=qnull,valmin=valmin,sample=sample,origin_x=origin_sim,origin_data=origin,extremes=extremes))
-	names(prec_gen) <- names(prec_spline_sim)			
+	prec_gen <- as.data.frame(normalizeGaussian_severalstations(x=data_prec_gen,data=prec_mes_rescaled,inverse=TRUE,type=type_quantile,step=step,sample=sample,origin_x=origin_sim,origin_data=origin,extremes=extremes))
+#	data_prec <- normalizeGaussian_severalstations_prec(x=prec_mes,data=prec_mes,sample=sample,cpf=cpf,qnull=qnull,valmin=valmin,origin_x=origin,origin_data=origin,extremes=extremes)
+	names(prec_gen) <- names(prec_spline_sim)	
+	colnames(data_prec_gen) <- names(prec_spline_sim)	# added on may 4 2012
   #  names(prec_gen) <- names(prec_mes)
 	out <- NULL
 	if (onlygeneration) {
@@ -227,6 +242,37 @@ function(
 		
 	}
 
+	
+	if (nscenario>1) {
+		
+		for (kk in 1:nscenario) {
+		
+			# DA METTERE A POSTO!!
+    		data_prec_gen <- newVARmultieventRealization(var,exogen=exogen_sim,nrealization=nrow(prec_spline_sim),extremes=extremes,type=type_quantile) 
+			colnames(data_prec_gen) <- names(prec_spline_sim)
+	#		ntn_rows <- 1:nrow()
+			
+	#		prec_mes_rescaled <- prec_mes/prec_spline*prec_spline_sim	
+	
+			precrows <- 1:(min(c(nrow(prec_mes),nrow(prec_spline),nrow(prec_spline_sim))))
+			
+			prec_mes_rescaled <- prec_mes[precrows,]/prec_spline[precrows,]*prec_spline_sim[precrows,]	
+			
+			prec_gen <- as.data.frame(normalizeGaussian_severalstations(x=data_prec_gen,data=prec_mes_rescaled,inverse=TRUE,type=type_quantile,step=step,sample=sample,origin_x=origin_sim,origin_data=origin,extremes=extremes))
+	#		prec_gen <- as.data.frame(normalizeGaussian_severalstations_prec(x=data_prec_gen,data=prec_mes_rescaled,inverse=TRUE,type=type_quantile,qnull=qnull,valmin=valmin,sample=sample,origin_x=origin_sim,origin_data=origin,extremes=extremes))
+			names(prec_gen) <- names(prec_spline_sim)	
+			
+			prec_index <- sprintf("prec_gen%05d",kk)
+			
+			out[[prec_index]] <- prec_gen
+	
+		}	
+		
+	}
+	
+	
+	
+	
 	return(out)
 #	return(list(prec_mes=prec_mes,prec_spline=prec_spline,data_prec=data_prec,prec_gen=prec_gen,prec_spline_sim=prec_spline_sim,data_prec_gen=data_prec_gen,mean_climate_prec=mean_climate_prec,mean_climate_prec_sim=mean_climate_prec_sim,var=var))
 	

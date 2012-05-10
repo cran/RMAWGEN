@@ -95,7 +95,7 @@ function (std_tn,std_tx,SplineTx,SplineTn,
 		
 	} else if (option==2) {
 		
-	
+		
 		Tm_gen <- extractTxFromAnomalies(res_multigen,std=std_tm,SplineAdv=SplineTm)
 		
 		ntall <- as.integer(ncol(res_multigen))
@@ -117,9 +117,9 @@ function (std_tn,std_tx,SplineTx,SplineTn,
 		Tn_gen <- Tm_gen-SplineTm+SplineTn
 	}
 	
-	out <- list(res_multigen,SplineTx,SplineTn,Tx_gen,Tn_gen)
+	out <- list(res_multigen,SplineTx,SplineTn,Tx_gen,Tn_gen,original_data)
 	
-	names(out) <- c("res_multigen","Tx_spline","Tn_spline","Tx_gen","Tn_gen")
+	names(out) <- c("res_multigen","Tx_spline","Tn_spline","Tx_gen","Tn_gen","data_original")
 	return(out)
 	
 }
