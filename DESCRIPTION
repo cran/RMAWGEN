@@ -13,12 +13,12 @@ Description: This package contains S3 and S4 functions for spatial
         then works with monthly timeseries as input.
         Bugs/comments/questions/collaboration of any kind are warmly
         welcomed.
-Version: 1.2.5
+Version: 1.2.5.1
 In views: Environmetrics,TimeSeries
 Repository: CRAN
-Date/Publication: 2012-05-11 05:13:42
-Packaged: 2012-05-10 13:57:52 UTC; ecor
-Date: 2012-05-10
+Date/Publication: 2012-06-13 12:14:28
+Packaged: 2012-06-13 08:51:59 UTC; ecor
+Date: 2012-06-12
 Depends: R (>= 2.10), chron, date, vars, MASS, strucchange, urca,
         methods,lmtest (>= 0.9-26), sandwich (>= 2.2-4)
 Imports: chron, date, vars, MASS, strucchange, urca, methods,lmtest (>=
@@ -46,10 +46,10 @@ Collate: 'acvWGEN.R' 'adddate.R' 'addsuffixes.R' 'arch_test.varest2.R'
         'plot.sample.R' 'PrecipitationEndDay.R'
         'PrecipitationStartDay.R' 'print.GPCAiteration.R'
         'print.GPCA.R' 'qqplot.lagged.R' 'qqplotprecWGEN.R'
-        'qqplotprecWGEN_seasonal.R' 'qqplotTnTxWGEN.R'
-        'qqplotTnTxWGEN_seasonal.R' 'qqplotWGEN.R' 'removeNAs.R'
-        'rescaling_monthly.R' 'residuals.varest2.R' 'RMAWGEN-package.R'
-        'serial_test.varest2.R'
+        'qqplotprecWGEN_seasonal.R' 'qqplot_RMAWGENts.R'
+        'qqplotTnTxWGEN.R' 'qqplotTnTxWGEN_seasonal.R' 'qqplotWGEN.R'
+        'removeNAs.R' 'rescaling_monthly.R' 'residuals.varest2.R'
+        'RMAWGEN-package.R' 'serial_test.varest2.R'
         'setWholeTemperatureGeneratorParameters.R'
         'splineInterpolateMonthlytoDailyforSeveralYears.R'
         'splineInterpolateMonthlytoDaily.R' 'TemperatureEndDay.R'

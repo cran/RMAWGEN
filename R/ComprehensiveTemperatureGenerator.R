@@ -244,9 +244,26 @@ function(
 #		str(Tx_spline_sim)
 #		str(Tn_spline)
 #		str(Tn_spline_sim)
+	
+		if (nrow(Tx_spline_sim)<nrow(original_data)) {
+			
+			nfrac <- as.integer(nrow(original_data)/nrow(Tx_spline_sim))+1
+			Tx_spline_sim2 <- mapply(rep,Tx_spline_sim,nfrac)
+			Tn_spline_sim2 <- mapply(rep,Tn_spline_sim,nfrac)
+		} else {
+			
+			Tx_spline_sim2 <- Tx_spline_sim
+			Tn_spline_sim2 <- Tn_spline_sim
+		}
+	
 		ntn_rows <- 1:nrow(original_data)
 #		str(ntn_rows)
-		original_data[,ntn:ntall] <- original_data[,ntn:ntall]/(Tx_spline[ntn_rows,station]-Tn_spline[ntn_rows,station])*(Tx_spline_sim[ntn_rows,station]-Tn_spline_sim[ntn_rows,station])
+	
+	
+	
+	
+	
+		original_data[,ntn:ntall] <- original_data[,ntn:ntall]/(Tx_spline[ntn_rows,station]-Tn_spline[ntn_rows,station])*(Tx_spline_sim2[ntn_rows,station]-Tn_spline_sim2[ntn_rows,station])
 	
 	}
 	

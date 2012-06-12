@@ -31,14 +31,9 @@ year_min <- 1961
 origin <- "1961-1-1"
 
 n_GPCA_iter <- 10
-nscenario=30
+nscenario=20
 station <- c("T0090","T0083") #,"T0099","T0001") 
 
-#vstation <- 	vstation <- c("B2440","B6130","B8570","B9100","LAVIO","POLSA","SMICH","T0001",
-#		"T0010","T0014","T0018","T0032","T0064","T0083","T0090","T0092","T0094","T0099",
-#		"T0102","T0110","T0129","T0139","T0147","T0149","T0152","T0157","T0168","T0179","T0189","T0193","T0204","T0210","T0211","T0327","T0367","T0373")		
-#
-#station <- vstation
 generation00 <- ComprehensivePrecipitationGenerator(station=station,prec_all=PRECIPITATION,year_min=year_min,year_max=year_max,p=3,n_GPCA_iteration=n_GPCA_iter,n_GPCA_iteration_residuals=0,sample="monthly",nscenario=nscenario,no_spline=FALSE)#VARselect(generation00$var@GPCA_data$final_results)
 
 		
@@ -70,7 +65,7 @@ for (i in 1:nscenario) {
 wilcox.test(generation00$prec_mes[iseason,istation],generation00$prec_gen[iseason,istation])
 
 # check observed vs generated with Kolgomorov-Smirnov
-ks.test(generation00$prec_mes[iseason,istation],generation00$prec_gen[iseason,istation])
+ks.test(generation00$prec_mes[iseason,istation],generation00$prec_gen[iseason,istation],exact=FALSE)
 
 # CHECK lagged-averaged 
 

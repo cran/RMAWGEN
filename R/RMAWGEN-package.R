@@ -26,7 +26,7 @@
 #' Package: \tab RMAWGEN\cr
 #' Type: \tab Package\cr
 #' Version: \tab 1.2.2\cr
-#' Date: \tab   2012-05-10\cr
+#' Date: \tab   2012-06-12\cr
 #' License: \tab GPL (>= 2)
 #'  
 

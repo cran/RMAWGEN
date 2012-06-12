@@ -201,10 +201,13 @@ function(
 				
 	if (is.null(mean_climate_prec_sim)) mean_climate_prec_sim <- mean_climate_prec
 	nyear_sim <- year_max_sim-year_min_sim+1
-	
-	prec_spline_sim <- as.data.frame(splineInterpolateMonthlytoDailyforSeveralYears(val=mean_climate_prec_sim,start_year=year_min_sim,nyear=nyear_sim,leap=leap,no_spline=no_spline))	
+	nyear_max <- max(nyear_sim,nyear)
+##	print(nyear_sim)
+##	print(nyear_max)
+	prec_spline_sim <- as.data.frame(splineInterpolateMonthlytoDailyforSeveralYears(val=mean_climate_prec_sim,start_year=year_min_sim,nyear=nyear_max,leap=leap,no_spline=no_spline))	
+	prec_spline_sim2 <- as.data.frame(splineInterpolateMonthlytoDailyforSeveralYears(val=mean_climate_prec_sim,start_year=year_min_sim,nyear=nyear_sim,leap=leap,no_spline=no_spline))# This is a spline interpotation only for the years on which generatiion is requested
 	names(prec_spline_sim) <- colnames(mean_climate_prec_sim)	
-	
+	names(prec_spline_sim2) <- colnames(mean_climate_prec_sim)	
 	
 	if (is.null(exogen_sim)) exogen_sim <- exogen 
 	if (!is.null(exogen_sim) & (!is_exogen_gaussian)) {
@@ -216,8 +219,8 @@ function(
 
 	if (!is.null(seed))	set.seed(seed)
 	
-	data_prec_gen <- newVARmultieventRealization(var,exogen=exogen_sim,nrealization=nrow(prec_spline_sim),extremes=extremes,type=type_quantile) 
-	
+	data_prec_gen <- newVARmultieventRealization(var,exogen=exogen_sim,nrealization=nrow(prec_spline_sim2),extremes=extremes,type=type_quantile) 
+#	data_prec_gen <- newVARmultieventRealization(var,exogen=exogen_sim,nrealization=nyear_sim,extremes=extremes,type=type_quantile) 
 	precrows <- 1:(min(c(nrow(prec_mes),nrow(prec_spline),nrow(prec_spline_sim))))
 	
 	prec_mes_rescaled <- prec_mes[precrows,]/prec_spline[precrows,]*prec_spline_sim[precrows,]	
@@ -229,9 +232,10 @@ function(
   #  names(prec_gen) <- names(prec_mes)
 	out <- NULL
 	if (onlygeneration) {
-		names_out <- c("prec_gen","prec_spline_sim","data_prec_gen","mean_climate_prec_sim")
+		names_out <- c("prec_gen","prec_spline_sim","data_prec_gen","mean_climate_prec_sim","prec_mes","prec_spline","prec_mes_rescaled")
 		for (it in names_out) { if (!exists(it)) assign(it,NULL)}
-		out <- list(prec_mes,prec_spline,data_prec,prec_gen,prec_spline_sim,data_prec_gen,mean_climate_prec,mean_climate_prec_sim,var)
+		out <- list(prec_gen,prec_spline_sim,data_prec_gen,mean_climate_prec_sim,prec_mes,prec_spline,prec_mes_rescaled)# May 2012
+#		out <- list(prec_gen,prec_spline_sim,data_prec,prec_gen,prec_spline_sim,data_prec_gen,mean_climate_prec,mean_climate_prec_sim,var)
 		names(out) <- names_out
 	} else {
 		names_out <- c("prec_mes","prec_spline","data_prec","prec_gen","prec_spline_sim","data_prec_gen","mean_climate_prec","mean_climate_prec_sim","var")
