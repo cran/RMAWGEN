@@ -9,22 +9,22 @@ Description: This package contains S3 and S4 functions for spatial
         multi-site stochastic generation of daily timeseries of
         temperature and precipitation. The implemented tools make use
         of Vectorial AutoRegressive models (VARs). The VAR is
-        calibrated by daily instrumental "Gaussinized" time series and
+        calibrated by daily instrumental "Gaussianized" time series and
         then works with monthly timeseries as input.
         Bugs/comments/questions/collaboration of any kind are warmly
         welcomed.
-Version: 1.2.5.1
+Version: 1.2.5.3
 In views: Environmetrics,TimeSeries
 Repository: CRAN
-Date/Publication: 2012-06-13 12:14:28
-Packaged: 2012-06-13 08:51:59 UTC; ecor
-Date: 2012-06-12
+Date/Publication: 2012-08-14 12:22:23
+Packaged: 2012-08-14 11:39:12 UTC; ecor
+Date: 2012-08-13
 Depends: R (>= 2.10), chron, date, vars, MASS, strucchange, urca,
         methods,lmtest (>= 0.9-26), sandwich (>= 2.2-4)
 Imports: chron, date, vars, MASS, strucchange, urca, methods,lmtest (>=
         0.9-26), sandwich (>= 2.2-4)
 Suggests: RgoogleMaps
-URL:
+URL: https://docs.google.com/file/d/0B8xDtMCnW3dJU2JIemVqMnpKTHc/edit,
         http://cri.gmpf.eu/Research/Sustainable-Agro-Ecosystems-and-Bioresources/Dynamics-in-the-agro-ecosystems,
         http://presentations.copernicus.org/EGU2012-14026_presentation.pdf,
         http://presentations.copernicus.org/EGU2012-5404_presentation.pdf

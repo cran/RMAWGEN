@@ -39,14 +39,13 @@
   with General Public License (GPL) and is available on
   CRAN website.
   (\url{http://cran.r-project.org/web/packages/RMAWGEN/index.html})
-  .
+  . A presentation of the package is available on
+  \url{https://docs.google.com/file/d/0B8xDtMCnW3dJU2JIemVqMnpKTHc/edit}.
 }
 \details{
-
-
   \tabular{ll}{ Package: \tab RMAWGEN\cr Type: \tab
   Package\cr Version: \tab 1.2.2\cr Date: \tab
-  2012-06-12\cr License: \tab GPL (>= 2)
+  2012-08-13\cr License: \tab GPL (>= 2)
 
   \cr LazyLoad: \tab yes\cr Depends:
   R(>=2.12),time,chron,vars \cr }

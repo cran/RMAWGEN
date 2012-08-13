@@ -30,8 +30,9 @@ function (res_multigen,std,SplineAdv) {
 	ntall=as.integer(ncol(res_multigen))
 	ntn=as.integer(ncol(res_multigen)/2)
 	
+	nstd <- length(std)
 
-	out <- res_multigen[,1:ntn]%*% diag(std) + SplineAdv
+	out <- res_multigen[,1:ntn]%*% diag(x=std,nrow=nstd) + SplineAdv
 	return(out)
 	
 }

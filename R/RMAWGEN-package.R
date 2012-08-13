@@ -18,7 +18,7 @@
 #' using a dataset with daily weather time series recorded in 59 different sites of Trentino (Italy) and its neighborhoods for the period 1958-2007. The
 #' software is distributed as a Free Software with General Public License (GPL) and is available on CRAN website.
 #' (\url{http://cran.r-project.org/web/packages/RMAWGEN/index.html}) .
-#' 
+#' A presentation of the package is available on \url{https://docs.google.com/file/d/0B8xDtMCnW3dJU2JIemVqMnpKTHc/edit}.
 #' 
 
 #'
@@ -26,7 +26,7 @@
 #' Package: \tab RMAWGEN\cr
 #' Type: \tab Package\cr
 #' Version: \tab 1.2.2\cr
-#' Date: \tab   2012-06-12\cr
+#' Date: \tab   2012-08-13\cr
 #' License: \tab GPL (>= 2)
 #'  
 

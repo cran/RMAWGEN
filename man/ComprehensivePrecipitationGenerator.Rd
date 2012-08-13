@@ -163,23 +163,57 @@
 }
 \note{
   It pre-processes and generates a multi-site precipitation
-  fields. It uses \code{\link{getVARmodel}}. Unfortunately,
-  using this approach, the spatial correlations are
-  underestimated. This is due to the persinstence of zeros
-  in the precipitation records. This problem is known in
-  literature and can be solved in the future versions of
-  RMAWGEN. See the R code for further details
+  fields. It uses \code{\link{getVARmodel}}. Detailed
+  examples can be viewed of this function in
+  \href{https://docs.google.com/file/d/0B8xDtMCnW3dJU2JIemVqMnpKTHc/edit}{this
+  presentation}. Unfortunately, using this approach, the
+  spatial correlations are underestimated. This is due to
+  the persinstence of zeros in the precipitation records.
+  This problem is known in literature and can be solved in
+  the future versions of RMAWGEN. See the R code for
+  further details
 }
 \examples{
 data(trentino)
 
 
-	vstation <- c("B2440","B6130","B8570","B9100","LAVIO","POLSA","SMICH","T0001",
- "T0010","T0014","T0018","T0032","T0064","T0083","T0090","T0092","T0094","T0099",
- "T0102","T0110","T0129","T0139","T0147","T0149","T0152","T0157","T0168","T0179","T0189","T0193","T0204","T0210","T0211","T0327","T0367","T0373")
-	generation_prec <- ComprehensivePrecipitationGenerator(station=vstation[10:12],prec_all=PRECIPITATION,sample="monthly")
-	str(generation_prec)
-	print(generation_prec$var)
+rm(list=ls())
+set.seed(1222)
+library(RMAWGEN)
+data(trentino)
+year_max <- 1990
+year_min <- 1961
+year_max_sim <- 1982
+year_min_sim <- 1981
+
+n_GPCA_iter <- 2
+p <- 1
+nscenario=1
+station <- c("T0090","T0083") #,"T0099","T0001")
+generation00 <- ComprehensivePrecipitationGenerator(station=station,prec_all=PRECIPITATION,year_min=year_min,year_max=year_max,year_min_sim=year_min_sim,year_max_sim=year_max_sim,p=p,n_GPCA_iteration=n_GPCA_iter,n_GPCA_iteration_residuals=0,sample="monthly",nscenario=nscenario,no_spline=FALSE)
+##
+##
+##
+##year_max <- 1990
+## year_min <- 1961
+##
+##year_min_sim <- 1982
+##year_max_sim <- 1983
+##
+##n_GPCA_iter <- 10
+##n_GPCA_iteration_residuals <- 10
+##	vstation <- c("B2440","B6130","B8570","B9100","LAVIO","POLSA","SMICH","T0001",
+## "T0010","T0014","T0018","T0032","T0064","T0083","T0090","T0092","T0094","T0099",
+## "T0102","T0110","T0129","T0139","T0147","T0149","T0152","T0157","T0168","T0179","T0189","T0193","T0204","T0210","T0211","T0327","T0367","T0373")
+##	generation00 <-ComprehensiveTemperatureGenerator(station=vstation[14:15],Tx_all=TEMPERATURE_MAX,Tn_all=TEMPERATURE_MIN,year_min=year_min,year_max=year_max,p=1,n_GPCA_iteration=n_GPCA_iter,n_GPCA_iteration_residuals=n_GPCA_iteration_residuals,sample="monthly",year_min_sim=year_min_sim,year_max_sim=year_max_sim)
+##
+##
+##
+##
+##
+##
+##
+##
 }
 \author{
   Emanuele Cordano, Emanuele Eccel

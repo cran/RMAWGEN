@@ -39,38 +39,38 @@ NULL
 #' 
 #'        
 #'
-#' @note It pre-processes series and generates multi-site temperature fields by using \code{\link{setComprehensiveTemperatureGeneratorParameters}},\code{\link{getVARmodel}} and \code{\link{generateTemperatureTimeseries}}. 
+#' @note It pre-processes series and generates multi-site temperature fields by using \code{\link{setComprehensiveTemperatureGeneratorParameters}},\code{\link{getVARmodel}} and \code{\link{generateTemperatureTimeseries}}. Detailed examples can be viewed of this function in \href{https://docs.google.com/file/d/0B8xDtMCnW3dJU2JIemVqMnpKTHc/edit}{this presentation}.
 #' 
 #'  
 #' @return  A list of the following variables: 
 #' 
 #' \code{input}   list of variables returned by  \code{\link{setComprehensiveTemperatureGeneratorParameters}}
 #' 
-#' \code{var}     varest object containing the used VAR model (if useVAR is true), NULL (otherwise)
+#' \code{var}     varest object containing the used VAR model (if useVAR is true), \code{NULL} (otherwise)
 #' 
 #' \code{output}  list variables returned by  \code{\link{generateTemperatureTimeseries}} (i.e. generated timeseries)
 #' 
 #' 
 #' 
 #' @examples 
-#' data(trentino)
-#' set.seed(1233)
-#' vstation <- c("B2440","B6130","B8570","B9100","LAVIO","POLSA","SMICH","T0001",
-#' "T0010","T0014","T0018","T0032","T0064","T0083","T0090","T0092","T0094","T0099",
-#' "T0102","T0110","T0129","T0139","T0147","T0149","T0152","T0157","T0168","T0179","T0189","T0193","T0204","T0210","T0211","T0327","T0367","T0373")		
 #' 
-#' station <- c("T0083","T0090")
-#' generation0 <- ComprehensiveTemperatureGenerator(station=station,Tx_all=TEMPERATURE_MAX,Tn_all=TEMPERATURE_MIN,year_min=1961,year_max=1990)
-# VAR_model <- generation0$var
-# CX <- generation0$input$monthly_mean_Tx
-# CN <- generation0$input$monthly_mean_Tn
-# generation1 <- ComprehensiveTemperatureGenerator(station=station,varmodel=generation0$var,
-# onlygeneration=TRUE,year_min=1961,year_max=1990,mean_climate_Tn_sim=CN,mean_climate_Tx_sim=CX,year_min_sim=1961,year_max_sim=1990,
-# Tx_all=TEMPERATURE_MAX,Tn_all=TEMPERATURE_MIN,nscenario=3)
-# CHANGE EXAMPLE WITH generation_per_year
-# generation_per_year <- ComprehensiveTemperatureGenerator(station=vstation[5:8],Tx_all=TEMPERATURE_MAX,Tn_all=TEMPERATURE_MIN,year_min=1961,year_max=1990,yearly=TRUE)
-#' str(generation0)
-# str(generation1)
+#' data(trentino)
+#' 
+
+#' year_min <- 1961
+#' year_max <- 1990
+#' 
+#' year_min_sim <- 1982
+#' year_max_sim <- 1983
+#' 
+#' n_GPCA_iter <- 5 
+#' n_GPCA_iteration_residuals <- 5
+#' p <- 1
+#' vstation <- c("B2440","B6130","B8570","B9100","LAVIO","POLSA","SMICH","T0001",
+#'  "T0010","T0014","T0018","T0032","T0064","T0083","T0090","T0092","T0094","T0099",
+#'  "T0102","T0110","T0129","T0139","T0147","T0149","T0152","T0157","T0168","T0179","T0189","T0193","T0204","T0210","T0211","T0327","T0367","T0373")		
+#'  
+#' generation00 <-ComprehensiveTemperatureGenerator(station=vstation[15],Tx_all=TEMPERATURE_MAX,Tn_all=TEMPERATURE_MIN,year_min=year_min,year_max=year_max,p=p,n_GPCA_iteration=n_GPCA_iter,n_GPCA_iteration_residuals=n_GPCA_iteration_residuals,sample="monthly",year_min_sim=year_min_sim,year_max_sim=year_max_sim)
 
 
 	
