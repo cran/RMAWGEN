@@ -12,7 +12,7 @@ NULL
 #' 
 #' @title varest-class 
 #' 
-#' @note Formal definition with \code{\link{setOldClass}} for the S3 class \code{varest2} 
+#' @note Formal definition with \code{\link{setOldClass}} for the S3 class \code{varest} 
 #' 
 #' 
 

@@ -35,18 +35,21 @@ function(data,year_min=1961,year_max=1990,station=c("T0001","T0014","T0129"))  {
 	station <- station[station %in% names(data)] 
 	
 	nstation=length(station)	
+	iyear <- ((data$year<=year_max) & (data$year>=year_min))
+	out <- data[iyear,station]
+# See correction on getMOnthlyMean EC 2013-04-24
+#	out <- subset(data,year<=year_max & year>=year_min,select=station[1])
 	
-	out <- subset(data,year<=year_max & year>=year_min,select=station[1])
-	if (nstation>1) {
-		
-		
-		for (c in 2:nstation) {
-			temp <- subset(data,year<=year_max & year>=year_min,select=station[c])
+#	if (nstation>1) {
+#		
+#		
+#		for (c in 2:nstation) {
+#			temp <- subset(data,year<=year_max & year>=year_min,select=station[c])
+#			
+#			out <- cbind(out,temp)
 			
-			out <- cbind(out,temp)
-			
-		}
-	}
+#		}
+#	}
 	
 	return(as.matrix(out))
 	

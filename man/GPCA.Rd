@@ -1,6 +1,6 @@
 \name{GPCA}
 \alias{GPCA}
-\title{This function make a Gaussianization procedure besad on PCA iteration ( see \code{\link{GPCA_iteration}})}
+\title{This function makes a Gaussianization procedure besad on PCA iteration ( see \code{\link{GPCA_iteration}})}
 \usage{
   GPCA(x_prev, n = 30, extremes = TRUE)
 }
@@ -21,7 +21,7 @@
   \code{final_results})
 }
 \description{
-  This function make a Gaussianization procedure besad on
+  This function makes a Gaussianization procedure besad on
   PCA iteration ( see \code{\link{GPCA_iteration}})
 }
 \note{

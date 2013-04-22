@@ -1,6 +1,6 @@
 \name{findDate}
 \alias{findDate}
-\title{Find the date  corresponding a row index of a matrix given the  date (origin) of the first row}
+\title{Finds the date  corresponding a row index of a matrix given the  date (origin) of the first row}
 \usage{
   findDate(k, origin = "1961-1-1", data.frame = TRUE,
     decimal = FALSE, character = FALSE)
@@ -32,8 +32,8 @@
   formats
 }
 \description{
-  Find the date corresponding a row index of a matrix given
-  the date (origin) of the first row
+  Finds the date corresponding a row index of a matrix
+  given the date (origin) of the first row
 }
 \note{
   It uses functions of \code{\link{time}} package. It works

@@ -286,7 +286,7 @@ plot(acf(val_gen,lag=50),xlab="lag [day]",cex.main=CEX,cex.lab=CEX,cex.axis=CEX)
 dev.off()
 
 pdf(paste(wpath,"acf_prec_dt_anom_mes.pdf",sep="/"))
-plot(acf(val_mes,lag=50),xlab="lag [day]")
+plot(acf(val_mes,lag=50),xlab="lag [day]",cex.main=CEX,cex.lab=CEX,cex.axis=CEX)
 dev.off()
 
 

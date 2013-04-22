@@ -1,6 +1,6 @@
 \name{ComprehensiveTemperatureGenerator}
 \alias{ComprehensiveTemperatureGenerator}
-\title{The comprehensive Temperature Generator}
+\title{The Comprehensive Temperature Generator}
 \usage{
   ComprehensiveTemperatureGenerator(station = c("T0001", "T0010", "T0099"),
     Tx_all, Tn_all, mean_climate_Tn = NULL,
@@ -19,7 +19,8 @@
     n_GPCA_iteration_residuals = n_GPCA_iteration,
     exogen = NULL, exogen_sim = exogen,
     is_exogen_gaussian = FALSE, exogen_all = NULL,
-    exogen_all_col = station, nscenario = 1, seed = NULL)
+    exogen_all_col = station, nscenario = 1, seed = NULL,
+    noise = NULL)
 }
 \arguments{
   \item{station}{see respective input parameter on
@@ -39,14 +40,14 @@
   \item{year_max_sim}{last year of the simulation period.
   Default is equal to \code{year_max}}
 
-  \item{year_min_sim}{fist year of the simulation period.
+  \item{year_min_sim}{first year of the simulation period.
   Default is equal to \code{year_min}}
 
-  \item{mean_climate_Tn_sim}{monthly avaraged daily minimum
+  \item{mean_climate_Tn_sim}{monthly averaged daily minimum
   temperatures for the simulated scenario and used by the
   random generator .  Default is \code{mean_climate_Tn}}
 
-  \item{mean_climate_Tx_sim}{monthly avaraged daily maximum
+  \item{mean_climate_Tx_sim}{monthly averaged daily maximum
   temperatures for the simulated scenario and used by the
   random generator .  Default is \code{mean_climate_Tx}}
 
@@ -55,24 +56,30 @@
   \code{year_max_sim}) of averaged maximum temperature
   which can be obtained by a spline interpolation of
   monthly mean values (for the generation period). Default
-  is \code{Tx_spline}.}
+  is \code{Tx_spline}. See for spline interpolation
+  utilized
+  \code{\link{splineInterpolateMonthlytoDailyforSeveralYears}}.}
 
   \item{Tn_spline_sim}{daily timeseries (from the first day
   of \code{year_min_sim} to the last day of
   \code{year_max_sim}) of averaged minimum temperature
   which can be obtained by a spline interpolation of
   monthly mean values (for the generation period). Default
-  is \code{Tn_spline}.}
+  is \code{Tn_spline}. See for spline interpolation
+  utilized
+  \code{\link{splineInterpolateMonthlytoDailyforSeveralYears}}.}
 
   \item{onlygeneration}{logical variable. If \code{TRUE}
   the VAR model \code{varmodel} is given as input and only
   random generation is done, otherwise (default) is
   calculated from measured data}
 
-  \item{varmodel}{the VAR model as a \code{\link{varest2}}
-  or a \code{\link{GPCAvarest2}} object. If \code{NULL}, it
-  is given as input and only random generation is done,
-  otherwise (default) is calculated from measured data}
+  \item{varmodel}{the comprehensinve VAR model as a
+  \code{\link{varest2}} or \code{\link{GPCAvarest2}} S4
+  object or a \code{NULL} object. If \code{NULL} (default),
+  the comprehensinve VAR is estimated from measured data
+  within the function, otherwise it is given as input and
+  only random generation is done.}
 
   \item{normalize,sample,extremes}{see
   \code{\link{normalizeGaussian_severalstations}} or
@@ -91,16 +98,19 @@
   Gaussianization)}
 
   \item{n_GPCA_iteration_residuals}{number of iteration of
-  Gaussianization process for data. Default is 0 (no
-  Gaussianization)}
+  Gaussianization process for VAR residuals. Default is 0
+  (no Gaussianization)}
 
-  \item{exogen}{matrix containing the (normalized or not)
-  exogenous variables (predictors) for the recorded
-  (calibration) period. Default is NULL}
+  \item{exogen}{data frame or matrix containing the
+  (normalized or not) exogenous variables (predictors) for
+  the recorded (calibration) period. Default is
+  \code{NULL}.}
 
-  \item{exogen_sim}{matrix containing the (normalized or
-  not) exogenous variables (predictors) for the simulation
-  period. Default is \code{exogen}}
+  \item{exogen_sim}{data frame or matrix containing the
+  (normalized or not) exogenous variables (predictors) for
+  the simulation period. Default is \code{NULL}. If it is
+  \code{NULL}, \code{exogen_sim} is set equal to
+  \code{exogen} within the function.}
 
   \item{is_exogen_gaussian}{logical value, If \code{TRUE},
   \code{exogen_sim} and \code{exogen} are given as already
@@ -132,6 +142,11 @@
 
   \item{seed}{seed for stochastic random generation see
   \code{\link{set.seed}}}
+
+  \item{noise}{stochastic noise to add for variabile
+  generation. Default is \code{NULL}. See
+  \code{\link{newVARmultieventRealization}}. Not used in
+  case that \code{nscenario>1}.}
 }
 \value{
   A list of the following variables:
@@ -147,7 +162,7 @@
   generated timeseries)
 }
 \description{
-  The comprehensive Temperature Generator
+  The Comprehensive Temperature Generator
 }
 \note{
   It pre-processes series and generates multi-site
@@ -161,6 +176,7 @@
 \examples{
 data(trentino)
 
+set.seed(1222) # set the seed for random generations!
 year_min <- 1961
 year_max <- 1990
 
@@ -173,8 +189,9 @@ p <- 1
 vstation <- c("B2440","B6130","B8570","B9100","LAVIO","POLSA","SMICH","T0001",
  "T0010","T0014","T0018","T0032","T0064","T0083","T0090","T0092","T0094","T0099",
  "T0102","T0110","T0129","T0139","T0147","T0149","T0152","T0157","T0168","T0179","T0189","T0193","T0204","T0210","T0211","T0327","T0367","T0373")
-
-generation00 <-ComprehensiveTemperatureGenerator(station=vstation[15],Tx_all=TEMPERATURE_MAX,Tn_all=TEMPERATURE_MIN,year_min=year_min,year_max=year_max,p=p,n_GPCA_iteration=n_GPCA_iter,n_GPCA_iteration_residuals=n_GPCA_iteration_residuals,sample="monthly",year_min_sim=year_min_sim,year_max_sim=year_max_sim)
+## Not Run: the call to ComprehensiveTemperatureGenerator may elapse too long time (more than 5 eseconds) and is not executed  by CRAN check.
+## Please uncomment the following line to run the example on your own PC.
+# generation00 <-ComprehensiveTemperatureGenerator(station=vstation[16],Tx_all=TEMPERATURE_MAX,Tn_all=TEMPERATURE_MIN,year_min=year_min,year_max=year_max,p=p,n_GPCA_iteration=n_GPCA_iter,n_GPCA_iteration_residuals=n_GPCA_iteration_residuals,sample="monthly",year_min_sim=year_min_sim,year_max_sim=year_max_sim)
 }
 \author{
   Emanuele Cordano, Emanuele Eccel
@@ -182,6 +199,6 @@ generation00 <-ComprehensiveTemperatureGenerator(station=vstation[15],Tx_all=TEM
 \seealso{
   \code{\link{setComprehensiveTemperatureGeneratorParameters}},
   \code{\link{generateTemperatureTimeseries}}
-  ,\code{\link{generateTemperatureTimeseries}}.
+  ,\code{\link{generateTemperatureTimeseries}},\code{\link{splineInterpolateMonthlytoDailyforSeveralYears}}.
 }
 

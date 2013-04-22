@@ -47,3 +47,7 @@ plot(z1hist)
 par(def.par)
 # end of the script
 
+#library("RMAWGEN") \\ data("trentino") \\ col <- rainbow(n=12,start=0.1,end=0.9) \\ col[6:1] <- col[1:6]\\
+#col[7:12] <- col[12:7]\\ plot_sample(x=TEMPERATURE_MIN\$T0090,sample="monthly",\\
+#origin="1958-1-1",axes=FALSE,\\
+#xlab="Tn [degC]",ylab="x",abline=NULL,col=col)\\ %plot_sample(x=TEMPERATURE_MIN\$T0090,sample="monthly",\\ %origin="1958-1-1",axes=FALSE,xlab="Tn [degC]",ylab="x")\\

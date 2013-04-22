@@ -74,8 +74,6 @@
   Therefore the function \code{\link{addsuffixes}}, which
   is called from this function, adds suitable suffixes to
   the column names.
-
-  summary(var)
 }
 \author{
   Emanuele Cordano, Emanuele Eccel

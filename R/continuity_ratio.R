@@ -11,7 +11,7 @@ NULL
 #' 
 #' @export 
 #' 
-#' @note If \code{lag==0} the function returns the conuity rantio and joint propabilirty as dexribed by Wilks, 1998. Otherwise the precipitation values for each couple of rain gauges are take with \code{lag}-day lag. 
+#' @note If \code{lag==0} the function returns the continuity ratio and joint propabilirty as described by Wilks, 1998. Otherwise the precipitation values for each couple of rain gauges are taken with \code{lag}-day lag. 
 #' 
 #' @references  see the following URL references:  \url{http://onlinelibrary.wiley.com/doi/10.1002/joc.2305/abstract} 
 #'   and \url{http://www.sciencedirect.com/science/article/pii/S0022169498001863}
@@ -67,3 +67,5 @@ continuity_ratio <- function(data,lag=0,valmin=0.5) {
 	} 
 	return(as.list(out))
 }
+
+

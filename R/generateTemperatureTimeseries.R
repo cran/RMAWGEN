@@ -3,7 +3,7 @@ NULL
 
 
 #'  
-#'  Returns time series of Daily Maximum and Minimum with a random multi-realization obtained by using \code{\link{newVARmultieventRealization}} 
+#'  Returns time series of Daily Maximum and Minimum with a random multi-realization obtained by using \code{\link{newVARmultieventRealization}}. This function is called by  \code{\link{ComprehensiveTemperatureGenerator}}.
 #'  
 #'  @param std_tn vector containing standard deviation of daily minimum temperature anomalies. \code{stdTn} is default, see \code{\link{setComprehensiveTemperatureGeneratorParameters}}.
 #' 	@param std_tx vector containing standard deviation of daily maximum temperature anomalies. \code{stdTx} is default, see \code{\link{setComprehensiveTemperatureGeneratorParameters}}.
@@ -20,7 +20,7 @@ NULL
 #'  @param type see \code{\link{quantile}}
 #'  @param option integer value. If 1, the generator works with minimun and maximum temperature, if 2 (Default) it works with th average value between maximum and minimum temparature and the respective daily Atmosheric Temparature.
 #'  @param original_data matrix containing the measured standardized temperature anomalies
-
+#'  @param noise stochastic noise to add for variabile generation. Default is \code{NULL}. See \code{\link{newVARmultieventRealization}}. 
 #' 
 #'  @export 
 #' @return  This function returns a list of the following variables: 
@@ -52,7 +52,7 @@ NULL
 generateTemperatureTimeseries <-
 function (std_tn,std_tx,SplineTx,SplineTn,
 		SplineTm,SplineDeltaT,std_tm,
-		var=NULL,exogen=NULL,normalize=TRUE,type=3,extremes=TRUE,sample=NULL,option=1,original_data,origin_x=NULL,origin_data=NULL) {
+		var=NULL,exogen=NULL,normalize=TRUE,type=3,extremes=TRUE,sample=NULL,option=1,original_data,origin_x=NULL,origin_data=NULL,noise=NULL) {
 	
 	#  @author  Emanuele Cordano
 	#    
@@ -68,7 +68,7 @@ function (std_tn,std_tx,SplineTx,SplineTn,
 		
 	} else {
 		
-		res_multigen0 <- newVARmultieventRealization(var=var,exogen=exogen,nrealization=nrow(SplineTx),type=type,extremes=extremes)
+		res_multigen0 <- newVARmultieventRealization(var=var,exogen=exogen,nrealization=nrow(SplineTx),type=type,extremes=extremes,noise=noise)
 		
 		
 		

@@ -1,6 +1,6 @@
 NULL
 #'
-#' This function make a Gaussianization procedure besad on PCA iteration ( see \code{\link{GPCA_iteration}})
+#' This function makes a Gaussianization procedure besad on PCA iteration ( see \code{\link{GPCA_iteration}})
 #'
 #' @param x_prev previous set of the random variable \code{x}. If it is a \code{varest} object, the residuals are taken into account. 
 #' @param n number of reiterations
@@ -30,8 +30,10 @@ GPCA <- function (x_prev,n=30,extremes=TRUE) {
 	
 	out <- list()
 	
-	if (n<1) return(out)
-	
+	if (n<1) {
+		class(ou) <- "GPCA"	
+		return(out)
+	}
 	for (i in 1:n) {
 		DT <- GPCA_iteration(x_prev=x_prev,extremes=extremes)
 		x_prev <- DT$x_next

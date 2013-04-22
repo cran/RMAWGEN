@@ -2,7 +2,7 @@ NULL
 
 
 #' 
-#' Computes climatic and correlation information useful for creating an auto-regeressive random generation of maximum and minimun daily temparature 
+#' Computes climatic and correlation information useful for creating an auto-regeressive random generation of maximum and minimun daily temparature. This function is called by  \code{\link{ComprehensiveTemperatureGenerator}}.
 #' 
 #' 
 #' @author Emanuele Cordano, Emanuele Eccel
@@ -12,8 +12,8 @@ NULL
 #' @param Tn_all data frame containing daily minimum temperature of all meteorological station. See \code{\link{TEMPERATURE_MIN}} for formatting.
 #' @param mean_climate_Tn a matrix containing monthly mean minimum daily temperature for the considered station or an object as returned by \code{\link{getMonthlyMean}}. If \code{NULL}, it is calculated. See input of \code{\link{is.monthly.climate}}
 #' @param mean_climate_Tx a matrix containing monthly mean maximum daily temperature for the considered station or an object as returned by \code{\link{getMonthlyMean}}. If \code{NULL}, it is calculated. See input of \code{\link{is.monthly.climate}}
-#' @param Tx_spline daily timeseries (from the first day of \code{year_min} to the last day of \code{year_max}) of averaged maximum temperature which can be obtained by a spline interpolation of monthly mean values. Default is \code{NULL} and returned as output.
-#' @param Tn_spline daily timeseries (from the first day of \code{year_min} to the last day of \code{year_max}) of averaged minimum temperature which can be obtained by a spline interpolation of monthly mean values. Default is \code{NULL} and returned as output.
+#' @param Tx_spline daily timeseries (from the first day of \code{year_min} to the last day of \code{year_max}) of averaged maximum temperature which can be obtained by a spline interpolation of monthly mean values. Default is \code{NULL} and returned as output. See for spline interpolation utilized: \code{\link{splineInterpolateMonthlytoDailyforSeveralYears}}.
+#' @param Tn_spline daily timeseries (from the first day of \code{year_min} to the last day of \code{year_max}) of averaged minimum temperature which can be obtained by a spline interpolation of monthly mean values. Default is \code{NULL} and returned as output. See for spline interpolation utilized: \code{\link{splineInterpolateMonthlytoDailyforSeveralYears}}.
 #' @param year_max start year of the recorded (calibration) period 
 #' @param year_min end year of the recorded (calibration) period
 #' @param leap logical variables. It is \code{TRUE} (Default) if leap years are considered
@@ -26,10 +26,13 @@ NULL
 #' @param yearly  logical value. If \code{TRUE} the monthly mean values are calculated for each year from \code{year_min} to \code{year_max} separately. Default is \code{FALSE}. 
 #'   
 #' 
-#' @export   
+#' @export  
+#' 
+#' @seealso \code{\link{splineInterpolateMonthlytoDailyforSeveralYears}},\code{\link{ComprehensiveTemperatureGenerator}}
+#'  
 #' @return This function creates and returns the following gloabal variables: 
 #' 
-#' 
+#'
 #' 
 #' 
 #' \code{data_original} matrix containing normalized and standardized data (i.e. \code{data_original})
@@ -44,9 +47,9 @@ NULL
 #'
 #' \code{DeltaT_mes} matrix corresponding to \eqn{Tx_{mes}-Tn_{mes}}
 #' 
-#' \code{monthly_mean_Tn} matrix containing monthly mean minimum daily temperature for the considered station. It is calculated according to the input format \code{\link{is.monthly.climate}} if \code{saveMonthlyClimate} is  \code{TRUE}. 
+#' \code{monthly_mean_Tn} matrix containing monthly means minimum daily temperature for the considered station. It is calculated according to the input format \code{\link{is.monthly.climate}} if \code{saveMonthlyClimate} is  \code{TRUE}. 
 #'
-#' \code{monthly_mean_Tx} matrix containing monthly mean maximum daily temperature for the considered station. It is calculated according to the input format \code{\link{is.monthly.climate}} if \code{saveMonthlyClimate} is  \code{TRUE}. 
+#' \code{monthly_mean_Tx} matrix containing monthly means maximum daily temperature for the considered station. It is calculated according to the input format \code{\link{is.monthly.climate}} if \code{saveMonthlyClimate} is  \code{TRUE}. 
 #'
 #' \code{Tx_spline} matrix containing the averaged  daily values of maximimun temperature obtained by a spline interpolation of the monthly climate \code{monthly_mean_Tx} or \code{mean_climate_Tx} 
 #' using \code{\link{splineInterpolateMonthlytoDailyforSeveralYears}} ( \eqn{Tx_{s}}) 

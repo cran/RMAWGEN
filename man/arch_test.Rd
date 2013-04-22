@@ -2,15 +2,46 @@
 \alias{arch_test}
 \title{\code{arch.test} function for \code{varest2} object}
 \usage{
-  arch_test(object, ...)
+  arch_test(object, interval = NULL, overlap = 20,
+    list.output = FALSE, ...)
 }
 \arguments{
   \item{object}{a \code{varest2} object}
 
-  \item{...}{passed arguments}
+  \item{interval}{string or subset interval of time (e.g.
+  days) or length of this subset interval to which the ARCH
+  test is applied (see Note). Default is \code{NULL}.}
+
+  \item{overlap}{number of time instants (e.g. days) which
+  are overlapped on two different subsequent intervals.
+  Default is 20. It is used only if \code{interval} has
+  length 1.}
+
+  \item{list.output}{logical value. If \code{TRUE} the
+  function returns a list of the test results of each
+  interval. It is used if \code{interval} is not
+  \code{NULL}. Default is \code{FALSE}.}
+
+  \item{...}{further arguments for \code{\link{arch.test}}}
+}
+\value{
+  One or lists with class attribute \code{varcheck} as
+  reported in \code{\link{arch.test}}
 }
 \description{
   \code{arch.test} function for \code{varest2} object
+}
+\details{
+  This function is a wrapper of \code{\link{arch.test}}. It
+  can comuptes the test also for some subset (intervals) of
+  the time-series or for all the time-series divided in
+  overlapped intervals. The intervals considered for the
+  ARCH test are defined with the argument \code{interval}.
+  If \code{interval} is an integer number instead of a
+  vector, it indicates the length of the intervals in which
+  the time-series is split. If \code{interval} is set
+  \code{NULL}, the test is done on the comprehensive
+  residual time-series without splitting.
 }
 \seealso{
   \code{\link{arch.test}}

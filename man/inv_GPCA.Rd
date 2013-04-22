@@ -1,6 +1,6 @@
 \name{inv_GPCA}
 \alias{inv_GPCA}
-\title{This function make an inverse Gaussianization procedure besad on PCA iteration ( see \code{\link{inv_GPCA_iteration}}}
+\title{This function makes an inverse Gaussianization procedure besad on PCA iteration ( see \code{\link{inv_GPCA_iteration}}}
 \usage{
   inv_GPCA(x = NULL, GPCA_param, type = 3, extremes = TRUE)
 }
@@ -20,7 +20,7 @@
   the non-Gaussian random variable
 }
 \description{
-  This function make an inverse Gaussianization procedure
+  This function makes an inverse Gaussianization procedure
   besad on PCA iteration ( see
   \code{\link{inv_GPCA_iteration}}
 }

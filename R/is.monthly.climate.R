@@ -4,12 +4,12 @@ NULL
 
  
 #' 
-#' Verifies if 'climate' represents the monthly climatology in one year, i.e  'climate' is monthly.climate type
+#' Verifies if 'climate' represents the monthly climatology in one year, i.e  'climate' is monthly.climate type matrix whose rows reprent months and columns represent a station. It is also used in \code{\link{setComprehensiveTemperatureGeneratorParameters}}.
 #' 
 #'  
-#' @param  climate the 'monthly climatology' data
+#' @param  climate matrix containing the 'monthly climatology' data 
 #' @param  nstation number of variable measurement station (columns of the matrix 'climate')
-#' @param  nmonth number of months in one year (it can be different if climate is represented by seasonal avarages or others), Default is 12 
+#' @param  nmonth number of months in one year (it can be different if climate is represented by seasonal avarages or others), Default is 12 (recommended). (it can be different if climate is represented by seasonal averages, e.g. 4, or others)  
 #' @param  verbose Prints output and warining messagrs only if is \code{TRUE}.
 #'    
 #' @export 
@@ -17,7 +17,8 @@ NULL
 #' @author  Emanuele Cordano, Emanuele Eccel  
 #' 
 #' @return  A logical variable if the matrix 'climate' is monthly.climate type
-
+#' 
+#' @seealso \code{\link{setComprehensiveTemperatureGeneratorParameters}}
 # @examples 
 # data(trentino_predictions)
 # is.monthly.climate(Tn_2021_2050_50,nstation=ncol(Tn_2021_2050_50))

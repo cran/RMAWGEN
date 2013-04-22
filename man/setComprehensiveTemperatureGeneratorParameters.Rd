@@ -1,6 +1,6 @@
 \name{setComprehensiveTemperatureGeneratorParameters}
 \alias{setComprehensiveTemperatureGeneratorParameters}
-\title{Computes climatic and correlation information useful for creating an auto-regeressive random generation of maximum and minimun daily temparature}
+\title{Computes climatic and correlation information useful for creating an auto-regeressive random generation of maximum and minimun daily temparature. This function is called by  \code{\link{ComprehensiveTemperatureGenerator}}.}
 \usage{
   setComprehensiveTemperatureGeneratorParameters(station,
     Tx_all, Tn_all, mean_climate_Tn = NULL,
@@ -38,13 +38,17 @@
   \code{year_min} to the last day of \code{year_max}) of
   averaged maximum temperature which can be obtained by a
   spline interpolation of monthly mean values. Default is
-  \code{NULL} and returned as output.}
+  \code{NULL} and returned as output. See for spline
+  interpolation utilized:
+  \code{\link{splineInterpolateMonthlytoDailyforSeveralYears}}.}
 
   \item{Tn_spline}{daily timeseries (from the first day of
   \code{year_min} to the last day of \code{year_max}) of
   averaged minimum temperature which can be obtained by a
   spline interpolation of monthly mean values. Default is
-  \code{NULL} and returned as output.}
+  \code{NULL} and returned as output. See for spline
+  interpolation utilized:
+  \code{\link{splineInterpolateMonthlytoDailyforSeveralYears}}.}
 
   \item{year_max}{start year of the recorded (calibration)
   period}
@@ -105,13 +109,13 @@
   \code{DeltaT_mes} matrix corresponding to
   \eqn{Tx_{mes}-Tn_{mes}}
 
-  \code{monthly_mean_Tn} matrix containing monthly mean
+  \code{monthly_mean_Tn} matrix containing monthly means
   minimum daily temperature for the considered station. It
   is calculated according to the input format
   \code{\link{is.monthly.climate}} if
   \code{saveMonthlyClimate} is \code{TRUE}.
 
-  \code{monthly_mean_Tx} matrix containing monthly mean
+  \code{monthly_mean_Tx} matrix containing monthly means
   maximum daily temperature for the considered station. It
   is calculated according to the input format
   \code{\link{is.monthly.climate}} if
@@ -173,9 +177,13 @@
 \description{
   Computes climatic and correlation information useful for
   creating an auto-regeressive random generation of maximum
-  and minimun daily temparature
+  and minimun daily temparature. This function is called by
+  \code{\link{ComprehensiveTemperatureGenerator}}.
 }
 \author{
   Emanuele Cordano, Emanuele Eccel
+}
+\seealso{
+  \code{\link{splineInterpolateMonthlytoDailyforSeveralYears}},\code{\link{ComprehensiveTemperatureGenerator}}
 }
 

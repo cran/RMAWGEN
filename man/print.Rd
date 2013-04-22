@@ -1,14 +1,14 @@
-\name{print.GPCAiteration}
+\name{print.GPCA}
 \alias{print}
 \alias{print.GPCA}
 \alias{print.GPCAiteration}
 \title{\code{print} S3 method for \code{GPCA} or \code{GPCA_iteration} object}
 \usage{
-  \method{print}{GPCAiteration} (x, rmin = 1, rmax = 4,
-    cmin = rmin, cmax = rmax, ...)
-
   \method{print}{GPCA} (x, rmin = 1, rmax = 4, cmin = rmin,
     cmax = rmax, ...)
+
+  \method{print}{GPCAiteration} (x, rmin = 1, rmax = 4,
+    cmin = rmin, cmax = rmax, ...)
 }
 \arguments{
   \item{x}{a \code{GPCA} or \code{GPCAiteration} object}
@@ -23,8 +23,8 @@
   \code{GPCA_iteration} object
 }
 \seealso{
-  \code{\link{GPCA_iteration}}
-
   \code{\link{GPCA}},\code{\link{GPCA_iteration}}
+
+  \code{\link{GPCA_iteration}}
 }
 

@@ -3,7 +3,7 @@ NULL
 
 
 #' 
-#' Find the date  corresponding a row index of a matrix given the  date (origin) of the first row 
+#' Finds the date  corresponding a row index of a matrix given the  date (origin) of the first row 
 #' 
 #' @param k integer or decimal value corresponding to number of days since \code{origin}
 #' @param origin origin date. See also \code{\link{extractdays}}

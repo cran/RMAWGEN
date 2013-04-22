@@ -25,8 +25,8 @@
 #' \tabular{ll}{
 #' Package: \tab RMAWGEN\cr
 #' Type: \tab Package\cr
-#' Version: \tab 1.2.2\cr
-#' Date: \tab   2012-08-13\cr
+#' Version: \tab 1.2.5.4\cr
+#' Date: \tab   2013-04-22\cr
 #' License: \tab GPL (>= 2)
 #'  
 

@@ -34,10 +34,10 @@
   Wilks, 1998 (see reference link)
 }
 \note{
-  If \code{lag==0} the function returns the conuity rantio
-  and joint propabilirty as dexribed by Wilks, 1998.
+  If \code{lag==0} the function returns the continuity
+  ratio and joint propabilirty as described by Wilks, 1998.
   Otherwise the precipitation values for each couple of
-  rain gauges are take with \code{lag}-day lag.
+  rain gauges are taken with \code{lag}-day lag.
 }
 \author{
   Emanuele Cordano, Emanuele Eccel

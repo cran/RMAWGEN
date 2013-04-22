@@ -3,15 +3,22 @@
 \alias{residuals.varest2}
 \title{\code{residuals} S3 method for \code{varest2} object}
 \usage{
-  \method{residuals}{varest2} (object, ...)
+  \method{residuals}{varest2} (object, squared = FALSE,
+    ...)
 }
 \arguments{
   \item{object}{a \code{blockmatrix} object}
 
+  \item{squared}{logical value. Default is \code{FALSE}. If
+  \code{TRUE} the method returns the squared residuals.}
+
   \item{...}{passed arguments}
 }
 \value{
-  residuals of blockmatrix \code{object}
+  residuals of \code{object} as a data frame. In case
+  \code{squared=TRUE} , the squared residauls are returned,
+  otherwise simple residuals are returned. The squared
+  residuals can be useful in case of ARCH analysis.
 }
 \description{
   \code{residuals} S3 method for \code{varest2} object

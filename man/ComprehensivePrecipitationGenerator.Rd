@@ -14,8 +14,8 @@
     valmin = 0.5, step = 0, n_GPCA_iteration = 0,
     n_GPCA_iteration_residuals = n_GPCA_iteration,
     sample = NULL, extremes = TRUE, exogen_all = NULL,
-    exogen_all_col = station, option_temp = 0,
-    no_spline = FALSE, nscenario = 1, seed = NULL)
+    exogen_all_col = station, no_spline = FALSE,
+    nscenario = 1, seed = NULL, noise = NULL)
 }
 \arguments{
   \item{station}{character vector of the IDs of the
@@ -38,7 +38,8 @@
   period}
 
   \item{leap}{logical variables. If it is \code{TRUE}
-  (default), leap years are considered}
+  (default)(recommended), leap years are considered,
+  otherwise all years have 365 days}
 
   \item{nmonth}{number of months in one year (default is
   12)}
@@ -46,14 +47,14 @@
   \item{verbose}{logical variable}
 
   \item{cpf}{see
-  \code{\link{normalizeGaussian_severalstations_prec}}}
+  \code{\link{normalizeGaussian_severalstations}}}
 
   \item{sample,extremes,qnull,valmin}{see
-  \code{\link{normalizeGaussian_severalstations_prec}}}
+  \code{\link{normalizeGaussian_severalstations}}}
 
   \item{step}{see
-  \code{\link{normalizeGaussian_severalstations_prec}}.
-  Default is 0.}
+  \code{\link{normalizeGaussian_severalstations}}. Default
+  is 0.}
 
   \item{p,type,lag.max,ic,activateVARselect}{see respective
   input parameter on \code{\link{getVARmodel}}}
@@ -61,7 +62,7 @@
   \item{year_max_sim}{last year of the simulation period.
   Default is equal to \code{year_max}}
 
-  \item{year_min_sim}{fist year of the simulation period.
+  \item{year_min_sim}{first year of the simulation period.
   Default is equal to \code{year_min}}
 
   \item{mean_climate_prec_sim}{a matrix containing monthly
@@ -74,16 +75,18 @@
   Gaussianization)}
 
   \item{n_GPCA_iteration_residuals}{number of iteration of
-  Gaussianization process for data. Default is 0 (no
-  Gaussianization)}
+  Gaussianization process for VAR residuals. Default is 0
+  (no Gaussianization)}
 
-  \item{exogen}{matrix containing the (normalized or not)
-  exogenous variables (predictors) for the recorded
-  (calibration) period.}
+  \item{exogen}{data frame or matrix containing the
+  (normalized or not) exogenous variables (predictors) for
+  the recorded (calibration) period.}
 
-  \item{exogen_sim}{matrix containing the (normalized or
-  not) exogenous variables (predictors) for the simulation
-  period. Default is \code{exogen}}
+  \item{exogen_sim}{data frame or matrix containing the
+  (normalized or not) exogenous variables (predictors) for
+  the simulation period. Default is \code{NULL}. It is
+  \code{NULL}, it is replaced with \code{exogen} within the
+  function.}
 
   \item{is_exogen_gaussian}{logical value. If \code{TRUE},
   \code{exogen_sim} and \code{exogen} are given as already
@@ -95,18 +98,15 @@
   random generation is done, otherwise (default) is
   calculated from measured data}
 
-  \item{varmodel}{the VAR model as a \code{varest} object.
-  If \code{NULL}, it is given as input and only random
-  generation is done, otherwise (default) is calculated
-  from measured data}
+  \item{varmodel}{the comprehensinve VAR model as a
+  \code{\link{varest2}} S4 object or a \code{NULL} object.
+  If \code{NULL} (default), the comprehensinve VAR is
+  estimated from measured data within the function,
+  otherwise it is given as input and only random generation
+  is done.}
 
   \item{type_quantile}{see \code{type} on
   \code{\link{quantile}}}
-
-  \item{option_temp}{integer value. If 0 (default),
-  exogenous variables (\code{exogen} and \code{exogen_sim}
-  ) are not considered, if 1 exogenous variables are
-  considered.}
 
   \item{exogen_all}{data frame containing exogenous
   variable formatted like \code{prec_all}. Default is
@@ -125,13 +125,20 @@
   for daily maximum and minimum temperature}
 
   \item{seed}{seed for stochastic random generation see
-  \code{\link{set.seed}}}
+  \code{\link{set.seed}}.}
+
+  \item{noise}{stochastic noise to add for variabile
+  generation. Default is \code{NULL}. See
+  \code{\link{newVARmultieventRealization}}. Not used in
+  case that \code{nscenario>1}.}
 }
 \value{
   A list of the following variables:
 
-  \code{prec_mes} matrix contained measured daily
-  precipitation
+  \code{prec_mes} matrix containing measured daily
+  precipitation (the data is copied by the measured data
+  given as input for the period and the station considered
+  for \code{varmodel} estimation)
 
   \code{prec_spline} matrix containing climatic
   "spline-interpolated" daily preciptation from
@@ -150,11 +157,12 @@
   \code{data_prec_gen} matrix containing normalized
   generated precipitation variable
 
-  \code{mean_climate_prec} matrix containing monthly mean
-  daily precipitation (historical scenario)
+  \code{mean_climate_prec} matrix containing monthly means
+  of daily precipitation (historical scenario)
 
   \code{mean_climate_prec_sim} matrix containing monthly
-  mean daily precipitation (predicted/simulated scenario)
+  means of daily precipitation (predicted/simulated
+  scenario)
 
   \code{var} a varest object containing the used VAR model
 }
@@ -175,12 +183,7 @@
 }
 \examples{
 data(trentino)
-
-
-rm(list=ls())
-set.seed(1222)
-library(RMAWGEN)
-data(trentino)
+set.seed(1222) # set the seed for random generations!
 year_max <- 1990
 year_min <- 1961
 year_max_sim <- 1982
@@ -189,31 +192,10 @@ year_min_sim <- 1981
 n_GPCA_iter <- 2
 p <- 1
 nscenario=1
-station <- c("T0090","T0083") #,"T0099","T0001")
-generation00 <- ComprehensivePrecipitationGenerator(station=station,prec_all=PRECIPITATION,year_min=year_min,year_max=year_max,year_min_sim=year_min_sim,year_max_sim=year_max_sim,p=p,n_GPCA_iteration=n_GPCA_iter,n_GPCA_iteration_residuals=0,sample="monthly",nscenario=nscenario,no_spline=FALSE)
-##
-##
-##
-##year_max <- 1990
-## year_min <- 1961
-##
-##year_min_sim <- 1982
-##year_max_sim <- 1983
-##
-##n_GPCA_iter <- 10
-##n_GPCA_iteration_residuals <- 10
-##	vstation <- c("B2440","B6130","B8570","B9100","LAVIO","POLSA","SMICH","T0001",
-## "T0010","T0014","T0018","T0032","T0064","T0083","T0090","T0092","T0094","T0099",
-## "T0102","T0110","T0129","T0139","T0147","T0149","T0152","T0157","T0168","T0179","T0189","T0193","T0204","T0210","T0211","T0327","T0367","T0373")
-##	generation00 <-ComprehensiveTemperatureGenerator(station=vstation[14:15],Tx_all=TEMPERATURE_MAX,Tn_all=TEMPERATURE_MIN,year_min=year_min,year_max=year_max,p=1,n_GPCA_iteration=n_GPCA_iter,n_GPCA_iteration_residuals=n_GPCA_iteration_residuals,sample="monthly",year_min_sim=year_min_sim,year_max_sim=year_max_sim)
-##
-##
-##
-##
-##
-##
-##
-##
+station <- c("T0090","T0083")
+## Not Run: the call to ComprehensivePrecipitationGenerator may elapse too long time (more than 5 eseconds) and is not executed  by CRAN check.
+## Please uncomment the following line to run the example on your own PC.
+# generation00 <- ComprehensivePrecipitationGenerator(station=station,prec_all=PRECIPITATION,year_min=year_min,year_max=year_max,year_min_sim=year_min_sim,year_max_sim=year_max_sim,p=p,n_GPCA_iteration=n_GPCA_iter,n_GPCA_iteration_residuals=0,sample="monthly",nscenario=nscenario,no_spline=TRUE)
 }
 \author{
   Emanuele Cordano, Emanuele Eccel

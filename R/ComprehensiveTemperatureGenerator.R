@@ -1,27 +1,29 @@
 NULL
 #' 
-#' The comprehensive Temperature Generator
+#' The Comprehensive Temperature Generator
 #' 
 #' @param station see respective input parameter on \code{\link{setComprehensiveTemperatureGeneratorParameters}}
 #' @param Tx_all,Tn_all,mean_climate_Tn,mean_climate_Tx,Tx_spline,Tn_spline see respective input parameter on \code{\link{setComprehensiveTemperatureGeneratorParameters}}
 #' @param year_max,year_min,leap,nmonth,verbose see respective input parameter on \code{\link{setComprehensiveTemperatureGeneratorParameters}}
 #' @param p,type,lag.max,ic,activateVARselect see respective input parameter on \code{\link{getVARmodel}}
 #' @param year_max_sim last year of the simulation period. Default is equal to \code{year_max} 
-#' @param year_min_sim fist year of the simulation period. Default is equal to \code{year_min}
-#' @param mean_climate_Tn_sim monthly avaraged daily minimum temperatures for the simulated scenario and used by the random generator .  Default is \code{mean_climate_Tn}
-#' @param mean_climate_Tx_sim monthly avaraged daily maximum temperatures for the simulated scenario and used by the random generator .  Default is \code{mean_climate_Tx}
-#' @param Tx_spline_sim daily timeseries (from the first day of \code{year_min_sim} to the last day of \code{year_max_sim}) of averaged maximum temperature which can be obtained by a spline interpolation of monthly mean values (for the generation period). Default is \code{Tx_spline}.
-#' @param Tn_spline_sim daily timeseries (from the first day of \code{year_min_sim} to the last day of \code{year_max_sim}) of averaged minimum temperature which can be obtained by a spline interpolation of monthly mean values (for the generation period). Default is \code{Tn_spline}.
+#' @param year_min_sim first year of the simulation period. Default is equal to \code{year_min}
+#' @param mean_climate_Tn_sim monthly averaged daily minimum temperatures for the simulated scenario and used by the random generator .  Default is \code{mean_climate_Tn}
+#' @param mean_climate_Tx_sim monthly averaged daily maximum temperatures for the simulated scenario and used by the random generator .  Default is \code{mean_climate_Tx}
+#' @param Tx_spline_sim daily timeseries (from the first day of \code{year_min_sim} to the last day of \code{year_max_sim}) of averaged maximum temperature which can be obtained by a spline interpolation of monthly mean values (for the generation period). Default is \code{Tx_spline}. See for spline interpolation utilized \code{\link{splineInterpolateMonthlytoDailyforSeveralYears}}.
+#' @param Tn_spline_sim daily timeseries (from the first day of \code{year_min_sim} to the last day of \code{year_max_sim}) of averaged minimum temperature which can be obtained by a spline interpolation of monthly mean values (for the generation period). Default is \code{Tn_spline}. See for spline interpolation utilized \code{\link{splineInterpolateMonthlytoDailyforSeveralYears}}.
 
 #' @param onlygeneration logical variable. If \code{TRUE} the VAR model \code{varmodel} is given as input and only random generation is done, otherwise (default) is calculated from measured data 
-#' @param varmodel the VAR model as a \code{\link{varest2}}  or a \code{\link{GPCAvarest2}} object. If \code{NULL}, it is  given as input and only random generation is done, otherwise (default) is calculated from measured data 
+
+#' @param varmodel the comprehensinve VAR model as a \code{\link{varest2}} or \code{\link{GPCAvarest2}} S4 object or a \code{NULL} object. If \code{NULL} (default), the comprehensinve VAR is estimated from measured data within the function, otherwise it is given as input and only random generation is done.
+# #### @param varmodel the VAR model as a \code{\link{varest2}}  or a \code{\link{GPCAvarest2}} object. If \code{NULL}, it is  given as input and only random generation is done, otherwise (default) is calculated from measured data 
 #' @param normalize,sample,extremes see \code{\link{normalizeGaussian_severalstations}} or \code{\link{setComprehensiveTemperatureGeneratorParameters}}
 #' @param type_quantile see \code{type} on \code{\link{quantile}}
 #' @param option integer value. If 1, the generator works with minimun and maximum temperature, if 2 (default) it works with the average value between maximum and minimum temparature and the respective daily thermal range.
 #' @param n_GPCA_iteration number of iteration of Gaussianization process for data. Default is 0 (no Gaussianization) 
-#' @param n_GPCA_iteration_residuals number of iteration of Gaussianization process for data. Default is 0 (no Gaussianization)
-#' @param exogen matrix containing the (normalized or not) exogenous variables (predictors) for the recorded (calibration) period. Default is NULL
-#' @param exogen_sim  matrix containing the (normalized or not) exogenous variables (predictors) for the simulation period. Default is \code{exogen}
+#' @param n_GPCA_iteration_residuals number of iteration of Gaussianization process for VAR residuals. Default is 0 (no Gaussianization)
+#' @param exogen data frame or matrix containing the (normalized or not) exogenous variables (predictors) for the recorded (calibration) period. Default is \code{NULL}.
+#' @param exogen_sim  data frame or matrix containing the (normalized or not) exogenous variables (predictors) for the simulation period. Default is \code{NULL}. If it is \code{NULL}, \code{exogen_sim} is set equal to \code{exogen} within the function.
 #' @param is_exogen_gaussian logical value, If \code{TRUE}, \code{exogen_sim} and \code{exogen} are given as already normalized variables, otherwhise they are not normalized. Default is \code{FALSE}
 #' @param exogen_all data frame containing exogenous variable formatted like \code{Tx_all} and {Tn_all}. Default is \code{NULL}. 
 #' It is alternative to \code{exogen} and if it not \code{NULL},\code{is_exogen_gaussian} is automatically set \code{FALSE}	
@@ -30,12 +32,14 @@ NULL
 #' @param yearly  logical value. If \code{TRUE} the monthly mean values are calculated for each year from \code{year_min} to \code{year_max} separately. Default is \code{FALSE}.  
 #' @param yearly_sim logical value. If \code{TRUE} the monthly mean values are calculated for each year from \code{year_min_sim} to \code{year_max_sim} separately. Default is \code{yearly}. 
 #' @param seed seed for stochastic random generation see \code{\link{set.seed}}
+#' @param noise stochastic noise to add for variabile generation. Default is \code{NULL}. See \code{\link{newVARmultieventRealization}}. Not used in case that \code{nscenario>1}.
+#' 
 #'   
 #' @export 
 #' 
 #' @author  Emanuele Cordano, Emanuele Eccel
 #'    
-#' @seealso \code{\link{setComprehensiveTemperatureGeneratorParameters}}, \code{\link{generateTemperatureTimeseries}} ,\code{\link{generateTemperatureTimeseries}}. 
+#' @seealso \code{\link{setComprehensiveTemperatureGeneratorParameters}}, \code{\link{generateTemperatureTimeseries}} ,\code{\link{generateTemperatureTimeseries}},\code{\link{splineInterpolateMonthlytoDailyforSeveralYears}}. 
 #' 
 #'        
 #'
@@ -56,7 +60,7 @@ NULL
 #' 
 #' data(trentino)
 #' 
-
+#' set.seed(1222) # set the seed for random generations!
 #' year_min <- 1961
 #' year_max <- 1990
 #' 
@@ -69,8 +73,9 @@ NULL
 #' vstation <- c("B2440","B6130","B8570","B9100","LAVIO","POLSA","SMICH","T0001",
 #'  "T0010","T0014","T0018","T0032","T0064","T0083","T0090","T0092","T0094","T0099",
 #'  "T0102","T0110","T0129","T0139","T0147","T0149","T0152","T0157","T0168","T0179","T0189","T0193","T0204","T0210","T0211","T0327","T0367","T0373")		
-#'  
-#' generation00 <-ComprehensiveTemperatureGenerator(station=vstation[15],Tx_all=TEMPERATURE_MAX,Tn_all=TEMPERATURE_MIN,year_min=year_min,year_max=year_max,p=p,n_GPCA_iteration=n_GPCA_iter,n_GPCA_iteration_residuals=n_GPCA_iteration_residuals,sample="monthly",year_min_sim=year_min_sim,year_max_sim=year_max_sim)
+#' ## Not Run: the call to ComprehensiveTemperatureGenerator may elapse too long time (more than 5 eseconds) and is not executed  by CRAN check.  
+#' ## Please uncomment the following line to run the example on your own PC.
+#' # generation00 <-ComprehensiveTemperatureGenerator(station=vstation[16],Tx_all=TEMPERATURE_MAX,Tn_all=TEMPERATURE_MIN,year_min=year_min,year_max=year_max,p=p,n_GPCA_iteration=n_GPCA_iter,n_GPCA_iteration_residuals=n_GPCA_iteration_residuals,sample="monthly",year_min_sim=year_min_sim,year_max_sim=year_max_sim)
 
 
 	
@@ -116,7 +121,8 @@ function(
 		exogen_all=NULL,
 		exogen_all_col=station,
 		nscenario=1,
-		seed=NULL
+		seed=NULL,
+		noise=NULL
 	
 ) {
 	
@@ -217,8 +223,8 @@ function(
 #	if (is.null(Tx_spline_sim)) Tx_spline_sim <- Tx_spline
 #	if (is.null(Tn_spline_sim)) Tn_spline_sim <- Tn_spline	
 	
-	
-	
+	# THIS LINE IS TEMPORARY AND ONLY FOR TESTING
+	if (!is.null(noise)) {if (noise=="residuals") noise <- residuals(var) }
 	
 	 
 	
@@ -269,7 +275,7 @@ function(
 	
 
 	
-	results <- generateTemperatureTimeseries(std_tn=param[['stdTn']],std_tx=param[['stdTx']],SplineTx=Tx_spline_sim,SplineTn=Tn_spline_sim,SplineTm=SplineAdvTm_sim,SplineDeltaT=SplineAdvDeltaT_sim,std_tm=param[['stdTm']],var=var,normalize=normalize,type=type_quantile,sample=sample,option=option,original_data=original_data,origin_x=origin_sim,origin_data=origin,exogen=exogen_sim,extremes=extremes)	
+	results <- generateTemperatureTimeseries(std_tn=param[['stdTn']],std_tx=param[['stdTx']],SplineTx=Tx_spline_sim,SplineTn=Tn_spline_sim,SplineTm=SplineAdvTm_sim,SplineDeltaT=SplineAdvDeltaT_sim,std_tm=param[['stdTm']],var=var,normalize=normalize,type=type_quantile,sample=sample,option=option,original_data=original_data,origin_x=origin_sim,origin_data=origin,exogen=exogen_sim,extremes=extremes,noise=noise)	
 	
 	if (nscenario>1) {
 		

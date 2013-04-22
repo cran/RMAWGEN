@@ -98,7 +98,7 @@ prec_gen <- list(P03GPCA=generationP03GPCA_prec$prec_gen,
 
 NDAY <- nrow(prec_mes)	
 days <- list()
-days$DJF <-  extractmonths(data=1:NDAY,when=c("Dec","Jan","Feb"),origin=origin)
+days$DJF <- extractmonths(data=1:NDAY,when=c("Dec","Jan","Feb"),origin=origin)
 days$MAM <- extractmonths(data=1:NDAY,when=c("Mar","Apr","May"),origin=origin)
 days$JJA <- extractmonths(data=1:NDAY,when=c("Jun","Jul","Aug"),origin=origin)
 days$SON <- extractmonths(data=1:NDAY,when=c("Sep","Oct","Nov"),origin=origin)	  
@@ -286,9 +286,9 @@ pdf(paste(wpath,"acf_uncoupled_prec_dt_anom_P10GPCA.pdf",sep="/"))
 plot(acf(val_gen,lag=50),xlab="lag [day]",cex.main=CEX,cex.lab=CEX,cex.axis=CEX)
 dev.off()
 
-pdf(paste(wpath,"acf_uncoupled_prec_dt_anom_mes.pdf",sep="/"),cex.main=CEX,cex.lab=CEX,cex.axis=CEX)
-plot(acf(val_mes,lag=50),xlab="lag [day]")
+pdf(paste(wpath,"acf_uncoupled_prec_dt_anom_mes.pdf",sep="/"))
+plot(acf(val_mes,lag=50),xlab="lag [day]",cex.main=CEX,cex.lab=CEX,cex.axis=CEX)
 dev.off()
 
-
+# ADDED 
 

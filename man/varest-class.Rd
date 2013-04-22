@@ -13,7 +13,7 @@
 }
 \note{
   Formal definition with \code{\link{setOldClass}} for the
-  S3 class \code{varest2}
+  S3 class \code{varest}
 }
 \examples{
 showClass("varest")

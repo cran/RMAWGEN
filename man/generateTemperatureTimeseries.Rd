@@ -1,12 +1,13 @@
 \name{generateTemperatureTimeseries}
 \alias{generateTemperatureTimeseries}
-\title{Returns time series of Daily Maximum and Minimum with a random multi-realization obtained by using \code{\link{newVARmultieventRealization}}}
+\title{Returns time series of Daily Maximum and Minimum with a random multi-realization obtained by using \code{\link{newVARmultieventRealization}}. This function is called by  \code{\link{ComprehensiveTemperatureGenerator}}.}
 \usage{
   generateTemperatureTimeseries(std_tn, std_tx, SplineTx,
     SplineTn, SplineTm, SplineDeltaT, std_tm, var = NULL,
     exogen = NULL, normalize = TRUE, type = 3,
     extremes = TRUE, sample = NULL, option = 1,
-    original_data, origin_x = NULL, origin_data = NULL)
+    original_data, origin_x = NULL, origin_data = NULL,
+    noise = NULL)
 }
 \arguments{
   \item{std_tn}{vector containing standard deviation of
@@ -70,6 +71,10 @@
 
   \item{original_data}{matrix containing the measured
   standardized temperature anomalies}
+
+  \item{noise}{stochastic noise to add for variabile
+  generation. Default is \code{NULL}. See
+  \code{\link{newVARmultieventRealization}}.}
 }
 \value{
   This function returns a list of the following variables:
@@ -100,7 +105,9 @@
 \description{
   Returns time series of Daily Maximum and Minimum with a
   random multi-realization obtained by using
-  \code{\link{newVARmultieventRealization}}
+  \code{\link{newVARmultieventRealization}}. This function
+  is called by
+  \code{\link{ComprehensiveTemperatureGenerator}}.
 }
 \author{
   Emanuele Cordano, Emanuele Eccel

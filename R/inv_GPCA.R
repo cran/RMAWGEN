@@ -1,6 +1,6 @@
 NULL
 #'
-#' This function make an inverse Gaussianization procedure besad on PCA iteration ( see \code{\link{inv_GPCA_iteration}}
+#' This function makes an inverse Gaussianization procedure besad on PCA iteration ( see \code{\link{inv_GPCA_iteration}}
 #'
 #' @param x gaussian random variable to transform 
 #' @param GPCA_param \code{\link{GPCA-class}} S3 object returned by the function \code{\link{GPCA}}

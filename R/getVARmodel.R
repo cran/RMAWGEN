@@ -33,7 +33,7 @@ NULL
 #'  
 #'
 #'        
-#' summary(var)
+# summary(var)
 #' 
 #' @return  a \code{varest2} or \code{GPCAvarest2} object representing a VAR model or a \code{GPCA-varest} object which also contains the GPCA transformation parameters
 
@@ -89,6 +89,13 @@ function (data,suffix=c("_Tx","_Tn"),sep="",p=1,type="none",season=NULL,exogen=N
 		out@GPCA_residuals <- GPCA(x_prev=out,extremes=extremes,n=n_GPCA_iteration) 
 	
 	
+	} else if (class(out)=="GPCAvarest2") {
+		
+		xob <- list()
+		class(xob) <- "GPCA"
+		out@GPCA_residuals <- xob
+		
+		
 	}
 	
 	# TO GO ON !!!

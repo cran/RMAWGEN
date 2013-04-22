@@ -16,7 +16,6 @@
 \title{
 Trentino Dataset 
 }
-
 \usage{
 data(trentino)
 }
@@ -38,13 +37,13 @@ It contains the following variables:
 \cr
 \item{\code{LOCATION}}{Vector containing the names of the location of each meteorological station}    
 \cr
-\item{\code{TEMPERATURE_MEASUREMENT_START_DAY}}{Vector containing the first days (expressed as decimal julian day since 1970-1-1 00:00 UTC) of temperature measurement of each meteorological station}
+\item{\code{TEMPERATURE_MEASUREMENT_START_DAY}}{Vector containing the first days referred to midday (expressed as decimal julian day since 1970-1-1 00:00 UTC) of temperature measurement of each meteorological station}
 \cr
-\item{\code{TEMPERATURE_MEASUREMENT_END_DAY}}{Vector containing the last days (expressed as decimal julian day since 1-1-1970 00:00 UTC) of temperature measurement of each meteorological station}   
+\item{\code{TEMPERATURE_MEASUREMENT_END_DAY}}{Vector containing the last days referred to midday (expressed as decimal julian day since 1-1-1970 00:00 UTC) of temperature measurement of each meteorological station}   
 \cr
-\item{\code{PRECIPITATION_MEASUREMENT_START_DAY}}{Vector containing the first days (expressed as decimal julian day since 1-1-1970 00:00 UTC) of precipitation measurement of each meteorological station}
+\item{\code{PRECIPITATION_MEASUREMENT_START_DAY}}{Vector containing the first days referred to midday (expressed as decimal julian day since 1-1-1970 00:00 UTC) of precipitation measurement of each meteorological station}
 \cr
-\item{\code{PRECIPITATION_MEASUREMENT_END_DAY}}{Vector containing the last days (expressed as decimal julian day since 1-1-1970) of precipitation measurement of each meteorological station}  
+\item{\code{PRECIPITATION_MEASUREMENT_END_DAY}}{Vector containing the last days referred to midday (expressed as decimal julian day since 1-1-1970) of precipitation measurement of each meteorological station}  
 }
 }
 \details{

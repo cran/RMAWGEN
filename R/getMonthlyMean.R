@@ -75,8 +75,10 @@ function(data,year_min=1961,year_max=1990,station=names(data),no_date=FALSE,orig
 		names(out) <- station
 		
 		for (r in 1:nmonth) {
+			im <- (data$year<=year_max) & (data$year>=year_min) & (data$month==r)
 			for (c in 1:nstation) {
-				var <- subset(data,year<=year_max & year>=year_min & month==r,select=station[c])
+				var <- data[im,station[c]]
+	# The above line repleces according to 'subset' help page warnings: var <- subset(data,year<=year_max & year>=year_min & month==r,select=station[c])
 		
 				out[r,c] <- mean(var[!is.na(var)])
 			}
