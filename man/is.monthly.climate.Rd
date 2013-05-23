@@ -1,6 +1,6 @@
 \name{is.monthly.climate}
 \alias{is.monthly.climate}
-\title{Verifies if 'climate' represents the monthly climatology in one year, i.e  'climate' is monthly.climate type matrix whose rows reprent months and columns represent a station. It is also used in \code{\link{setComprehensiveTemperatureGeneratorParameters}}.}
+\title{Verifies if 'climate' represents the monthly climatology in one year, i.e  'climate' is monthly.climate type matrix whose rows represent months and each column represents a station. It is also used in \code{\link{setComprehensiveTemperatureGeneratorParameters}}.}
 \usage{
   is.monthly.climate(climate, nstation = 3, nmonth = 12,
     verbose = TRUE)
@@ -9,14 +9,14 @@
   \item{climate}{matrix containing the 'monthly
   climatology' data}
 
-  \item{nstation}{number of variable measurement station
+  \item{nstation}{number of variable measurement stations
   (columns of the matrix 'climate')}
 
   \item{nmonth}{number of months in one year (it can be
   different if climate is represented by seasonal avarages
   or others), Default is 12 (recommended). (it can be
   different if climate is represented by seasonal averages,
-  e.g. 4, or others)}
+  in this case 4)}
 
   \item{verbose}{Prints output and warining messagrs only
   if is \code{TRUE}.}
@@ -28,7 +28,7 @@
 \description{
   Verifies if 'climate' represents the monthly climatology
   in one year, i.e 'climate' is monthly.climate type matrix
-  whose rows reprent months and columns represent a
+  whose rows represent months and each column represents a
   station. It is also used in
   \code{\link{setComprehensiveTemperatureGeneratorParameters}}.
 }

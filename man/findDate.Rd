@@ -14,8 +14,8 @@
 
   \item{data.frame}{logical variable. If \code{TRUE}
   (default) the date is returned as data frame (like
-  \code{data} in \code{\link{extractyears}}), it is
-  returned as character or POSIXct otherwise}
+  \code{data} in \code{\link{extractyears}}), otherwise it
+  is returned as character or POSIXct.}
 
   \item{decimal}{logical variable. If \code{FALSE}
   (default) k is integer and starts from 1, otherwise is
@@ -24,8 +24,8 @@
 
   \item{character}{logical variable. It is used if
   \code{data.frame} is \code{FALSE}, if it is \code{FALSE},
-  the dete is returned as POSIXct, otherwise is a character
-  in the following form \code{YYYY-MM-DD}}
+  the date is returned as POSIXct, otherwise it is a
+  character in the following form: \code{YYYY-MM-DD}}
 }
 \value{
   the date(s) corresponding to \code{k} under different
@@ -40,6 +40,9 @@
   like an inverse functions of \code{\link{extractdays}}.
   If \code{k} is a vector, the function returns several
   dates for each element of \code{k}
+}
+\examples{
+findDate <- findDate(100,origin="1961-1-1",data.frame=FALSE,character=TRUE)
 }
 \author{
   Emanuele Cordano, Emanuele Eccel

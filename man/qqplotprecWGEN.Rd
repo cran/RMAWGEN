@@ -20,7 +20,7 @@
   \item{title}{title}
 
   \item{station}{character vector containing IDs of
-  analyzed station. If \code{NULL} (default) all station
+  analyzed stations. If \code{NULL} (default) all stations
   (columns of \code{simulated} and \code{measured}) are
   considered}
 

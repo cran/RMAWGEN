@@ -12,10 +12,10 @@
   \item{x}{value to be converted}
 
   \item{data}{a sample of data on which a non-parametric
-  probility distribution is estimated}
+  probability distribution is estimated}
 
   \item{cpf}{cumulative probability distribution. If
-  \code{NULL} (default) is calaculated as
+  \code{NULL} (default) is calculated as
   \code{\link{ecdf}(data)}}
 
   \item{mean}{mean (expected value) of the normalized
@@ -43,8 +43,12 @@
   \deqn{\frac{N}{N+1}} where \eqn{N} is the length of
   \code{data}}
 
-  \item{sample}{information about sample or probability
-  distribution. Default is \code{NULL}}
+  \item{sample}{information on how to sample \code{x} and
+  \code{data}. Default is \code{NULL}, this means that the
+  values of each column of \code{x} and \code{data} belong
+  to the same sample. If \code{x} and \code{data} are
+  sampled for each month seperately, it is set to
+  \code{monthly}.}
 
   \item{origin_x}{date corresponding to the first row of
   \code{x}}

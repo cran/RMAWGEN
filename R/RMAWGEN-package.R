@@ -8,7 +8,7 @@
 #' Multi-site autoregressive Models for Daily Weather Generation. The modeling in climate change applications for agricultural or hydrological purposes often requires daily time-series of precipitation and temperature.
 #' This is the case of downscaled series from monthly or seasonal predictions of Global Climate Models (GCMs).  The R package RMAWGEN (R Multi-Sites Auto
 #' regressive Weather GENerator) is built to generate daily temperature and precipitation time series in several sites by using the theory of vectorial
-#' auto-#regressive models (VAR). The VAR model is used because it is able to maintain the temporal and spatial correlations among  the several series. In
+#' autoregressive models (VAR). The VAR model is used because it is able to maintain the temporal and spatial correlations among  the several series. In
 #' particular, observed time series of daily maximum and minimum temperature and precipitation are used to calibrate the parameters of a VAR model (saved 
 #' as ''GPCAvarest2'' or ''varest2'' classes, which inherit the "varest" S3 class defined in the package vars [Pfaff, 2008]). Therefore the VAR model, coupled 
 #' with monthly mean weather variables downscaled by GCM predictions, allows to generate several stochastic daily scenarios. The structure of the package
@@ -25,8 +25,8 @@
 #' \tabular{ll}{
 #' Package: \tab RMAWGEN\cr
 #' Type: \tab Package\cr
-#' Version: \tab 1.2.5.4\cr
-#' Date: \tab   2013-04-22\cr
+#' Version: \tab 1.2.5.5\cr
+#' Date: \tab   2013-05-23\cr
 #' License: \tab GPL (>= 2)
 #'  
 
@@ -46,7 +46,7 @@
 #' @aliases RMAWGEN
 #' @docType package
 #' @title R - Multi-site Autoregressive WEather Generator
-#' @author Emanuele Cordano \email{emanuele.cordano@@gmail.org}, Emanuele Eccel \email{emanuele.eccel@@iasma.it}
+#' @author Emanuele Cordano \email{emanuele.cordano@@gmail.org}, Emanuele Eccel \email{emanuele.eccel@@fmach.it}
 #' @references Bernhard Pfaff (2008). VAR, SVAR and SVEC Models: Implementation Within R Package vars. Journal of Statistical Software 27(4). \url{http://www.jstatsoft.org/v27/i04/}
 #' 
 #' @note RMAWGEN has been created in the frame of ACE-SAP (\url{http://www.ace-sap.it/}) and ENVIROCHANGE (\url{http://www.envirochange.eu/}) projects 

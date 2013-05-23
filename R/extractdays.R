@@ -8,7 +8,7 @@ NULL
 #' @param when desired dates for which the data are requested
 #' @param origin date corresponding to the first row of \code{data}
 #' @param nday (optional) number of days since \code{when} to extract the data
-#' @param ndim_max maximimum (integer) number of rows in \code{data} where to find \code{when}. 
+#' @param ndim_max maximum (integer) number of rows in \code{data} where to find \code{when}. 
 #' Default is 100000 and works if \code{data} is missing.
 #' 
 #' @author  Emanuele Cordano, Emanuele Eccel

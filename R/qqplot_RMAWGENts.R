@@ -23,14 +23,14 @@ NULL
 #'
 #' It makes the Q-Q plots observed vs generated time series of daily maximum, minimum temperature and daily thermal range for a list of collected stochastic generations 
 #' 
-#' @param Tx_mes data frame containing observed daily maximum temperature    
-#' @param Tn_mes data frame containing observed daily minimum temperature 
-#' @param prec_mes data frame containing observed daily precipitation (in millimieters) 
+#' @param Tx_mes data frame containing measured daily maximum temperature    
+#' @param Tn_mes data frame containing measured daily minimum temperature 
+#' @param prec_mes data frame containing measured daily precipitation (in millimeters) 
 #' @param Tx_spline data frame containing spline-interpolated daily maximum temperature. Default is \code{NULL} and not considered for Q-Q plot.    
 #' @param Tn_spline data frame containing spline-interpolated daily minimum temperature  Default is \code{NULL} and not considered for Q-Q plot. 
 #' @param Tx_gen data frame containing generated daily maximum temperature 
 #' @param Tn_gen data frame containing generated daily minimum temperature 
-#' @param prec_gen data frame containing gnerated daily precipitation (in millimieters) 
+#' @param prec_gen data frame containing generated daily precipitation (in millimeters) 
 #' @param when day indices on which the data frame are extracted for Q-Q plot. Default is \code{1:nrow(Tn_mes)} (in \code{qqplot_RMAWGEN_Tn}) or \code{1:nrow(Tx_mes)} (otherwise) 
 #' @param xlab,ylab lables of \code{x} and \code{y} axes. See \code{\link{qqplot}}.
 #' @param station identification name (ID) of the station used for the Q-Q plot
@@ -38,10 +38,10 @@ NULL
 #' @param pdf name of pdf file if output is written in a pdf file 
 #' @param xlim see \code{\link{qqplot}}. Default is \code{range(Tn_mes)} (in \code{qqplot_RMAWGEN_Tn}) or \code{range(Tx_mes)} (in \code{qqplot_RMAWGEN_Tx})  .or \code{range(Tx_mes-Tn_mes)} (in \code{qqplot_RMAWGEN_deltaT})
 #' @param ylim,cex,cex.main,cex.lab,cex.axis see \code{\link{qqplot}} and  \code{\link{plot}}
-#' @param lag lag (current index included) on whose value  the precimitation addition is made. See \code{\link{qqplot.lagged}}.
+#' @param lag lag (current index included) on whose value  the precipitation addition is made. See \code{\link{qqplot.lagged}}.
 #' 
 #' 
-#' @note It is recommended that \code{Tx_gen},{Tn_gen} and \code{main} must have an even number of elements.
+#' @note \code{Tx_gen},{Tn_gen} and \code{main} must have an even number of elements.
 #' 
 #' @rdname qqplot_RMAWGEN_Tx
 #' @export

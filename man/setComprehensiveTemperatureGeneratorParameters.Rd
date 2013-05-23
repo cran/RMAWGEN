@@ -59,8 +59,8 @@
   \item{leap}{logical variables. It is \code{TRUE}
   (Default) if leap years are considered}
 
-  \item{nmonth}{number of months in one year, 12 is
-  Default}
+  \item{nmonth}{number of months in one year. Default is
+  12.}
 
   \item{verbose}{logical variable}
 
@@ -76,9 +76,9 @@
   \code{\link{normalizeGaussian_severalstations}}}
 
   \item{option}{integer value. If 1, the generator works
-  with minimun and maximum temperature, if 2 (default) it
+  with minimum and maximum temperature, if 2 (default) it
   works with the average value between maximum and minimum
-  temparature and the respective daily thermal range.}
+  temperature and the respective daily thermal range.}
 
   \item{yearly}{logical value. If \code{TRUE} the monthly
   mean values are calculated for each year from
@@ -109,20 +109,20 @@
   \code{DeltaT_mes} matrix corresponding to
   \eqn{Tx_{mes}-Tn_{mes}}
 
-  \code{monthly_mean_Tn} matrix containing monthly means
+  \code{monthly_mean_Tn} matrix containing monthly means of
   minimum daily temperature for the considered station. It
   is calculated according to the input format
   \code{\link{is.monthly.climate}} if
   \code{saveMonthlyClimate} is \code{TRUE}.
 
-  \code{monthly_mean_Tx} matrix containing monthly means
+  \code{monthly_mean_Tx} matrix containing monthly means of
   maximum daily temperature for the considered station. It
   is calculated according to the input format
   \code{\link{is.monthly.climate}} if
   \code{saveMonthlyClimate} is \code{TRUE}.
 
   \code{Tx_spline} matrix containing the averaged daily
-  values of maximimun temperature obtained by a spline
+  values of maximimum temperature obtained by a spline
   interpolation of the monthly climate
   \code{monthly_mean_Tx} or \code{mean_climate_Tx} using
   \code{\link{splineInterpolateMonthlytoDailyforSeveralYears}}
@@ -167,7 +167,7 @@
 
   \code{DeltaT_mes_res} equal to \code{DeltaT_mes}
 
-  \code{data_original} matrix obtaied as
+  \code{data_original} matrix obtained as
   \code{cbind(Tx_mes_res,Tn_mes_res)} if \code{option}==1,
   or \code{cbind(Tm_mes_res,DeltaT_mes_res)} if
   \code{option}==2

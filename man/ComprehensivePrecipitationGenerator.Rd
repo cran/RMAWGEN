@@ -70,11 +70,11 @@
   \code{NULL} (Default), it is set equal to
   \code{mean_climate_prec}.}
 
-  \item{n_GPCA_iteration}{number of iteration of
+  \item{n_GPCA_iteration}{number of iterations of
   Gaussianization process for data. Default is 0 (no
   Gaussianization)}
 
-  \item{n_GPCA_iteration_residuals}{number of iteration of
+  \item{n_GPCA_iteration_residuals}{number of iterations of
   Gaussianization process for VAR residuals. Default is 0
   (no Gaussianization)}
 
@@ -84,7 +84,7 @@
 
   \item{exogen_sim}{data frame or matrix containing the
   (normalized or not) exogenous variables (predictors) for
-  the simulation period. Default is \code{NULL}. It is
+  the simulation period. Default is \code{NULL}. If it is
   \code{NULL}, it is replaced with \code{exogen} within the
   function.}
 
@@ -121,8 +121,8 @@
   \code{\link{splineInterpolateMonthlytoDailyforSeveralYears}}.
   Default is \code{TRUE}.}
 
-  \item{nscenario}{number of possible generated scenarios
-  for daily maximum and minimum temperature}
+  \item{nscenario}{number of generated scenarios for daily
+  maximum and minimum temperature}
 
   \item{seed}{seed for stochastic random generation see
   \code{\link{set.seed}}.}
@@ -193,9 +193,16 @@ n_GPCA_iter <- 2
 p <- 1
 nscenario=1
 station <- c("T0090","T0083")
-## Not Run: the call to ComprehensivePrecipitationGenerator may elapse too long time (more than 5 eseconds) and is not executed  by CRAN check.
+## Not Run: the call to ComprehensivePrecipitationGenerator may elapse too
+## long time (more than 5 eseconds) and is not executed  by CRAN check.
 ## Please uncomment the following line to run the example on your own PC.
-# generation00 <- ComprehensivePrecipitationGenerator(station=station,prec_all=PRECIPITATION,year_min=year_min,year_max=year_max,year_min_sim=year_min_sim,year_max_sim=year_max_sim,p=p,n_GPCA_iteration=n_GPCA_iter,n_GPCA_iteration_residuals=0,sample="monthly",nscenario=nscenario,no_spline=TRUE)
+# generation00 <- ComprehensivePrecipitationGenerator(station=station,
+# prec_all=PRECIPITATION,year_min=year_min,year_max=year_max,
+# year_min_sim=year_min_sim,year_max_sim=year_max_sim,p=p,
+# n_GPCA_iteration=n_GPCA_iter,n_GPCA_iteration_residuals=0,
+# sample="monthly",nscenario=nscenario,no_spline=TRUE)
+#
+#
 }
 \author{
   Emanuele Cordano, Emanuele Eccel

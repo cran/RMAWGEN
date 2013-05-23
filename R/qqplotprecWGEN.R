@@ -10,7 +10,7 @@ NULL
 #' @param simulated matrix containing respective generated data (each station corresponds to a column) 
 #' @param xlab,ylab  see \code{\link{plot.default}},\code{\link{qqplotWGEN}}
 #' @param title title 
-#' @param station character vector containing IDs of analyzed station. If \code{NULL} (default) all station (columns of \code{simulated} and \code{measured}) are considered
+#' @param station character vector containing IDs of analyzed stations. If \code{NULL} (default) all stations (columns of \code{simulated} and \code{measured}) are considered
 #' @param diff,quantile see \code{\link{qqplotWGEN}}
 #' 
 #' @export

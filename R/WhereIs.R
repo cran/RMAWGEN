@@ -7,7 +7,7 @@ NULL
 #' 
 #'  @author  Emanuele Cordano, Emanuele Eccel
 #'   
-#' @param name  charcacter ID of the station 
+#' @param name  character ID of the station 
 #' @param station_names  vector containing the IDs (characters)  of the considered meteorological stations. An example is \code{STATION_NAMES} defined in the \code{\link{trentino}} dataset.
 #' @param location      vector containing the toponyms. An example is \code{LOCATION} defined in the \code{\link{trentino}} dataset.
 #'  

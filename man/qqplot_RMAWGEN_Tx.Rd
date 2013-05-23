@@ -33,14 +33,14 @@
     cex.axis = 1, lag = 1)
 }
 \arguments{
-  \item{Tx_mes}{data frame containing observed daily
+  \item{Tx_mes}{data frame containing measured daily
   maximum temperature}
 
-  \item{Tn_mes}{data frame containing observed daily
+  \item{Tn_mes}{data frame containing measured daily
   minimum temperature}
 
-  \item{prec_mes}{data frame containing observed daily
-  precipitation (in millimieters)}
+  \item{prec_mes}{data frame containing measured daily
+  precipitation (in millimeters)}
 
   \item{Tx_spline}{data frame containing
   spline-interpolated daily maximum temperature. Default is
@@ -56,8 +56,8 @@
   \item{Tn_gen}{data frame containing generated daily
   minimum temperature}
 
-  \item{prec_gen}{data frame containing gnerated daily
-  precipitation (in millimieters)}
+  \item{prec_gen}{data frame containing generated daily
+  precipitation (in millimeters)}
 
   \item{when}{day indices on which the data frame are
   extracted for Q-Q plot. Default is \code{1:nrow(Tn_mes)}
@@ -87,7 +87,7 @@
   \code{\link{qqplot}} and \code{\link{plot}}}
 
   \item{lag}{lag (current index included) on whose value
-  the precimitation addition is made. See
+  the precipitation addition is made. See
   \code{\link{qqplot.lagged}}.}
 }
 \description{
@@ -96,8 +96,8 @@
   range for a list of collected stochastic generations
 }
 \note{
-  It is recommended that \code{Tx_gen},{Tn_gen} and
-  \code{main} must have an even number of elements.
+  \code{Tx_gen},{Tn_gen} and \code{main} must have an even
+  number of elements.
 }
 \author{
   Emanuele Cordano

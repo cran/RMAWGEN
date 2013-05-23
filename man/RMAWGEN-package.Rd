@@ -13,12 +13,12 @@
   package RMAWGEN (R Multi-Sites Auto regressive Weather
   GENerator) is built to generate daily temperature and
   precipitation time series in several sites by using the
-  theory of vectorial auto-#regressive models (VAR). The
-  VAR model is used because it is able to maintain the
-  temporal and spatial correlations among the several
-  series. In particular, observed time series of daily
-  maximum and minimum temperature and precipitation are
-  used to calibrate the parameters of a VAR model (saved as
+  theory of vectorial autoregressive models (VAR). The VAR
+  model is used because it is able to maintain the temporal
+  and spatial correlations among the several series. In
+  particular, observed time series of daily maximum and
+  minimum temperature and precipitation are used to
+  calibrate the parameters of a VAR model (saved as
   ''GPCAvarest2'' or ''varest2'' classes, which inherit the
   "varest" S3 class defined in the package vars [Pfaff,
   2008]). Therefore the VAR model, coupled with monthly
@@ -44,8 +44,8 @@
 }
 \details{
   \tabular{ll}{ Package: \tab RMAWGEN\cr Type: \tab
-  Package\cr Version: \tab 1.2.5.4\cr Date: \tab
-  2013-04-22\cr License: \tab GPL (>= 2)
+  Package\cr Version: \tab 1.2.5.5\cr Date: \tab
+  2013-05-23\cr License: \tab GPL (>= 2)
 
   \cr LazyLoad: \tab yes\cr Depends:
   R(>=2.12),time,chron,vars \cr }
@@ -75,7 +75,7 @@
 }
 \author{
   Emanuele Cordano \email{emanuele.cordano@gmail.org},
-  Emanuele Eccel \email{emanuele.eccel@iasma.it}
+  Emanuele Eccel \email{emanuele.eccel@fmach.it}
 }
 \references{
   Bernhard Pfaff (2008). VAR, SVAR and SVEC Models:

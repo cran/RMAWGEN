@@ -16,6 +16,10 @@ NULL
 #' 
 #'       
 #' @return  the vector of names with suffixes added 
+#' @details This function is used for data frames with duplicated field names
+#' 
+#' @examples 
+#' names <- addsuffixes()
 
 
 

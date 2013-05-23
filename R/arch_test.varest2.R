@@ -10,10 +10,10 @@ NULL
 #' 
 #' @export 
 #'
-#' @details This function is a wrapper of \code{\link{arch.test}}. It can comuptes the test also for some subset (intervals) of the time-series or for all the time-series divided in overlapped intervals. The intervals considered for the ARCH test are defined with the argument \code{interval}. If \code{interval} is an integer number instead of a vector, it indicates the length of the intervals in which the time-series is split. If \code{interval} is set \code{NULL}, the test is done on the comprehensive residual time-series without splitting.   
+#' @details This function is a wrapper of \code{\link{arch.test}}. It can compute the test also for some subsets (intervals) of the time-series or for all the time-series divided in overlapping intervals. The intervals considered for the ARCH test are defined with the argument \code{interval}. If \code{interval} is an integer number instead of a vector, it indicates the length of the intervals in which the time-series is split. If \code{interval} is set to \code{NULL}, the test is done on the comprehensive residual time-series without splitting.   
 #' 
 #' @seealso \code{\link{arch.test}}
-#' @return One or  lists with class attribute \code{varcheck} as reported in \code{\link{arch.test}}
+#' @return One object or a list of objects with class attribute \code{varcheck} as reported in \code{\link{arch.test}}
 
 
 

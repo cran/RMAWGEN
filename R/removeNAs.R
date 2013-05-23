@@ -3,7 +3,7 @@ NULL
 
 
 #' 
-#' 	Replaces each entry of the rows containg NA values with NA
+#' 	Replaces each entry of the rows containing NA values with NA
 #' 
 #' @param data a matrix 
 #'

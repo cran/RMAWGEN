@@ -3,23 +3,23 @@ NULL
 
 
 #'  
-#' Either creates an VAR model or chooses a VAR model by using VAR or VARselect commands of \code{vars} package  
+#' Either creates a VAR model or chooses a VAR model by using VAR or VARselect commands of \code{vars} package  
 #' 
 #' @author Emanuele Cordano, Emanuele Eccel
 #'    
 #' @param data see \code{\link{VAR}} and \code{\link{addsuffixes}}
 #' @param suffix see  \code{\link{addsuffixes}}
-#' @param sep  separator element for 
+#' @param sep  separator element. See \code{\link{addsuffixes}}).
 #' @param p  lag considered for the auto-regression   see \code{\link{VAR}}
 #' @param type see \code{\link{VAR}}
 #' @param season see \code{\link{VAR}}
 #' @param exogen see \code{\link{VAR}}
 #' @param lag.max see \code{\link{VARselect}}
 #' @param ic see \code{\link{VAR}}
-#' @param activateVARselect logical variables. If \code{TRUE}, the function \code{\link{VARselect}} is run. Default and recommend use is \code{FALSE}.
+#' @param activateVARselect logical variables. If \code{TRUE}, the function \code{\link{VARselect}} is run. Default and recommended use is \code{FALSE}.
 #' @param na.rm logical variables. If \code{TRUE} (default), it takes into account \code{NA} values
-#' @param n_GPCA_iteration number of iteration of Gaussianization process for data. Defauli is 0 (no Gaussianization) 
-#' @param n_GPCA_iteration_residuals number of iteration of Gaussianization process for data. Defauli is 0 (no Gaussianization)
+#' @param n_GPCA_iteration number of iterations of Gaussianization process for data. Default is 0 (no Gaussianization) 
+#' @param n_GPCA_iteration_residuals number of iterations of Gaussianization process for data. Default is 0 (no Gaussianization)
 #' @param extremes  see \code{\link{normalizeGaussian_severalstations}} and \code{\link{GPCA}}
 #' 
 #' 
@@ -33,7 +33,7 @@ NULL
 #'  
 #'
 #'        
-# summary(var)
+
 #' 
 #' @return  a \code{varest2} or \code{GPCAvarest2} object representing a VAR model or a \code{GPCA-varest} object which also contains the GPCA transformation parameters
 
@@ -54,8 +54,8 @@ function (data,suffix=c("_Tx","_Tn"),sep="",p=1,type="none",season=NULL,exogen=N
 		
 	}
 	
-	if (!is.null(exogen)) exogen <- exogen[!is.na(data[,1]),]
-	data <- data[!is.na(data[,1]),]
+	if (!is.null(exogen)) exogen <- as.data.frame(exogen[!is.na(data[,1]),])
+	data <- as.data.frame(data[!is.na(data[,1]),])
 	
 	if ((n_GPCA_iteration>0) | (n_GPCA_iteration_residuals>0)) {
 		

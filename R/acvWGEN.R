@@ -4,7 +4,7 @@ NULL
 
 
 #'  
-#' Plots an auto-covariance function between measured and simulated data for several stations
+#' Plots the auto- and cross- covariance functions between measured and simulated data for several stations
 #' 
 #' 
 #' 

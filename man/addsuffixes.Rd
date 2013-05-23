@@ -20,6 +20,13 @@
   Adds suffixes for daily maximum and minimum temperature
   to the names of a column data frame
 }
+\details{
+  This function is used for data frames with duplicated
+  field names
+}
+\examples{
+names <- addsuffixes()
+}
 \author{
   Emanuele Cordano, Emanuele Eccel
 }

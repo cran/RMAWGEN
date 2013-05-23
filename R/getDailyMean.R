@@ -2,7 +2,7 @@
 NULL
 
 #' 
-#' Calculates the daily means of a data frame corresponding to a period between \code{year_min} and \code{year_max}  for stations listed in \code{station}
+#' Calculates the daily means of a range of days around each date of a data frame corresponding to a period between \code{year_min} and \code{year_max}  for stations listed in \code{station}
 #' 
 #' @author  Emanuele Cordano, Emanuele Eccel
 #'

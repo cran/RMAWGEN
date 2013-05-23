@@ -4,7 +4,7 @@
 \alias{GPCAiteration-class}
 \title{GPCAiteration-class}
 \description{
-  \code{GCAiteration} S3 class returned by
+  \code{GPCAiteration} S3 class returned by
   \code{\link{GPCA_iteration}}
 }
 \details{
@@ -17,7 +17,7 @@
   \code{\link{normalizeGaussian_severalstations}}}
 
   \item{\code{B_prev}}{ rotation matrix (i. e. eigenvector
-  matrix of the covariance matrix of \code{x_gauss_prev}}
+  matrix of the covariance matrix of \code{x_gauss_prev})}
 
   \item{\code{x_next} }{results obtained by multiplying
   \code{B_prev} by \code{x_gauss_prev} (see equation 1 of

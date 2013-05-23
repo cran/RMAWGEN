@@ -14,7 +14,7 @@ NULL
 #'  @export 
 #'
 #'       
-#' @return  the vector of names with added suffixes
+#' @return  the vector with numbers of NA values for each \code{data} column
 
 
 countNAs <-

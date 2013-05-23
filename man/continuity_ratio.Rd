@@ -35,7 +35,7 @@
 }
 \note{
   If \code{lag==0} the function returns the continuity
-  ratio and joint propabilirty as described by Wilks, 1998.
+  ratio and joint probability as described by Wilks, 1998.
   Otherwise the precipitation values for each couple of
   rain gauges are taken with \code{lag}-day lag.
 }

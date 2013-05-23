@@ -5,7 +5,7 @@ NULL
 #'   
 #' Plots daily climatology through one year
 #'  
-#' @param data matrix whose column contains daily-averaged climatic series of variables (e.g. maximum or minumum daily averaged temperature obtained by spline interpolation of monthly climatology) 
+#' @param data matrix whose columns contain daily-averaged climatic series of variables (e.g. maximum or minum daily averaged temperature obtained by spline interpolation of monthly climatology) 
 #' @param origin origin date corresponding to the first row of \code{data}  
 #' @param when   start day for daily climatology plot
 #' @param title,xlab,ylab,col,lwd see \code{\link{plot.default}}
@@ -20,6 +20,7 @@ NULL
 #' @return  a matrix containing the plotted variables
 
 
+# THIS FUNCTION IS OBSOLATE!!!
 
 
 

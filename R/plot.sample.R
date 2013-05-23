@@ -1,7 +1,7 @@
 NULL 
 
 #' 
-#'It makes a plot by sampling (monthly,etc) the variables \code{x} and \code{y}
+#'It makes a plot by sampling (e.g. monthly) the variables \code{x} and \code{y}
 #'
 #'@param x vector of input data 
 #' @param y vector of second input data. Default is \code{normalizeGaussian_severalstations(x=as.data.frame(x),data=as.data.frame(data),origin_x=origin_x,origin_data=origin_data,sample=sample,step=step,prec=prec)[,1]}
@@ -28,10 +28,28 @@ NULL
 #' @param valmin_y numerical threshold value over which the variable \code{y} is plotted. It is enabled only if \code{sort} is set \code{TRUE}.
 #' @param valmin numerical threshold value for \code{valmin_y} and \code{valmin_x} if there are not specified.
 #' @param abline arguments for  \code{\link{abline}} function. Default is \code{c(0,1)}. If it is \code{NULL}, \code{\link{abline}} is disabled and not called.
-#valmin=-9999,
-#abline=c(0,1),
-
-
+#' 
+#' 
+#'  @usage
+#'  plot_sample(x,
+#'  y = normalizeGaussian_severalstations(x = as.data.frame(x), 
+#'   data = as.data.frame(data), origin_x = origin_x, origin_data = origin_data, 
+#'   sample = sample, step = step, prec = prec)[, 1],
+#'  xlim = range(x, na.rm = TRUE),
+#'  legend_position = "topleft",
+#'  ylim = range(y, na.rm = TRUE), pch = 1, col = 1,
+#'  col_max = 0.9, col_min = 0.1, origin, sample = NULL,
+#'  xhist = hist(x, breaks = breaks, plot = FALSE),
+#'  yhist = hist(y, breaks = breaks, plot = FALSE),
+#'  axes = FALSE, step = NULL, prec = 1e-04, breaks = 50,
+#'  origin_x = origin, origin_data = origin, data = x,
+#'  xlab = "", ylab = "", color = FALSE, gray = TRUE,
+#'  sort = FALSE, valmin_x = valmin, valmin_y = valmin,
+#'  valmin = -9999, abline = c(0, 1), ...)
+#' 
+#' 
+#' 
+#' 
 #' @param ...  see graphical parametes on \code{\link{plot.default}} 
 #' 
 #' @note It makes a plot betwee \code{x} and \code{y} and shows thair respective probibilty histograms. 
@@ -44,8 +62,10 @@ NULL
 #' @examples 
 #' library(RMAWGEN)
 #' data(trentino)
-#' plot_sample(x=TEMPERATURE_MIN$T0090,sample="monthly",origin="1958-1-1",axes=FALSE,xlab="Tn [ degC]",ylab="x")
-
+#' plot_sample(x=TEMPERATURE_MIN$T0090,sample="monthly",
+#'  origin="1958-1-1",axes=FALSE,xlab="Tn [ degC]",
+#'  ylab="x")
+#' 
 #' set.seed(123456) 
 #' z <- rexp(10000,rate=0.5) 
 #' x <- normalizeGaussian(x=z,data=z) 

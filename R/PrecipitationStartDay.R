@@ -2,7 +2,7 @@ NULL
 
 
 
-#' Gets the first day in a precipitation time series, expressed as decimal julian days since 1970-1-1 00:00 UTC
+#' Gets the first day in a precipitation time series, expressed in decimal julian days since 1970-1-1 00:00 UTC
 #' 
 #'  @author  Emanuele Cordano
 #'   
@@ -18,7 +18,11 @@ NULL
 #' 
 #' @examples 
 #' data(trentino)
-#' PrecipitationStartDay("T0099",station_names=STATION_NAMES,start_day=PRECIPITATION_MEASUREMENT_START_DAY) 
+#' PrecipitationStartDay("T0099",
+#'      station_names=STATION_NAMES,
+#'      start_day=PRECIPITATION_MEASUREMENT_START_DAY) 
+#' 
+#' 
 
 
 

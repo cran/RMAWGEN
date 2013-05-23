@@ -11,8 +11,8 @@
 
   \item{z}{further samples organized as a list}
 
-  \item{when}{(integer) parts of \code{x} and \code{y} on
-  which the Q-Q plot is made.}
+  \item{when}{(integer) inidices of \code{x} and \code{y}
+  on which the Q-Q plot is made.}
 
   \item{lag}{lag (current index included) on whose value
   the addition is made.}

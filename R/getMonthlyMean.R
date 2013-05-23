@@ -2,7 +2,7 @@
 NULL
 
 #' 
-#' Calclates the monthly means of a data frame corresponding to a period between \code{year_min} and \code{year_max}  for stations listed in \code{station}
+#' Calculates the monthly means of a data frame corresponding to a period between \code{year_min} and \code{year_max}  for stations listed in \code{station}
 #' 
 #'  @author  Emanuele Cordano, Emanuele Eccel
 #'
@@ -17,7 +17,7 @@ NULL
 #'     
 #' @export  
 #'
-#' @return   a matrix containing the requested monthly mean data where each month corresponds to a row and each station corresponds to a column or a list of such type of matrix in case the monthly mean values are calculated separetely for each year (if \code{yearly} is \code{TRUE})
+#' @return   a matrix containing the requested monthly means where each month corresponds to a row and each station corresponds to a column or a list of such matrices in case the monthly mean values are calculated separately for each year (if \code{yearly} is \code{TRUE})
 #'      
 #' 
 #' 
@@ -25,7 +25,7 @@ NULL
 #' 
 
 #' @note The input data frame \code{data} must have the following fields: \code{year,month,day,variables_ID1,variables_ID2,...} 
-#' where the fields \code{,variables_ID1,variables_ID2,...} contain the daily variables referred to the respective stations and the field names are replaced with the respective station ID. In case \code{yearly} is \code{TRUE} the returned output is a list of matrices whose names are the correspomding year. 
+#' where the fields \code{,variables_ID1,variables_ID2,...} contain the daily variables referred to the respective stations and the field names are replaced with the respective station ID. In case \code{yearly} is \code{TRUE} the returned output is a list of matrices whose names are the corresponding year. 
 
 # temp station=c("T0001","T0014","T0129")
 

@@ -9,13 +9,13 @@
     origin_data = origin_x)
 }
 \arguments{
-  \item{x}{value to be converted}
+  \item{x}{variable}
 
   \item{data}{a sample of data on which a non-parametric
-  probility distribution is estimated}
+  pghjjrobability distribution is estimated}
 
   \item{cpf}{cumulative probability distribution. If
-  \code{NULL} (default) is calaculated as
+  \code{NULL} (default) is calculated as
   \code{\link{ecdf}(data)}}
 
   \item{mean}{mean (expected value) of the normalized

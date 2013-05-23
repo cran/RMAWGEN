@@ -5,7 +5,7 @@
   WhereIs(name, station_names, location)
 }
 \arguments{
-  \item{name}{charcacter ID of the station}
+  \item{name}{character ID of the station}
 
   \item{station_names}{vector containing the IDs
   (characters) of the considered meteorological stations.

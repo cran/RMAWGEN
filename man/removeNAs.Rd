@@ -1,6 +1,6 @@
 \name{removeNAs}
 \alias{removeNAs}
-\title{Replaces each entry of the rows containg NA values with NA}
+\title{Replaces each entry of the rows containing NA values with NA}
 \usage{
   removeNAs(data)
 }
@@ -12,7 +12,7 @@
   values
 }
 \description{
-  Replaces each entry of the rows containg NA values with
+  Replaces each entry of the rows containing NA values with
   NA
 }
 \note{

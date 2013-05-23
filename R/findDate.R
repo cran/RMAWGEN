@@ -7,9 +7,9 @@ NULL
 #' 
 #' @param k integer or decimal value corresponding to number of days since \code{origin}
 #' @param origin origin date. See also \code{\link{extractdays}}
-#' @param data.frame logical variable. If \code{TRUE} (default) the date is returned as data frame (like \code{data} in \code{\link{extractyears}}), it is returned as  character or POSIXct otherwise 
+#' @param data.frame logical variable. If \code{TRUE} (default) the date is returned as data frame (like \code{data} in \code{\link{extractyears}}), otherwise it is returned as  character or POSIXct. 
 #' @param decimal logical variable. If \code{FALSE} (default) k is integer and starts from 1, otherwise is consider as the decimal julian day since \code{origin} (deprecated)
-#' @param character logical variable. It is used if \code{data.frame} is \code{FALSE}, if it is \code{FALSE}, the dete is returned as POSIXct, otherwise is a character in the following form \code{YYYY-MM-DD} 
+#' @param character logical variable. It is used if \code{data.frame} is \code{FALSE}, if it is \code{FALSE}, the date is returned as POSIXct, otherwise it is a character in the following form: \code{YYYY-MM-DD} 
 #' 
 #' @export
 #' 
@@ -25,7 +25,15 @@ NULL
 #' 
 #' 
 #' @seealso \code{\link{date.mdy}},\code{\link{extractdays}}
+#' 
+#' 
+#' 
 #' @return   the date(s) corresponding to \code{k} under different formats
+#' 
+#' @examples 
+#' findDate <- findDate(100,origin="1961-1-1",data.frame=FALSE,character=TRUE)
+#' 
+#' 
 
 
 

@@ -6,8 +6,8 @@ NULL
 #'  to a normally-distributed variable with assigned mean and standard deviation or vice versa in case \code{inverse} is \code{TRUE}
 #'    
 #' @param x value or vector of values to be converted 
-#' @param data a sample of data on which a non-parametric probility distribution is estimated
-#' @param cpf cumulative probability distribution. If \code{NULL} (default) is calaculated as \code{\link{ecdf}(data)}
+#' @param data a sample of data on which a non-parametric probability distribution is estimated
+#' @param cpf cumulative probability distribution. If \code{NULL} (default) is calculated as \code{\link{ecdf}(data)}
 #' @param mean mean (expected value) of the normalized random variable. Default is 0.
 #' @param sd standard deviation of the normalized random variable. Default is 1.
 #' @param inverse  logical value. If \code{TRUE} the function works inversely (the opposite way). Default is \code{FALSE}.

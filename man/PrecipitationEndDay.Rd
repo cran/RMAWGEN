@@ -1,6 +1,6 @@
 \name{PrecipitationEndDay}
 \alias{PrecipitationEndDay}
-\title{Gets the last day in a precipitation time series, expressed as decimal julian days since 1970-1-1 00:00 UTC}
+\title{Gets the last day in a precipitation time series, expressed in decimal julian days since 1970-1-1 00:00 UTC}
 \usage{
   PrecipitationEndDay(name, station_names, end_day)
 }
@@ -22,7 +22,7 @@
 }
 \description{
   Gets the last day in a precipitation time series,
-  expressed as decimal julian days since 1970-1-1 00:00 UTC
+  expressed in decimal julian days since 1970-1-1 00:00 UTC
 }
 \examples{
 data(trentino)

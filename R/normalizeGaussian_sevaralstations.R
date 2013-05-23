@@ -5,8 +5,8 @@ NULL
 #'  to a normally-distributed samples with assinged mean and standard deviation or vice versa in case \code{inverse} is \code{TRUE}
 #'    
 #' @param x value to be converted 
-#' @param data a sample of data on which a non-parametric probility distribution is estimated
-#' @param cpf cumulative probability distribution. If \code{NULL} (default) is calaculated as \code{\link{ecdf}(data)}
+#' @param data a sample of data on which a non-parametric probability distribution is estimated
+#' @param cpf cumulative probability distribution. If \code{NULL} (default) is calculated as \code{\link{ecdf}(data)}
 #' @param mean mean (expected value) of the normalized random variable. Default is 0.
 #' @param sd standard deviation of the normalized random variable. Default is 1.
 #' @param inverse  logical value. If \code{TRUE} the function works inversely (the opposite way). Default is \code{FALSE}.
@@ -15,7 +15,7 @@ NULL
 #' @param type see \code{\link{quantile}}
 #' @param extremes logical variable. 
 #'  If \code{TRUE} (default) the probability or frequency is multiplied by \deqn{\frac{N}{N+1}} where \eqn{N} is the length of \code{data}
-#' @param sample information about sample or probability distribution. Default is \code{NULL}
+#' @param sample information on how to sample \code{x} and \code{data}. Default is \code{NULL}, this means that the values of each column of \code{x} and \code{data} belong to the same sample. If \code{x} and \code{data} are sampled for each month seperately, it is set to \code{monthly}.
 #' @param origin_x date corresponding to the first row of \code{x}
 #' @param origin_data date corresponding to the first row of \code{data}
 

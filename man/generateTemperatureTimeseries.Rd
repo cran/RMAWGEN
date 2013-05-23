@@ -64,10 +64,9 @@
   \item{type}{see \code{\link{quantile}}}
 
   \item{option}{integer value. If 1, the generator works
-  with minimun and maximum temperature, if 2 (Default) it
+  with minimum and maximum temperature, if 2 (Default) it
   works with th average value between maximum and minimum
-  temparature and the respective daily Atmosheric
-  Temparature.}
+  temparature and the respective daily Thermal Range.}
 
   \item{original_data}{matrix containing the measured
   standardized temperature anomalies}
@@ -80,21 +79,21 @@
   This function returns a list of the following variables:
 
   \code{res_multigen} matrix containing standardized values
-  of daily maximum and minimun temperature anomalies
+  of daily maximum and minimum temperature anomalies
 
-  \code{Tx_spline} matrix containing containing climatic
-  "spline-interpolated" daily maximum daily temperature
+  \code{Tx_spline} matrix containing climatic
+  "spline-interpolated" daily maximum temperature
 
-  \code{Tn_spine} matrix containing containing climatic
-  "spline-interpolated" daily minimum daily temperature
+  \code{Tn_spine} matrix containing climatic
+  "spline-interpolated" daily minimum temperature
 
   \code{Tx_gen} matrix containing generated daily maximum
   daily temperature (\eqn{Tx_{gen}})
 
-  \code{Tn_gen} matrix containing generated daily maximum
+  \code{Tn_gen} matrix containing generated daily minimum
   daily temperature (\eqn{Tn_{gen}})
 
-  \code{Tm_gen} matrix containig generated "mean" daily
+  \code{Tm_gen} matrix containing generated "mean" daily
   temperature defined as \eqn{\frac{Tx_{gen}+Tn_{gen}}{2}}
 
   \code{DeltaT_gen} matrix containing generated daily

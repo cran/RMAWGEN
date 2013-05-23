@@ -23,7 +23,7 @@
 
   \item{no_spline}{logical value. If \code{TRUE} no spline
   interpolation is calculated and the daily value
-  corresponds to the monthly averaga value. Default is
+  corresponds to the monthly average value. Default is
   \code{FALSE}.}
 
   \item{yearly}{logical value. If \code{TRUE} the result

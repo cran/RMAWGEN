@@ -3,7 +3,7 @@ NULL
 
 #' 
 
-#' Gets the last day in a precipitation time series, expressed as decimal julian days since 1970-1-1 00:00 UTC
+#' Gets the last day in a precipitation time series, expressed in decimal julian days since 1970-1-1 00:00 UTC
 #' 
 #'  @author  Emanuele Cordano, Emanuele Eccel
 #'   

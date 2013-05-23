@@ -20,15 +20,15 @@ NULL
 #' @param normalize,sample,extremes see \code{\link{normalizeGaussian_severalstations}} or \code{\link{setComprehensiveTemperatureGeneratorParameters}}
 #' @param type_quantile see \code{type} on \code{\link{quantile}}
 #' @param option integer value. If 1, the generator works with minimun and maximum temperature, if 2 (default) it works with the average value between maximum and minimum temparature and the respective daily thermal range.
-#' @param n_GPCA_iteration number of iteration of Gaussianization process for data. Default is 0 (no Gaussianization) 
-#' @param n_GPCA_iteration_residuals number of iteration of Gaussianization process for VAR residuals. Default is 0 (no Gaussianization)
+#' @param n_GPCA_iteration number of iterations of Gaussianization process for data. Default is 0 (no Gaussianization) 
+#' @param n_GPCA_iteration_residuals number of iterations of Gaussianization process for VAR residuals. Default is 0 (no Gaussianization)
 #' @param exogen data frame or matrix containing the (normalized or not) exogenous variables (predictors) for the recorded (calibration) period. Default is \code{NULL}.
 #' @param exogen_sim  data frame or matrix containing the (normalized or not) exogenous variables (predictors) for the simulation period. Default is \code{NULL}. If it is \code{NULL}, \code{exogen_sim} is set equal to \code{exogen} within the function.
 #' @param is_exogen_gaussian logical value, If \code{TRUE}, \code{exogen_sim} and \code{exogen} are given as already normalized variables, otherwhise they are not normalized. Default is \code{FALSE}
 #' @param exogen_all data frame containing exogenous variable formatted like \code{Tx_all} and {Tn_all}. Default is \code{NULL}. 
-#' It is alternative to \code{exogen} and if it not \code{NULL},\code{is_exogen_gaussian} is automatically set \code{FALSE}	
+#' It is alternative to \code{exogen} and if it not \code{NULL},\code{is_exogen_gaussian} is automatically set to \code{FALSE}	
 #' @param exogen_all_col vector of considered  columns of \code{exogen_all}. Default is \code{station}.
-#' @param nscenario number of possible generated scenarios for daily maximum and minimum temperature
+#' @param nscenario number of generated scenarios for daily maximum and minimum temperature
 #' @param yearly  logical value. If \code{TRUE} the monthly mean values are calculated for each year from \code{year_min} to \code{year_max} separately. Default is \code{FALSE}.  
 #' @param yearly_sim logical value. If \code{TRUE} the monthly mean values are calculated for each year from \code{year_min_sim} to \code{year_max_sim} separately. Default is \code{yearly}. 
 #' @param seed seed for stochastic random generation see \code{\link{set.seed}}
@@ -71,14 +71,22 @@ NULL
 #' n_GPCA_iteration_residuals <- 5
 #' p <- 1
 #' vstation <- c("B2440","B6130","B8570","B9100","LAVIO","POLSA","SMICH","T0001",
-#'  "T0010","T0014","T0018","T0032","T0064","T0083","T0090","T0092","T0094","T0099",
-#'  "T0102","T0110","T0129","T0139","T0147","T0149","T0152","T0157","T0168","T0179","T0189","T0193","T0204","T0210","T0211","T0327","T0367","T0373")		
-#' ## Not Run: the call to ComprehensiveTemperatureGenerator may elapse too long time (more than 5 eseconds) and is not executed  by CRAN check.  
+#'  "T0010","T0014","T0018","T0032","T0064","T0083","T0090","T0092",
+#' "T0094","T0099","T0102","T0110","T0129","T0139","T0147","T0149",
+#' "T0152","T0157","T0168","T0179","T0189","T0193","T0204","T0210",
+#' "T0211","T0327","T0367","T0373")		
+#' ## Not Run: the call to ComprehensiveTemperatureGenerator may elapse 
+#' ## too long time (more than 5 eseconds) and is not executed  by CRAN check.  
 #' ## Please uncomment the following line to run the example on your own PC.
-#' # generation00 <-ComprehensiveTemperatureGenerator(station=vstation[16],Tx_all=TEMPERATURE_MAX,Tn_all=TEMPERATURE_MIN,year_min=year_min,year_max=year_max,p=p,n_GPCA_iteration=n_GPCA_iter,n_GPCA_iteration_residuals=n_GPCA_iteration_residuals,sample="monthly",year_min_sim=year_min_sim,year_max_sim=year_max_sim)
-
-
-	
+#' # generation00 <-ComprehensiveTemperatureGenerator(station=vstation[16],
+#' # Tx_all=TEMPERATURE_MAX,Tn_all=TEMPERATURE_MIN,year_min=year_min,year_max=year_max,
+#' # p=p,n_GPCA_iteration=n_GPCA_iter,n_GPCA_iteration_residuals=n_GPCA_iteration_residuals,
+#' # sample="monthly",year_min_sim=year_min_sim,year_max_sim=year_max_sim)
+#' #
+#' #
+#' 
+#' 
+#' 	
 
 ComprehensiveTemperatureGenerator <-
 function(

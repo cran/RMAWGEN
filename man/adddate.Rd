@@ -7,8 +7,8 @@
 \arguments{
   \item{data}{matrix of daily data}
 
-  \item{origin}{character string containig the date of the
-  first row of \code{data} as YY-MM-DD}
+  \item{origin}{character string containing the date of the
+  first row of \code{data} as YYYY-MM-DD}
 }
 \value{
   a data frame with dates and \code{data} values

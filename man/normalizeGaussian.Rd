@@ -11,10 +11,10 @@
   \item{x}{value or vector of values to be converted}
 
   \item{data}{a sample of data on which a non-parametric
-  probility distribution is estimated}
+  probability distribution is estimated}
 
   \item{cpf}{cumulative probability distribution. If
-  \code{NULL} (default) is calaculated as
+  \code{NULL} (default) is calculated as
   \code{\link{ecdf}(data)}}
 
   \item{mean}{mean (expected value) of the normalized

@@ -7,7 +7,7 @@ NULL
 #'
 #' @export 
 #'
-#' @return a Vectorial auto-regeressiva model (VAR) as \code{varest} object
+#' @return a Vector Auto-Regeressive model (VAR) as \code{varest} object
 #'
 
 

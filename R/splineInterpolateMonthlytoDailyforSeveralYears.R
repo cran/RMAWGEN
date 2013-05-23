@@ -10,7 +10,7 @@ NULL
 #' @param nyear number of years since \code{start_year}
 #' @param leap logical variable If \code{TRUE} (default) leap years are considered, otherwise they are not
 #' @param offset integer values. Default is 2. Number of years considered beyond the extremes in order to avoid edge errors 
-#' @param no_spline logical value. If \code{TRUE} no spline interpolation is calculated and the daily value corresponds to the monthly averaga value. Default is \code{FALSE}.
+#' @param no_spline logical value. If \code{TRUE} no spline interpolation is calculated and the daily value corresponds to the monthly average value. Default is \code{FALSE}.
 #' @param yearly logical value. If \code{TRUE} the result with men value per each month per each year. Default is \code{FALSE}.
 #' 
 #' 

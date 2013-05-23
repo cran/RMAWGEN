@@ -2,7 +2,8 @@ Package: RMAWGEN
 Maintainer: Emanuele Cordano <emanuele.cordano@gmail.com>
 License: GPL (>= 2)
 Title: RMAWGEN (R Multi-site Auto-regressive Weather GENerator), a
-        package to generate daily time series from monthly mean values
+        package to generate daily time series of precipitation and
+        temperature from monthly mean values
 Type: Package
 Author: Emanuele Cordano, Emanuele Eccel
 Description: This package contains S3 and S4 functions for spatial
@@ -12,12 +13,12 @@ Description: This package contains S3 and S4 functions for spatial
         by daily instrumental "Gaussianized" time series and then works
         with monthly time series as input.
         Bugs/comments/questions/collaboration of any kind are warmly
-        welcomed.
-Version: 1.2.5.4
+        welcome.
+Version: 1.2.5.5
 Repository: CRAN
-Date/Publication: 2013-04-24 10:52:47
-Packaged: 2013-04-24 08:09:27 UTC; ecor
-Date: 2013-04-22
+Date/Publication: 2013-05-23 15:53:46
+Packaged: 2013-05-23 13:20:39 UTC; ecor
+Date: 2013-05-23
 Depends: R (>= 2.10), chron, date, vars, MASS, strucchange, urca,
         methods,lmtest (>= 0.9-26), sandwich (>= 2.2-4)
 Imports: chron, date, vars, MASS, strucchange, urca, methods,lmtest (>=

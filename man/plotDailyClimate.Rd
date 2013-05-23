@@ -9,10 +9,10 @@
     nday = 365, bicolor = FALSE, col = "black", lwd = 1)
 }
 \arguments{
-  \item{data}{matrix whose column contains daily-averaged
-  climatic series of variables (e.g. maximum or minumum
-  daily averaged temperature obtained by spline
-  interpolation of monthly climatology)}
+  \item{data}{matrix whose columns contain daily-averaged
+  climatic series of variables (e.g. maximum or minum daily
+  averaged temperature obtained by spline interpolation of
+  monthly climatology)}
 
   \item{origin}{origin date corresponding to the first row
   of \code{data}}

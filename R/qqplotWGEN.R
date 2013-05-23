@@ -5,7 +5,7 @@ NULL
 #' 
 #' Makes a qqplot and Wilcoxon test between the two columns of \code{val}
 #' 
-#'  @param val a matrix with two colomns containing the two samples to be compared
+#'  @param val a matrix with two columns containing the two samples to be compared
 #'  @param xlab,ylab,main see \code{\link{plot.default}}
 #'  @param xlim,ylim see \code{\link{plot.default}}
 #'  @param diff logical variable, if \code{TRUE} the function is applied to \code{diff(val)} instead of \code{val}. See \code{\link{diff}}
@@ -16,7 +16,7 @@ NULL
 #' @export
 #' 
 #'        
-#' @return  Wilcoxon test between the two columnds of 'val'
+#' @return  Wilcoxon test between the two columns of 'val'
 
 
 

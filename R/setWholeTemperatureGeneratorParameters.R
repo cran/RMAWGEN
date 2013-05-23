@@ -17,12 +17,12 @@ NULL
 #' @param year_max start year of the recorded (calibration) period 
 #' @param year_min end year of the recorded (calibration) period
 #' @param leap logical variables. It is \code{TRUE} (Default) if leap years are considered
-#' @param nmonth number of months in one year, 12 is Default
+#' @param nmonth number of months in one year. Default is 12.
 #' @param verbose logical variable
 #' @param cpf see \code{\link{normalizeGaussian_severalstations}}
 #' @param normalize logical variable If \code{TRUE} \code{\link{normalizeGaussian_severalstations}} is used, otherwise it is not. If \code{option} is 2, it is always \code{TRUE}.
 #' @param sample see \code{\link{normalizeGaussian_severalstations}}
-#' @param option integer value. If 1, the generator works with minimun and maximum temperature, if 2 (default) it works with the average value between maximum and minimum temparature and the respective daily thermal range.
+#' @param option integer value. If 1, the generator works with minimum and maximum temperature, if 2 (default) it works with the average value between maximum and minimum temperature and the respective daily thermal range.
 #' @param yearly  logical value. If \code{TRUE} the monthly mean values are calculated for each year from \code{year_min} to \code{year_max} separately. Default is \code{FALSE}. 
 #'   
 #' 
@@ -47,11 +47,11 @@ NULL
 #'
 #' \code{DeltaT_mes} matrix corresponding to \eqn{Tx_{mes}-Tn_{mes}}
 #' 
-#' \code{monthly_mean_Tn} matrix containing monthly means minimum daily temperature for the considered station. It is calculated according to the input format \code{\link{is.monthly.climate}} if \code{saveMonthlyClimate} is  \code{TRUE}. 
+#' \code{monthly_mean_Tn} matrix containing monthly means of minimum daily temperature for the considered station. It is calculated according to the input format \code{\link{is.monthly.climate}} if \code{saveMonthlyClimate} is  \code{TRUE}. 
 #'
-#' \code{monthly_mean_Tx} matrix containing monthly means maximum daily temperature for the considered station. It is calculated according to the input format \code{\link{is.monthly.climate}} if \code{saveMonthlyClimate} is  \code{TRUE}. 
+#' \code{monthly_mean_Tx} matrix containing monthly means of maximum daily temperature for the considered station. It is calculated according to the input format \code{\link{is.monthly.climate}} if \code{saveMonthlyClimate} is  \code{TRUE}. 
 #'
-#' \code{Tx_spline} matrix containing the averaged  daily values of maximimun temperature obtained by a spline interpolation of the monthly climate \code{monthly_mean_Tx} or \code{mean_climate_Tx} 
+#' \code{Tx_spline} matrix containing the averaged  daily values of maximimum temperature obtained by a spline interpolation of the monthly climate \code{monthly_mean_Tx} or \code{mean_climate_Tx} 
 #' using \code{\link{splineInterpolateMonthlytoDailyforSeveralYears}} ( \eqn{Tx_{s}}) 
 #'
 #' \code{Tn_spline} matrix containing the averaged  daily values of minimun temperature obtained by a spline interpolation of the monthly climate \code{monthly_mean_Tn} or \code{mean_climate_Tn}  
@@ -78,7 +78,7 @@ NULL
 #'
 #' \code{DeltaT_mes_res} equal to \code{DeltaT_mes}
 #'
-#' \code{data_original} matrix obtaied as \code{cbind(Tx_mes_res,Tn_mes_res)} if \code{option}==1, or \code{cbind(Tm_mes_res,DeltaT_mes_res)} if \code{option}==2
+#' \code{data_original} matrix obtained as \code{cbind(Tx_mes_res,Tn_mes_res)} if \code{option}==1, or \code{cbind(Tm_mes_res,DeltaT_mes_res)} if \code{option}==2
 #' 
 #' See the R code for further details.
 #'   

@@ -1,6 +1,6 @@
 \name{getVARmodel}
 \alias{getVARmodel}
-\title{Either creates an VAR model or chooses a VAR model by using VAR or VARselect commands of \code{vars} package}
+\title{Either creates a VAR model or chooses a VAR model by using VAR or VARselect commands of \code{vars} package}
 \usage{
   getVARmodel(data, suffix = c("_Tx", "_Tn"), sep = "",
     p = 1, type = "none", season = NULL, exogen = NULL,
@@ -15,7 +15,8 @@
 
   \item{suffix}{see \code{\link{addsuffixes}}}
 
-  \item{sep}{separator element for}
+  \item{sep}{separator element. See
+  \code{\link{addsuffixes}}).}
 
   \item{p}{lag considered for the auto-regression see
   \code{\link{VAR}}}
@@ -32,17 +33,17 @@
 
   \item{activateVARselect}{logical variables. If
   \code{TRUE}, the function \code{\link{VARselect}} is run.
-  Default and recommend use is \code{FALSE}.}
+  Default and recommended use is \code{FALSE}.}
 
   \item{na.rm}{logical variables. If \code{TRUE} (default),
   it takes into account \code{NA} values}
 
-  \item{n_GPCA_iteration}{number of iteration of
-  Gaussianization process for data. Defauli is 0 (no
+  \item{n_GPCA_iteration}{number of iterations of
+  Gaussianization process for data. Default is 0 (no
   Gaussianization)}
 
-  \item{n_GPCA_iteration_residuals}{number of iteration of
-  Gaussianization process for data. Defauli is 0 (no
+  \item{n_GPCA_iteration_residuals}{number of iterations of
+  Gaussianization process for data. Default is 0 (no
   Gaussianization)}
 
   \item{extremes}{see
@@ -55,7 +56,7 @@
   which also contains the GPCA transformation parameters
 }
 \description{
-  Either creates an VAR model or chooses a VAR model by
+  Either creates a VAR model or chooses a VAR model by
   using VAR or VARselect commands of \code{vars} package
 }
 \note{

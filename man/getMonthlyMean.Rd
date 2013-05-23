@@ -1,6 +1,6 @@
 \name{getMonthlyMean}
 \alias{getMonthlyMean}
-\title{Calclates the monthly means of a data frame corresponding to a period between \code{year_min} and \code{year_max}  for stations listed in \code{station}}
+\title{Calculates the monthly means of a data frame corresponding to a period between \code{year_min} and \code{year_max}  for stations listed in \code{station}}
 \usage{
   getMonthlyMean(data, year_min = 1961, year_max = 1990,
     station = names(data), no_date = FALSE,
@@ -29,16 +29,16 @@
   \item{origin}{date corresponding to the first row}
 }
 \value{
-  a matrix containing the requested monthly mean data where
+  a matrix containing the requested monthly means where
   each month corresponds to a row and each station
-  corresponds to a column or a list of such type of matrix
-  in case the monthly mean values are calculated separetely
+  corresponds to a column or a list of such matrices in
+  case the monthly mean values are calculated separately
   for each year (if \code{yearly} is \code{TRUE})
 }
 \description{
-  Calclates the monthly means of a data frame corresponding
-  to a period between \code{year_min} and \code{year_max}
-  for stations listed in \code{station}
+  Calculates the monthly means of a data frame
+  corresponding to a period between \code{year_min} and
+  \code{year_max} for stations listed in \code{station}
 }
 \note{
   The input data frame \code{data} must have the following
@@ -49,7 +49,7 @@
   stations and the field names are replaced with the
   respective station ID. In case \code{yearly} is
   \code{TRUE} the returned output is a list of matrices
-  whose names are the correspomding year.
+  whose names are the corresponding year.
 }
 \author{
   Emanuele Cordano, Emanuele Eccel

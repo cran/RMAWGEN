@@ -18,24 +18,24 @@ NULL
 #'  @param normalize logical variable If \code{TRUE} \code{\link{normalizeGaussian_severalstations}} is used, otherwise not. If \code{option} is 2, it is always \code{TRUE}.
 #'  @param sample,origin_x,origin_data,extremes see \code{\link{normalizeGaussian_severalstations}}
 #'  @param type see \code{\link{quantile}}
-#'  @param option integer value. If 1, the generator works with minimun and maximum temperature, if 2 (Default) it works with th average value between maximum and minimum temparature and the respective daily Atmosheric Temparature.
+#'  @param option integer value. If 1, the generator works with minimum and maximum temperature, if 2 (Default) it works with th average value between maximum and minimum temparature and the respective daily Thermal Range.
 #'  @param original_data matrix containing the measured standardized temperature anomalies
 #'  @param noise stochastic noise to add for variabile generation. Default is \code{NULL}. See \code{\link{newVARmultieventRealization}}. 
 #' 
 #'  @export 
 #' @return  This function returns a list of the following variables: 
 #' 
-#' \code{res_multigen} matrix containing standardized values of daily maximum and minimun temperature anomalies
+#' \code{res_multigen} matrix containing standardized values of daily maximum and minimum temperature anomalies
 #' 
-#' \code{Tx_spline} matrix containing  containing climatic "spline-interpolated" daily maximum daily temperature 
+#' \code{Tx_spline} matrix containing climatic "spline-interpolated" daily maximum temperature 
 #' 
-#' \code{Tn_spine} matrix containing  containing climatic "spline-interpolated" daily minimum daily temperature 
+#' \code{Tn_spine} matrix containing climatic "spline-interpolated" daily minimum temperature 
 #' 
 #' \code{Tx_gen} matrix containing generated daily maximum daily temperature (\eqn{Tx_{gen}})
 #' 
-#' \code{Tn_gen} matrix containing generated daily maximum daily temperature (\eqn{Tn_{gen}})
+#' \code{Tn_gen} matrix containing generated daily minimum daily temperature (\eqn{Tn_{gen}})
 #' 
-#' \code{Tm_gen} matrix containig generated "mean" daily temperature defined as  \eqn{\frac{Tx_{gen}+Tn_{gen}}{2}}
+#' \code{Tm_gen} matrix containing generated "mean" daily temperature defined as  \eqn{\frac{Tx_{gen}+Tn_{gen}}{2}}
 #' 
 #' \code{DeltaT_gen} matrix containing generated daily thermal range defined as  \eqn{Tx_{gen}-Tn_{gen}}
 #' 

@@ -8,7 +8,7 @@
     quantile = 0)
 }
 \arguments{
-  \item{val}{a matrix with two colomns containing the two
+  \item{val}{a matrix with two columns containing the two
   samples to be compared}
 
   \item{xlab,ylab,main}{see \code{\link{plot.default}}}
@@ -23,7 +23,7 @@
   \code{val} are considered. Default is 0.}
 }
 \value{
-  Wilcoxon test between the two columnds of 'val'
+  Wilcoxon test between the two columns of 'val'
 }
 \description{
   Makes a qqplot and Wilcoxon test between the two columns

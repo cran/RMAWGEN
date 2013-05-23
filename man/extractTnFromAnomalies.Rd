@@ -9,11 +9,11 @@
   of daily temperature as returned by
   \code{\link{generateTemperatureTimeseries}} (first item)}
 
-  \item{std}{vector containing start deviation for each
+  \item{std}{vector containing standard deviation for each
   minimun temperature anomalies}
 
   \item{SplineAdv}{matrix containing the averaged daily
-  values of minimun temperature obtained by a spline
+  values of minimum temperature obtained by a spline
   interpolation of the monthly climate}
 }
 \value{

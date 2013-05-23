@@ -11,7 +11,7 @@ NULL
 #' It must be a subset of \code{c("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec")}
 #' @param origin date corresponding to the first row of \code{data}
 #' @param year year(s) when data must be extracted 
-#' @param ndim_max maximimum (integer) number of rows in \code{data} where to find \code{when}. 
+#' @param ndim_max maximum (integer) number of rows in \code{data} where to find \code{when}. 
 #' Default is 100000 and works if \code{data} is missing.
 #' 
 #'  @export    

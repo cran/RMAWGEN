@@ -8,7 +8,8 @@
   \item{data}{a data input matrix}
 }
 \value{
-  the vector of names with added suffixes
+  the vector with numbers of NA values for each \code{data}
+  column
 }
 \description{
   counts NAs in each row of \code{data}

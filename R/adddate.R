@@ -5,7 +5,7 @@ NULL
 #' @author  Emanuele Cordano, Emanuele Eccel
 #' 
 #' @param data matrix of daily data 
-#' @param origin character string containig the date of the first row of \code{data} as YY-MM-DD
+#' @param origin character string containing the date of the first row of \code{data} as YYYY-MM-DD
 #' 
 #' @seealso \code{\link{findDate}}
 #' @export 

@@ -12,7 +12,7 @@
   \code{\link{VAR}} function}
 }
 \value{
-  a Vectorial auto-regeressiva model (VAR) as \code{varest}
+  a Vector Auto-Regeressive model (VAR) as \code{varest}
   object
 }
 \description{

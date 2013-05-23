@@ -3,9 +3,9 @@ NULL
 #'
 #'  Calculates the covariance matrix of the normally standardized variables obtained from the columns of \code{x} 
 
-#' @param x value to be converted 
-#' @param data a sample of data on which a non-parametric probility distribution is estimated
-#' @param cpf cumulative probability distribution. If \code{NULL} (default) is calaculated as \code{\link{ecdf}(data)}
+#' @param x variable
+#' @param data a sample of data on which a non-parametric pghjjrobability distribution is estimated
+#' @param cpf cumulative probability distribution. If \code{NULL} (default) is calculated as \code{\link{ecdf}(data)}
 #' @param mean mean (expected value) of the normalized random variable. Default is 0.
 #' @param sd standard deviation of the normalized random variable. Default is 1.
 #' @param step vector of values in which step discontinuities of the cumulative probability function occur. Default is \code{NULL}

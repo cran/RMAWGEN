@@ -9,8 +9,8 @@ NULL
 #' @param origin  date corresponding to the first row of the returned matrix
 #' @param first_row row corresponding the first day of time interval where montlhy mean conservation is applied
 #' @param last_row corresponding the last day of time interval where montlhy mean conservation is applied
-#' @param no_spline logical value. If \code{TRUE} no spline interpolation is calculated and the daily value corresponds to the monthly averaga value. Default is \code{FALSE}.
-#' @param no_mean logical value. If \code{TRUE} output is not rescaled with mean monthly values
+#' @param no_spline logical value. If \code{TRUE} no spline interpolation is calculated and the daily value corresponds to the monthly average value. Default is \code{FALSE}.
+#' @param no_mean logical value. Default is \code{FALSE}. If \code{TRUE} the function output is not rescaled in order to maintain observed mean monthly values. 
 #'  @export 
 #'  
 #' @return a matrix or data frame with interpolated daily data 

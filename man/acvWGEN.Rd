@@ -1,6 +1,6 @@
 \name{acvWGEN}
 \alias{acvWGEN}
-\title{Plots an auto-covariance function between measured and simulated data for several stations}
+\title{Plots the auto- and cross- covariance functions between measured and simulated data for several stations}
 \usage{
   acvWGEN(measured, simulated, titles = c("Sim.", "Mes."),
     station = NULL)
@@ -23,8 +23,8 @@
   0 in case of success
 }
 \description{
-  Plots an auto-covariance function between measured and
-  simulated data for several stations
+  Plots the auto- and cross- covariance functions between
+  measured and simulated data for several stations
 }
 \note{
   It uses \code{\link{acf}} function
