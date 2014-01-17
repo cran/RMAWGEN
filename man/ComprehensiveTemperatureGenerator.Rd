@@ -194,12 +194,10 @@ vstation <- c("B2440","B6130","B8570","B9100","LAVIO","POLSA","SMICH","T0001",
 ## Not Run: the call to ComprehensiveTemperatureGenerator may elapse
 ## too long time (more than 5 eseconds) and is not executed  by CRAN check.
 ## Please uncomment the following line to run the example on your own PC.
-# generation00 <-ComprehensiveTemperatureGenerator(station=vstation[16],
-# Tx_all=TEMPERATURE_MAX,Tn_all=TEMPERATURE_MIN,year_min=year_min,year_max=year_max,
-# p=p,n_GPCA_iteration=n_GPCA_iter,n_GPCA_iteration_residuals=n_GPCA_iteration_residuals,
-# sample="monthly",year_min_sim=year_min_sim,year_max_sim=year_max_sim)
-#
-#
+ generation00 <-ComprehensiveTemperatureGenerator(station=vstation[16],
+ Tx_all=TEMPERATURE_MAX,Tn_all=TEMPERATURE_MIN,year_min=year_min,year_max=year_max,
+ p=p,n_GPCA_iteration=n_GPCA_iter,n_GPCA_iteration_residuals=n_GPCA_iteration_residuals,
+ sample="monthly",year_min_sim=year_min_sim,year_max_sim=year_max_sim)
 }
 \author{
   Emanuele Cordano, Emanuele Eccel

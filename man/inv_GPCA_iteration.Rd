@@ -32,4 +32,27 @@
   Image" by V. Laparra et al.,
   \url{http://dx.doi.org/doi/10.1117/12.834011}
 }
+\examples{
+library(RMAWGEN)
+set.seed(1222)
+N <- 20
+x <- rexp(N)
+y <- x+rnorm(N)
+df <- data.frame(x=x,y=y)
+
+GPCA <- GPCA_iteration(df,extremes=TRUE)
+
+x <- rnorm(N)
+y <- x+rnorm(N)
+dfn <- data.frame(x=x,y=y)
+
+GPCAn <- GPCA_iteration(dfn,extremes=TRUE)
+
+df_out <- inv_GPCA_iteration(GPCA_iter_param=GPCA,extremes=TRUE)
+dfn_out <- inv_GPCA_iteration(GPCA_iter_param=GPCAn,extremes=TRUE)
+}
+\seealso{
+  \code{\link{GPCA}},\code{\link{GPCA_iteration}},\code{\link{inv_GPCA_iteration}},\code{\link{inv_GPCA}},\code{\link{GPCA-class}}
+  for 'GPCA' S3 class
+}
 

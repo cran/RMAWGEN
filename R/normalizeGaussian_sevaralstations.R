@@ -30,6 +30,22 @@ NULL
 #' @note It applies \code{\link{normalizeGaussian}} for each column of \code{x} and \code{data}.
 #' See the R code for further details
 
+#'
+#' @examples 
+#' 
+#' library(RMAWGEN) 
+#' N <- 30
+#' x <- rexp(N)
+#' y <- x+rnorm(N)
+#' df <- data.frame(x=x,y=y)
+#' 
+#' dfg <- normalizeGaussian_severalstations(df,data=df,extremes=TRUE,inverse=FALSE)
+#' 
+#' dfi <- normalizeGaussian_severalstations(dfg,data=df,extremes=TRUE,inverse=TRUE)
+#' 
+#' 
+#'  
+#' 
 
 
 

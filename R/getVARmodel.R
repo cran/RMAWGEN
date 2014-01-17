@@ -22,7 +22,7 @@ NULL
 #' @param n_GPCA_iteration_residuals number of iterations of Gaussianization process for data. Default is 0 (no Gaussianization)
 #' @param extremes  see \code{\link{normalizeGaussian_severalstations}} and \code{\link{GPCA}}
 #' 
-#' 
+#' @import vars
 #' @export
 #' 
 #' @note  It inherits input parameters of \code{\link{VAR}}, \code{\link{VARselect}} and \code{\link{addsuffixes}}. The variable \code{data} contains the measured data on which the vector auto-regressive models is estimated.

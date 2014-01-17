@@ -7,6 +7,9 @@ NULL
 #' @param ...   passed arguments  
 #' 
 #' @export
+#' 
+#' @import methods
+#' 
 #' @rdname print
 #' @method print GPCA
 #' @S3method print GPCA

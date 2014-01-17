@@ -1,8 +1,8 @@
 \name{qqplot_RMAWGEN_Tx}
-\alias{qqplot_RMAWGEN_deltaT}
-\alias{qqplot_RMAWGEN_prec}
 \alias{qqplot_RMAWGEN_Tn}
 \alias{qqplot_RMAWGEN_Tx}
+\alias{qqplot_RMAWGEN_deltaT}
+\alias{qqplot_RMAWGEN_prec}
 \title{It makes the Q-Q plots observed vs generated time series of daily maximum, minimum temperature and daily thermal range for a list of collected stochastic generations}
 \usage{
   qqplot_RMAWGEN_Tx(Tx_mes, Tx_gen, Tn_gen, Tn_mes,

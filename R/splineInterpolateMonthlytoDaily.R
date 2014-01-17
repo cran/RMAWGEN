@@ -22,8 +22,10 @@ NULL
 splineInterpolateMonthlytoDaily <-
 function(nday=365,val=as.matrix(cbind(1*(0.5:11.5)*nday/12,2*(0.5:11.5)*nday/12)),origin="1961-1-1",first_row=1,last_row=nday,no_spline=FALSE,no_mean=FALSE) {
 	
+
+
 	nmonth=nrow(val)
-	
+
 	
 	frac <- as.double(nday/nmonth)
 	x <- ((1:nmonth)-0.5)*frac

@@ -20,6 +20,26 @@ NULL
 #' 
 #' 
 #' @note This function is based on equation (1) of "PCA Gaussianization for One-Class Remote Sensing Image" by V. Laparra et al.,  \url{www.uv.es/lapeva/papers/SPIE09_one_class.pdf} and  \url{http://dx.doi.org/doi/10.1117/12.834011} 
+#' 
+#' @seealso \code{\link{GPCA}},\code{\link{GPCA_iteration}},\code{\link{inv_GPCA_iteration}},\code{\link{inv_GPCA}}
+#' @examples 
+#' library(RMAWGEN)
+#' set.seed(1222)
+#' N <- 20
+#' x <- rexp(N)
+#' y <- x+rnorm(N)
+#' df <- data.frame(x=x,y=y)
+#' 
+#' GPCA <- GPCA_iteration(df,extremes=TRUE)
+#' 
+#' x <- rnorm(N)
+#' y <- x+rnorm(N)
+#' dfn <- data.frame(x=x,y=y)
+#' 
+#' GPCAn <- GPCA_iteration(dfn,extremes=TRUE)
+#' 
+#' 
+
 
 GPCA_iteration <- function (x_prev,extremes=TRUE) {
 	

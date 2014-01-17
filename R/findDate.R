@@ -15,7 +15,7 @@ NULL
 #' 
 #'  @author  Emanuele Cordano, Emanuele Eccel
 #'    
-#'   
+#' @import date 
 #'
 #'         
 #' 

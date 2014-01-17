@@ -19,7 +19,7 @@ NULL
 #'
 #' @return   a matrix containing the requested monthly means where each month corresponds to a row and each station corresponds to a column or a list of such matrices in case the monthly mean values are calculated separately for each year (if \code{yearly} is \code{TRUE})
 #'      
-#' 
+#' @import date
 #' 
 #' @seealso \code{\link{extractyears}}
 #' 
@@ -78,6 +78,8 @@ function(data,year_min=1961,year_max=1990,station=names(data),no_date=FALSE,orig
 			im <- (data$year<=year_max) & (data$year>=year_min) & (data$month==r)
 			for (c in 1:nstation) {
 				var <- data[im,station[c]]
+			
+				
 	# The above line repleces according to 'subset' help page warnings: var <- subset(data,year<=year_max & year>=year_min & month==r,select=station[c])
 		
 				out[r,c] <- mean(var[!is.na(var)])

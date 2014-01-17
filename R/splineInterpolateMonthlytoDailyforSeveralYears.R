@@ -18,6 +18,8 @@ NULL
 #' 
 #' @export 
 #' 
+#' @import chron 
+#' 
 #' @seealso \code{\link{spline}},\code{\link{splineInterpolateMonthlytoDaily}}
 #' 
 #' @author Emanuele Cordano, Emanuele Eccel
@@ -30,6 +32,7 @@ NULL
 
 splineInterpolateMonthlytoDailyforSeveralYears <-
 function(val,start_year=2010,nyear=1,leap=TRUE,offset=2,no_spline=FALSE,yearly=FALSE) {
+	
 	
 	
 	

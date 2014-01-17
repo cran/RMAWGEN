@@ -1,6 +1,6 @@
 \name{GPCA}
 \alias{GPCA}
-\title{This function makes a Gaussianization procedure besad on PCA iteration ( see \code{\link{GPCA_iteration}})}
+\title{This function makes a Gaussianization procedure based on PCA iteration ( see \code{\link{GPCA_iteration}})}
 \usage{
   GPCA(x_prev, n = 30, extremes = TRUE)
 }
@@ -21,7 +21,7 @@
   \code{final_results})
 }
 \description{
-  This function makes a Gaussianization procedure besad on
+  This function makes a Gaussianization procedure based on
   PCA iteration ( see \code{\link{GPCA_iteration}})
 }
 \note{
@@ -30,10 +30,28 @@
   Laparra et al.,
   \url{http://dx.doi.org/doi/10.1117/12.834011}
 }
+\examples{
+library(RMAWGEN)
+set.seed(1222)
+nIterations <- 30
+N <- 20
+x <- rexp(N)
+y <- x+rnorm(N)
+df <- data.frame(x=x,y=y)
+
+GPCA <- GPCA(df,n=nIterations,extremes=TRUE)
+
+x <- rnorm(N)
+y <- x+rnorm(N)
+dfn <- data.frame(x=x,y=y)
+
+GPCAn <- GPCA(dfn,n=nIterations,extremes=TRUE)
+}
 \author{
   Emanuele Cordano
 }
 \seealso{
-  \code{\link{GPCA-class}} for 'GPCA' S3 class
+  \code{\link{GPCA}},\code{\link{GPCA_iteration}},\code{\link{inv_GPCA_iteration}},\code{\link{inv_GPCA}},\code{\link{GPCA-class}}
+  for 'GPCA' S3 class
 }
 

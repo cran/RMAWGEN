@@ -115,8 +115,14 @@ function(station,
 	
 	Tn_mes <- as.data.frame(extractyears(Tn_all,year_min=year_min,year_max=year_max,station=station))
 	Tx_mes <- as.data.frame(extractyears(Tx_all,year_min=year_min,year_max=year_max,station=station))
+	
+	names(Tn_mes) <- station
+	names(Tx_mes) <- station 
+	
 	Tm_mes <- (Tn_mes+Tx_mes)/2.0
 	DeltaT_mes <- Tx_mes-Tn_mes
+	
+	
 	
 	if (!is.monthly.climate(mean_climate_Tx,nstation=length(station),nmonth=nmonth,verbose=verbose)) mean_climate_Tx <- getMonthlyMean(as.data.frame(Tx_mes),year_min=year_min,year_max=year_max,station=station,no_date=TRUE,origin=origin,yearly=yearly)
 	if (!is.monthly.climate(mean_climate_Tn,nstation=length(station),nmonth=nmonth,verbose=verbose)) mean_climate_Tn <- getMonthlyMean(as.data.frame(Tn_mes),year_min=year_min,year_max=year_max,station=station,no_date=TRUE,origin=origin,yearly=yearly)
