@@ -2,7 +2,7 @@
 \alias{extractTxFromAnomalies}
 \title{Extracts generated time series of Daily Maximum Temperature from a random multi-realization obtained by \code{\link{generateTemperatureTimeseries}} function}
 \usage{
-  extractTxFromAnomalies(res_multigen, std, SplineAdv)
+extractTxFromAnomalies(res_multigen, std, SplineAdv)
 }
 \arguments{
   \item{res_multigen}{matrix containing standardized values
@@ -17,14 +17,14 @@
   monthly climate}
 }
 \value{
-  a matrix with generated maximum temperature
+a matrix with generated maximum temperature
 }
 \description{
-  Extracts generated time series of Daily Maximum
-  Temperature from a random multi-realization obtained by
-  \code{\link{generateTemperatureTimeseries}} function
+Extracts generated time series of Daily Maximum Temperature
+from a random multi-realization obtained by
+\code{\link{generateTemperatureTimeseries}} function
 }
 \author{
-  Emanuele Cordano, Emanuele Eccel
+Emanuele Cordano, Emanuele Eccel
 }
 

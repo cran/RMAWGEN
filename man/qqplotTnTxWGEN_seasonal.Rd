@@ -2,11 +2,10 @@
 \alias{qqplotTnTxWGEN_seasonal}
 \title{Makes four seasonal qqplots  (winter, spring, summer and autumn) of measured and simulated data for several stations.}
 \usage{
-  qqplotTnTxWGEN_seasonal(measured, simulated,
-    origin = "1961-1-1", xlab = "simulated[degC]",
-    ylab = "measured[degC]",
-    titles = c("Q-Qplot_An._Tx", "Q-Qplot_An._Tn"),
-    directorypdf, station = NULL)
+qqplotTnTxWGEN_seasonal(measured, simulated, origin = "1961-1-1",
+  xlab = "simulated[degC]", ylab = "measured[degC]",
+  titles = c("Q-Qplot_An._Tx", "Q-Qplot_An._Tn"), directorypdf,
+  station = NULL)
 }
 \arguments{
   \item{measured}{matrix containing measured data (each
@@ -33,22 +32,22 @@
   information}
 }
 \value{
-  0 in case of success
+0 in case of success
 }
 \description{
-  Makes four seasonal qqplots (winter, spring, summer and
-  autumn) of measured and simulated data for several
-  stations.
+Makes four seasonal qqplots (winter, spring, summer and
+autumn) of measured and simulated data for several
+stations.
 }
 \note{
-  Uses \code{\link{qqplotTnTxWGEN}} for each seasons of
-  collected data and saves the output on pdf files. See the
-  R code for further details.
+Uses \code{\link{qqplotTnTxWGEN}} for each seasons of
+collected data and saves the output on pdf files. See the R
+code for further details.
 }
 \author{
-  Emanuele Cordano, Emanuele Eccel
+Emanuele Cordano, Emanuele Eccel
 }
 \seealso{
-  \code{\link{qqplotTnTxWGEN}},\code{\link{extractmonths}}
+\code{\link{qqplotTnTxWGEN}},\code{\link{extractmonths}}
 }
 

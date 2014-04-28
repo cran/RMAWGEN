@@ -2,8 +2,7 @@
 \alias{acvWGEN}
 \title{Plots the auto- and cross- covariance functions between measured and simulated data for several stations}
 \usage{
-  acvWGEN(measured, simulated, titles = c("Sim.", "Mes."),
-    station = NULL)
+acvWGEN(measured, simulated, titles = c("Sim.", "Mes."), station = NULL)
 }
 \arguments{
   \item{measured}{matrix containing measured time series}
@@ -20,16 +19,16 @@
   "measured") are applied}
 }
 \value{
-  0 in case of success
+0 in case of success
 }
 \description{
-  Plots the auto- and cross- covariance functions between
-  measured and simulated data for several stations
+Plots the auto- and cross- covariance functions between
+measured and simulated data for several stations
 }
 \note{
-  It uses \code{\link{acf}} function
+It uses \code{\link{acf}} function
 }
 \author{
-  Emanuele Cordano, Emanuele Eccel
+Emanuele Cordano, Emanuele Eccel
 }
 

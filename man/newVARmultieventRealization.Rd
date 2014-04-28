@@ -2,10 +2,9 @@
 \alias{newVARmultieventRealization}
 \title{Generates several realizations of a VAR model}
 \usage{
-  newVARmultieventRealization(var,
-    xprev = rnorm(var@VAR$K * var@VAR$p), exogen = NULL,
-    nrealization = 10, B = t(chol(cov(residuals(var)))),
-    extremes = TRUE, type = 3, noise = NULL)
+newVARmultieventRealization(var, xprev = rnorm(var@VAR$K * var@VAR$p),
+  exogen = NULL, nrealization = 10, B = t(chol(cov(residuals(var)))),
+  extremes = TRUE, type = 3, noise = NULL)
 }
 \arguments{
   \item{var}{A VAR model represented by a \code{varest2}
@@ -36,12 +35,12 @@
   into account.}
 }
 \value{
-  a matrix of values
+a matrix of values
 }
 \description{
-  Generates several realizations of a VAR model
+Generates several realizations of a VAR model
 }
 \author{
-  Emanuele Cordano, Emanuele Eccel
+Emanuele Cordano, Emanuele Eccel
 }
 

@@ -2,11 +2,10 @@
 \alias{plotDailyClimate}
 \title{Plots daily climatology through one year}
 \usage{
-  plotDailyClimate(data,
-    title = "Daily_Avereged_Temperture_in_one_year",
-    origin = "1961-1-1", when = "1979-1-1",
-    ylab = "Temperature [degC]", xlab = "Time [days]",
-    nday = 365, bicolor = FALSE, col = "black", lwd = 1)
+plotDailyClimate(data, title = "Daily_Avereged_Temperture_in_one_year",
+  origin = "1961-1-1", when = "1979-1-1", ylab = "Temperature [degC]",
+  xlab = "Time [days]", nday = 365, bicolor = FALSE, col = "black",
+  lwd = 1)
 }
 \arguments{
   \item{data}{matrix whose columns contain daily-averaged
@@ -30,12 +29,12 @@
   blue and red colors respectively.}
 }
 \value{
-  a matrix containing the plotted variables
+a matrix containing the plotted variables
 }
 \description{
-  Plots daily climatology through one year
+Plots daily climatology through one year
 }
 \author{
-  Emanuele Cordano, Emanuele Eccel
+Emanuele Cordano, Emanuele Eccel
 }
 

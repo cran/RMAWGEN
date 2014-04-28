@@ -2,10 +2,9 @@
 \alias{splineInterpolateMonthlytoDaily}
 \title{Interpolates monthly data to daily data using \code{\link{spline}}  and preserving monthly mean values}
 \usage{
-  splineInterpolateMonthlytoDaily(nday = 365,
-    val = as.matrix(cbind(1 * (0.5:11.5) * nday/12, 2 * (0.5:11.5) * nday/12)),
-    origin = "1961-1-1", first_row = 1, last_row = nday,
-    no_spline = FALSE, no_mean = FALSE)
+splineInterpolateMonthlytoDaily(nday = 365, val = as.matrix(cbind(1 *
+  (0.5:11.5) * nday/12, 2 * (0.5:11.5) * nday/12)), origin = "1961-1-1",
+  first_row = 1, last_row = nday, no_spline = FALSE, no_mean = FALSE)
 }
 \arguments{
   \item{nday}{number of days on which the daily data is
@@ -32,16 +31,16 @@
   to maintain observed mean monthly values.}
 }
 \value{
-  a matrix or data frame with interpolated daily data
+a matrix or data frame with interpolated daily data
 }
 \description{
-  Interpolates monthly data to daily data using
-  \code{\link{spline}} and preserving monthly mean values
+Interpolates monthly data to daily data using
+\code{\link{spline}} and preserving monthly mean values
 }
 \author{
-  Emanuele Cordano, Emanuele Eccel
+Emanuele Cordano, Emanuele Eccel
 }
 \seealso{
-  \code{\link{spline}},\code{\link{splineInterpolateMonthlytoDailyforSeveralYears}}
+\code{\link{spline}},\code{\link{splineInterpolateMonthlytoDailyforSeveralYears}}
 }
 

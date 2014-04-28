@@ -2,8 +2,7 @@
 \alias{NewVAReventRealization}
 \title{Generates a new realization of a VAR model}
 \usage{
-  NewVAReventRealization(var, xprev, noise, exogen = NULL,
-    B = NULL)
+NewVAReventRealization(var, xprev, noise, exogen = NULL, B = NULL)
 }
 \arguments{
   \item{var}{A VAR model represented by a \code{varest}
@@ -23,15 +22,15 @@
   white-noise component}
 }
 \value{
-  a vector of values
+a vector of values
 }
 \description{
-  Generates a new realization of a VAR model
+Generates a new realization of a VAR model
 }
 \author{
-  Emanuele Cordano, Emanuele Eccel
+Emanuele Cordano, Emanuele Eccel
 }
 \seealso{
-  \code{\link{forecastEV}},\code{\link{forecastResidual}}
+\code{\link{forecastEV}},\code{\link{forecastResidual}}
 }
 

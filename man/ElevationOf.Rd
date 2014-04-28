@@ -2,7 +2,7 @@
 \alias{ElevationOf}
 \title{Extracts the elevation of a meteorological station expressed in meters above a reference (sea level)}
 \usage{
-  ElevationOf(name, station_names, elevation)
+ElevationOf(name, station_names, elevation)
 }
 \arguments{
   \item{name}{character ID of the station}
@@ -18,18 +18,18 @@
   \code{\link{trentino}} dataset.}
 }
 \value{
-  the elevation given the vectors of station IDs and the
-  respective elevations
+the elevation given the vectors of station IDs and the
+respective elevations
 }
 \description{
-  Extracts the elevation of a meteorological station
-  expressed in meters above a reference (sea level)
+Extracts the elevation of a meteorological station
+expressed in meters above a reference (sea level)
 }
 \examples{
 data(trentino)
 ElevationOf("T0099",station_names=STATION_NAMES,elevation=ELEVATION)
 }
 \author{
-  Emanuele Cordano, Emanuele Eccel
+Emanuele Cordano, Emanuele Eccel
 }
 

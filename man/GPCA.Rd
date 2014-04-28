@@ -2,7 +2,7 @@
 \alias{GPCA}
 \title{This function makes a Gaussianization procedure based on PCA iteration ( see \code{\link{GPCA_iteration}})}
 \usage{
-  GPCA(x_prev, n = 30, extremes = TRUE)
+GPCA(x_prev, n = 30, extremes = TRUE)
 }
 \arguments{
   \item{x_prev}{previous set of the random variable
@@ -15,20 +15,20 @@
   \code{\link{normalizeGaussian_severalstations}}}
 }
 \value{
-  A \code{\link{GPCA-class}} S3 object returned by
-  \code{\link{GPCA_iteration}} at each iteration and the
-  final results of the G-PCA procedure (matrix
-  \code{final_results})
+A \code{\link{GPCA-class}} S3 object returned by
+\code{\link{GPCA_iteration}} at each iteration and the
+final results of the G-PCA procedure (matrix
+\code{final_results})
 }
 \description{
-  This function makes a Gaussianization procedure based on
-  PCA iteration ( see \code{\link{GPCA_iteration}})
+This function makes a Gaussianization procedure based on
+PCA iteration ( see \code{\link{GPCA_iteration}})
 }
 \note{
-  This function re-iterates the equation (1) of "PCA
-  Gaussianization for One-Class Remote Sensing Image" by V.
-  Laparra et al.,
-  \url{http://dx.doi.org/doi/10.1117/12.834011}
+This function re-iterates the equation (1) of "PCA
+Gaussianization for One-Class Remote Sensing Image" by V.
+Laparra et al.,
+\url{http://dx.doi.org/doi/10.1117/12.834011}
 }
 \examples{
 library(RMAWGEN)
@@ -48,10 +48,10 @@ dfn <- data.frame(x=x,y=y)
 GPCAn <- GPCA(dfn,n=nIterations,extremes=TRUE)
 }
 \author{
-  Emanuele Cordano
+Emanuele Cordano
 }
 \seealso{
-  \code{\link{GPCA}},\code{\link{GPCA_iteration}},\code{\link{inv_GPCA_iteration}},\code{\link{inv_GPCA}},\code{\link{GPCA-class}}
-  for 'GPCA' S3 class
+\code{\link{GPCA}},\code{\link{GPCA_iteration}},\code{\link{inv_GPCA_iteration}},\code{\link{inv_GPCA}},\code{\link{GPCA-class}}
+for 'GPCA' S3 class
 }
 

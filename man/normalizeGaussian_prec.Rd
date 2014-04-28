@@ -3,9 +3,9 @@
 \title{Converts precipitation values to "Gaussinized" normally-distributed values taking into account the probability of no precipitation occurences. values
 or vice versa in case \code{inverse} is \code{TRUE}}
 \usage{
-  normalizeGaussian_prec(x = 0, data = x, cpf = NULL,
-    mean = 0, sd = 1, inverse = FALSE, type = 3,
-    extremes = TRUE, sample = NULL, qnull = 0, valmin = 1)
+normalizeGaussian_prec(x = 0, data = x, cpf = NULL, mean = 0, sd = 1,
+  inverse = FALSE, type = 3, extremes = TRUE, sample = NULL,
+  qnull = 0, valmin = 1)
 }
 \arguments{
   \item{x}{value or vector of values to be converted}
@@ -44,17 +44,17 @@ or vice versa in case \code{inverse} is \code{TRUE}}
   information. Default is \code{NULL}}
 }
 \value{
-  the normalized variable or its inverse
+the normalized variable or its inverse
 }
 \description{
-  Converts precipitation values to "Gaussinized"
-  normally-distributed values taking into account the
-  probability of no precipitation occurences. values or
-  vice versa in case \code{inverse} is \code{TRUE}
+Converts precipitation values to "Gaussinized"
+normally-distributed values taking into account the
+probability of no precipitation occurences. values or vice
+versa in case \code{inverse} is \code{TRUE}
 }
 \note{
-  In the version 1.2.5 of \pkg{RMAWGEN} This function is
-  deprecated and not used.
+In the version 1.2.5 of \pkg{RMAWGEN} This function is
+deprecated and not used.
 }
 \examples{
 library(RMAWGEN)
@@ -76,9 +76,9 @@ qqplot(x,x3)
 abline(0,1)
 }
 \author{
-  Emanuele Cordano, Emanuele Eccel
+Emanuele Cordano, Emanuele Eccel
 }
 \seealso{
-  \code{\link{normalizeGaussian}}
+\code{\link{normalizeGaussian}}
 }
 

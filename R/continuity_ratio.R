@@ -44,10 +44,10 @@ continuity_ratio <- function(data,lag=0,valmin=0.5) {
 			d1 <- data[(lagp+1):nrows,i]
 			d2 <- data[1:(nrows-lagp),j]
 			
-			e1 <- mean(d1[d1>valmin & d2>valmin],na.rm=TRUE)
-			e2 <- mean(d1[d1>valmin & d2<=valmin],na.rm=TRUE)
-			l1 <- length(d1[d1>valmin & d2>valmin])
-			l2 <- length(d1[d1>valmin & d2<=valmin])
+			e1 <- mean(d1[d2>valmin],na.rm=TRUE)## e1 <- mean(d1[d1>valmin & d2>valmin],na.rm=TRUE)
+			e2 <- mean(d1[d2<=valmin],na.rm=TRUE) ##e2 <- mean(d1[d1>valmin & d2<=valmin],na.rm=TRUE) ## something is wrong here!!!!
+			l1 <- length(d1[d2>valmin])  ##length(d1[d1>valmin & d2>valmin])
+			l2 <- length(d1[d2<=valmin]) ##length(d1[d1>valmin & d2<=valmin])
 	
 			nrowsa <- length(d1[!is.na(d1) & !is.na(d2)])
 

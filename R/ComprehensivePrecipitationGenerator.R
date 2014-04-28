@@ -99,11 +99,11 @@ NULL
 #' ## Not Run: the call to ComprehensivePrecipitationGenerator may elapse too 
 #' ## long time (more than 5 eseconds) and is not executed  by CRAN check.  
 #' ## Please uncomment the following line to run the example on your own PC. 
-#'  generation00 <- ComprehensivePrecipitationGenerator(station=station,
-#'  prec_all=PRECIPITATION,year_min=year_min,year_max=year_max,
-#'  year_min_sim=year_min_sim,year_max_sim=year_max_sim,p=p,
-#'  n_GPCA_iteration=n_GPCA_iter,n_GPCA_iteration_residuals=0,
-#'  sample="monthly",nscenario=nscenario,no_spline=TRUE)
+#' # generation00 <- ComprehensivePrecipitationGenerator(station=station,
+#' # prec_all=PRECIPITATION,year_min=year_min,year_max=year_max,
+#' # year_min_sim=year_min_sim,year_max_sim=year_max_sim,p=p,
+#' # n_GPCA_iteration=n_GPCA_iter,n_GPCA_iteration_residuals=0,
+#' # sample="monthly",nscenario=nscenario,no_spline=TRUE)
 #' 
 #' #
 #' 

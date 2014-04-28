@@ -2,7 +2,7 @@
 \alias{PrecipitationStartDay}
 \title{Gets the first day in a precipitation time series, expressed in decimal julian days since 1970-1-1 00:00 UTC}
 \usage{
-  PrecipitationStartDay(name, station_names, start_day)
+PrecipitationStartDay(name, station_names, start_day)
 }
 \arguments{
   \item{name}{character ID of the station}
@@ -18,13 +18,13 @@
   \code{\link{trentino}} dataset.}
 }
 \value{
-  the precipitation measurement start day given the vectors
-  of station IDs and the respective precipitation
-  measurement start days
+the precipitation measurement start day given the vectors
+of station IDs and the respective precipitation measurement
+start days
 }
 \description{
-  Gets the first day in a precipitation time series,
-  expressed in decimal julian days since 1970-1-1 00:00 UTC
+Gets the first day in a precipitation time series,
+expressed in decimal julian days since 1970-1-1 00:00 UTC
 }
 \examples{
 data(trentino)
@@ -33,6 +33,6 @@ PrecipitationStartDay("T0099",
      start_day=PRECIPITATION_MEASUREMENT_START_DAY)
 }
 \author{
-  Emanuele Cordano
+Emanuele Cordano
 }
 

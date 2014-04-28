@@ -2,7 +2,7 @@
 \alias{rescaling_monthly}
 \title{This function adjusts the monthly mean to a daily weather dataset (e. g. spline-interpolated temperature)}
 \usage{
-  rescaling_monthly(data, val, origin = "1961-1-1")
+rescaling_monthly(data, val, origin = "1961-1-1")
 }
 \arguments{
   \item{data}{data frame of wheather variables)}
@@ -14,20 +14,20 @@
   date of the first day of \code{data}}
 }
 \value{
-  A data frame with data of \code{data} rescaled with
-  \code{val} for each month
+A data frame with data of \code{data} rescaled with
+\code{val} for each month
 }
 \description{
-  This function adjusts the monthly mean to a daily weather
-  dataset (e. g. spline-interpolated temperature)
+This function adjusts the monthly mean to a daily weather
+dataset (e. g. spline-interpolated temperature)
 }
 \note{
-  It uses \code{\link{months}} and \code{\link{julian}}
+It uses \code{\link{months}} and \code{\link{julian}}
 }
 \author{
-  Emanuele Cordano
+Emanuele Cordano
 }
 \seealso{
-  \code{\link{extractdays}}
+\code{\link{extractdays}}
 }
 

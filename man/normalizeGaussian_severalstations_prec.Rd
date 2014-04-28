@@ -3,10 +3,9 @@
 \title{DEPRECATED Converts several samples \code{x} random variable (daily precipitation values) extracted by populations represented by the columns of \code{data} respectively or \code{sample}
  to a normally-distributed samples with assinged mean and standard deviation or vice versa in case \code{inverse} is \code{TRUE} using the function \code{\link{normalizeGaussian_prec}}}
 \usage{
-  normalizeGaussian_severalstations_prec(x, data = x,
-    cpf = NULL, mean = 0, sd = 1, inverse = FALSE,
-    qnull = NULL, valmin = 0.5, type = 3, extremes = TRUE,
-    sample = NULL, origin_x = NULL, origin_data = NULL)
+normalizeGaussian_severalstations_prec(x, data = x, cpf = NULL, mean = 0,
+  sd = 1, inverse = FALSE, qnull = NULL, valmin = 0.5, type = 3,
+  extremes = TRUE, sample = NULL, origin_x = NULL, origin_data = NULL)
 }
 \arguments{
   \item{x}{value to be converted}
@@ -51,26 +50,26 @@
   \code{data}}
 }
 \value{
-  a matrix or a data.frame with the normalized variable or
-  its inverse
+a matrix or a data.frame with the normalized variable or
+its inverse
 }
 \description{
-  DEPRECATED Converts several samples \code{x} random
-  variable (daily precipitation values) extracted by
-  populations represented by the columns of \code{data}
-  respectively or \code{sample} to a normally-distributed
-  samples with assinged mean and standard deviation or vice
-  versa in case \code{inverse} is \code{TRUE} using the
-  function \code{\link{normalizeGaussian_prec}}
+DEPRECATED Converts several samples \code{x} random
+variable (daily precipitation values) extracted by
+populations represented by the columns of \code{data}
+respectively or \code{sample} to a normally-distributed
+samples with assinged mean and standard deviation or vice
+versa in case \code{inverse} is \code{TRUE} using the
+function \code{\link{normalizeGaussian_prec}}
 }
 \note{
-  In the version 1.2.5 of \pkg{RMAWGEN} This function is
-  deprecated and not used.
+In the version 1.2.5 of \pkg{RMAWGEN} This function is
+deprecated and not used.
 }
 \author{
-  Emanuele Cordano, Emanuele Eccel
+Emanuele Cordano, Emanuele Eccel
 }
 \seealso{
-  \code{\link{normalizeGaussian_prec}}
+\code{\link{normalizeGaussian_prec}}
 }
 

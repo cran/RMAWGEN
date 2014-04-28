@@ -2,12 +2,10 @@
 \alias{generateTemperatureTimeseries}
 \title{Returns time series of Daily Maximum and Minimum with a random multi-realization obtained by using \code{\link{newVARmultieventRealization}}. This function is called by  \code{\link{ComprehensiveTemperatureGenerator}}.}
 \usage{
-  generateTemperatureTimeseries(std_tn, std_tx, SplineTx,
-    SplineTn, SplineTm, SplineDeltaT, std_tm, var = NULL,
-    exogen = NULL, normalize = TRUE, type = 3,
-    extremes = TRUE, sample = NULL, option = 1,
-    original_data, origin_x = NULL, origin_data = NULL,
-    noise = NULL)
+generateTemperatureTimeseries(std_tn, std_tx, SplineTx, SplineTn, SplineTm,
+  SplineDeltaT, std_tm, var = NULL, exogen = NULL, normalize = TRUE,
+  type = 3, extremes = TRUE, sample = NULL, option = 1, original_data,
+  origin_x = NULL, origin_data = NULL, noise = NULL)
 }
 \arguments{
   \item{std_tn}{vector containing standard deviation of
@@ -76,42 +74,41 @@
   \code{\link{newVARmultieventRealization}}.}
 }
 \value{
-  This function returns a list of the following variables:
+This function returns a list of the following variables:
 
-  \code{res_multigen} matrix containing standardized values
-  of daily maximum and minimum temperature anomalies
+\code{res_multigen} matrix containing standardized values
+of daily maximum and minimum temperature anomalies
 
-  \code{Tx_spline} matrix containing climatic
-  "spline-interpolated" daily maximum temperature
+\code{Tx_spline} matrix containing climatic
+"spline-interpolated" daily maximum temperature
 
-  \code{Tn_spine} matrix containing climatic
-  "spline-interpolated" daily minimum temperature
+\code{Tn_spine} matrix containing climatic
+"spline-interpolated" daily minimum temperature
 
-  \code{Tx_gen} matrix containing generated daily maximum
-  daily temperature (\eqn{Tx_{gen}})
+\code{Tx_gen} matrix containing generated daily maximum
+daily temperature (\eqn{Tx_{gen}})
 
-  \code{Tn_gen} matrix containing generated daily minimum
-  daily temperature (\eqn{Tn_{gen}})
+\code{Tn_gen} matrix containing generated daily minimum
+daily temperature (\eqn{Tn_{gen}})
 
-  \code{Tm_gen} matrix containing generated "mean" daily
-  temperature defined as \eqn{\frac{Tx_{gen}+Tn_{gen}}{2}}
+\code{Tm_gen} matrix containing generated "mean" daily
+temperature defined as \eqn{\frac{Tx_{gen}+Tn_{gen}}{2}}
 
-  \code{DeltaT_gen} matrix containing generated daily
-  thermal range defined as \eqn{Tx_{gen}-Tn_{gen}}
+\code{DeltaT_gen} matrix containing generated daily thermal
+range defined as \eqn{Tx_{gen}-Tn_{gen}}
 
-  See the R code for further details
+See the R code for further details
 }
 \description{
-  Returns time series of Daily Maximum and Minimum with a
-  random multi-realization obtained by using
-  \code{\link{newVARmultieventRealization}}. This function
-  is called by
-  \code{\link{ComprehensiveTemperatureGenerator}}.
+Returns time series of Daily Maximum and Minimum with a
+random multi-realization obtained by using
+\code{\link{newVARmultieventRealization}}. This function is
+called by \code{\link{ComprehensiveTemperatureGenerator}}.
 }
 \author{
-  Emanuele Cordano, Emanuele Eccel
+Emanuele Cordano, Emanuele Eccel
 }
 \seealso{
-  \code{\link{newVARmultieventRealization}},\code{\link{normalizeGaussian_severalstations}}
+\code{\link{newVARmultieventRealization}},\code{\link{normalizeGaussian_severalstations}}
 }
 

@@ -2,9 +2,9 @@
 \alias{getMonthlyMean}
 \title{Calculates the monthly means of a data frame corresponding to a period between \code{year_min} and \code{year_max}  for stations listed in \code{station}}
 \usage{
-  getMonthlyMean(data, year_min = 1961, year_max = 1990,
-    station = names(data), no_date = FALSE,
-    origin = "1961-1-1", yearly = FALSE)
+getMonthlyMean(data, year_min = 1961, year_max = 1990,
+  station = names(data), no_date = FALSE, origin = "1961-1-1",
+  yearly = FALSE)
 }
 \arguments{
   \item{data}{a dataframe containing daily data.}
@@ -29,32 +29,32 @@
   \item{origin}{date corresponding to the first row}
 }
 \value{
-  a matrix containing the requested monthly means where
-  each month corresponds to a row and each station
-  corresponds to a column or a list of such matrices in
-  case the monthly mean values are calculated separately
-  for each year (if \code{yearly} is \code{TRUE})
+a matrix containing the requested monthly means where each
+month corresponds to a row and each station corresponds to
+a column or a list of such matrices in case the monthly
+mean values are calculated separately for each year (if
+\code{yearly} is \code{TRUE})
 }
 \description{
-  Calculates the monthly means of a data frame
-  corresponding to a period between \code{year_min} and
-  \code{year_max} for stations listed in \code{station}
+Calculates the monthly means of a data frame corresponding
+to a period between \code{year_min} and \code{year_max} for
+stations listed in \code{station}
 }
 \note{
-  The input data frame \code{data} must have the following
-  fields:
-  \code{year,month,day,variables_ID1,variables_ID2,...}
-  where the fields \code{,variables_ID1,variables_ID2,...}
-  contain the daily variables referred to the respective
-  stations and the field names are replaced with the
-  respective station ID. In case \code{yearly} is
-  \code{TRUE} the returned output is a list of matrices
-  whose names are the corresponding year.
+The input data frame \code{data} must have the following
+fields:
+\code{year,month,day,variables_ID1,variables_ID2,...} where
+the fields \code{,variables_ID1,variables_ID2,...} contain
+the daily variables referred to the respective stations and
+the field names are replaced with the respective station
+ID. In case \code{yearly} is \code{TRUE} the returned
+output is a list of matrices whose names are the
+corresponding year.
 }
 \author{
-  Emanuele Cordano, Emanuele Eccel
+Emanuele Cordano, Emanuele Eccel
 }
 \seealso{
-  \code{\link{extractyears}}
+\code{\link{extractyears}}
 }
 

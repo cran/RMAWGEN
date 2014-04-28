@@ -2,7 +2,7 @@
 \alias{normality_test}
 \title{\code{normality.test} method for \code{varest2} object}
 \usage{
-  normality_test(object, ...)
+normality_test(object, ...)
 }
 \arguments{
   \item{object}{a \code{varest2} object}
@@ -10,9 +10,9 @@
   \item{...}{passed arguments}
 }
 \description{
-  \code{normality.test} method for \code{varest2} object
+\code{normality.test} method for \code{varest2} object
 }
 \seealso{
-  \code{\link{normality.test}}
+\code{\link{normality.test}}
 }
 

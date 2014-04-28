@@ -2,7 +2,7 @@
 \alias{extractTnFromAnomalies}
 \title{Extracts generated time series of Daily Minimum Temperature from a random multi-realization obtained by \code{\link{generateTemperatureTimeseries}} function}
 \usage{
-  extractTnFromAnomalies(res_multigen, std, SplineAdv)
+extractTnFromAnomalies(res_multigen, std, SplineAdv)
 }
 \arguments{
   \item{res_multigen}{matrix containing standardized values
@@ -17,14 +17,14 @@
   interpolation of the monthly climate}
 }
 \value{
-  a matrix with generated minimum temperature
+a matrix with generated minimum temperature
 }
 \description{
-  Extracts generated time series of Daily Minimum
-  Temperature from a random multi-realization obtained by
-  \code{\link{generateTemperatureTimeseries}} function
+Extracts generated time series of Daily Minimum Temperature
+from a random multi-realization obtained by
+\code{\link{generateTemperatureTimeseries}} function
 }
 \author{
-  Emanuele Cordano, Emanuele Eccel
+Emanuele Cordano, Emanuele Eccel
 }
 

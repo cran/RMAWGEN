@@ -2,7 +2,7 @@
 \alias{forecastResidual}
 \title{Forecasts the residual value of a VAR realization given the white noise covariance matrix}
 \usage{
-  forecastResidual(var, xprev = NULL, B = NULL)
+forecastResidual(var, xprev = NULL, B = NULL)
 }
 \arguments{
   \item{var}{A VAR model represented by a \code{varest}
@@ -17,16 +17,16 @@
   white-noise component}
 }
 \value{
-  a vector of values
+a vector of values
 }
 \description{
-  Forecasts the residual value of a VAR realization given
-  the white noise covariance matrix
+Forecasts the residual value of a VAR realization given the
+white noise covariance matrix
 }
 \author{
-  Emanuele Cordano, Emanuele Eccel
+Emanuele Cordano, Emanuele Eccel
 }
 \seealso{
-  \code{\link{forecastEV}},\code{\link{NewVAReventRealization}}
+\code{\link{forecastEV}},\code{\link{NewVAReventRealization}}
 }
 

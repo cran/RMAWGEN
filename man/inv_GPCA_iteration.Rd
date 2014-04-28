@@ -2,8 +2,8 @@
 \alias{inv_GPCA_iteration}
 \title{This function makes an inverse iteration of PCA-Gaussianization process}
 \usage{
-  inv_GPCA_iteration(x = GPCA_iter_param$x_next,
-    GPCA_iter_param, type = 3, extremes = TRUE)
+inv_GPCA_iteration(x = GPCA_iter_param$x_next, GPCA_iter_param, type = 3,
+  extremes = TRUE)
 }
 \arguments{
   \item{x}{matrix of gaussian random variale to transform}
@@ -20,17 +20,17 @@
   \code{\link{normalizeGaussian_severalstations}}}
 }
 \value{
-  the non-Gaussian random variable
+the non-Gaussian random variable
 }
 \description{
-  This function makes an inverse iteration of
-  PCA-Gaussianization process
+This function makes an inverse iteration of
+PCA-Gaussianization process
 }
 \note{
-  This function is based on the inverse of the equation (1)
-  of "PCA Gaussianization for One-Class Remote Sensing
-  Image" by V. Laparra et al.,
-  \url{http://dx.doi.org/doi/10.1117/12.834011}
+This function is based on the inverse of the equation (1)
+of "PCA Gaussianization for One-Class Remote Sensing Image"
+by V. Laparra et al.,
+\url{http://dx.doi.org/doi/10.1117/12.834011}
 }
 \examples{
 library(RMAWGEN)
@@ -52,7 +52,7 @@ df_out <- inv_GPCA_iteration(GPCA_iter_param=GPCA,extremes=TRUE)
 dfn_out <- inv_GPCA_iteration(GPCA_iter_param=GPCAn,extremes=TRUE)
 }
 \seealso{
-  \code{\link{GPCA}},\code{\link{GPCA_iteration}},\code{\link{inv_GPCA_iteration}},\code{\link{inv_GPCA}},\code{\link{GPCA-class}}
-  for 'GPCA' S3 class
+\code{\link{GPCA}},\code{\link{GPCA_iteration}},\code{\link{inv_GPCA_iteration}},\code{\link{inv_GPCA}},\code{\link{GPCA-class}}
+for 'GPCA' S3 class
 }
 

@@ -3,26 +3,26 @@
 \alias{GPCA-class}
 \title{GPCA-class}
 \description{
-  \code{GPCA} S3 class returned by \code{\link{GPCA}}
+\code{GPCA} S3 class returned by \code{\link{GPCA}}
 }
 \details{
-  \describe{ \item{list of
-  \code{GPCA_iteration}}{subsequent GPCA iterations}
+\describe{ \item{list of \code{GPCA_iteration}}{subsequent
+GPCA iterations}
 
-  \item{\code{final_results} }{data.frame or matrix of the
-  "gaussianized" data}
+\item{\code{final_results} }{data.frame or matrix of the
+"gaussianized" data}
 
-  }
+}
 }
 \note{
-  Formal definition with \code{\link{setOldClass}} for the
-  S3 class \code{GPCA}
+Formal definition with \code{\link{setOldClass}} for the S3
+class \code{GPCA}
 }
 \examples{
 showClass("GPCA")
 }
 \author{
-  Emanuele Cordano
+Emanuele Cordano
 }
 \keyword{classes}
 

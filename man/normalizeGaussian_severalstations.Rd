@@ -3,10 +3,9 @@
 \title{Converts several samples \code{x} random variable  extracted by populations represented by the columns of \code{data} respectively or \code{sample}
  to a normally-distributed samples with assinged mean and standard deviation or vice versa in case \code{inverse} is \code{TRUE}}
 \usage{
-  normalizeGaussian_severalstations(x, data = x,
-    cpf = NULL, mean = 0, sd = 1, inverse = FALSE,
-    step = NULL, prec = 10^-4, type = 3, extremes = TRUE,
-    sample = NULL, origin_x = NULL, origin_data = NULL)
+normalizeGaussian_severalstations(x, data = x, cpf = NULL, mean = 0,
+  sd = 1, inverse = FALSE, step = NULL, prec = 10^-4, type = 3,
+  extremes = TRUE, sample = NULL, origin_x = NULL, origin_data = NULL)
 }
 \arguments{
   \item{x}{value to be converted}
@@ -57,20 +56,19 @@
   \code{data}}
 }
 \value{
-  a matrix with the normalized variable or its inverse
+a matrix with the normalized variable or its inverse
 }
 \description{
-  Converts several samples \code{x} random variable
-  extracted by populations represented by the columns of
-  \code{data} respectively or \code{sample} to a
-  normally-distributed samples with assinged mean and
-  standard deviation or vice versa in case \code{inverse}
-  is \code{TRUE}
+Converts several samples \code{x} random variable extracted
+by populations represented by the columns of \code{data}
+respectively or \code{sample} to a normally-distributed
+samples with assinged mean and standard deviation or vice
+versa in case \code{inverse} is \code{TRUE}
 }
 \note{
-  It applies \code{\link{normalizeGaussian}} for each
-  column of \code{x} and \code{data}. See the R code for
-  further details
+It applies \code{\link{normalizeGaussian}} for each column
+of \code{x} and \code{data}. See the R code for further
+details
 }
 \examples{
 library(RMAWGEN)
@@ -84,9 +82,9 @@ dfg <- normalizeGaussian_severalstations(df,data=df,extremes=TRUE,inverse=FALSE)
 dfi <- normalizeGaussian_severalstations(dfg,data=df,extremes=TRUE,inverse=TRUE)
 }
 \author{
-  Emanuele Cordano, Emanuele Eccel
+Emanuele Cordano, Emanuele Eccel
 }
 \seealso{
-  \code{\link{normalizeGaussian}}
+\code{\link{normalizeGaussian}}
 }
 

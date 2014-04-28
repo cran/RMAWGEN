@@ -2,25 +2,20 @@
 \alias{ComprehensiveTemperatureGenerator}
 \title{The Comprehensive Temperature Generator}
 \usage{
-  ComprehensiveTemperatureGenerator(station = c("T0001", "T0010", "T0099"),
-    Tx_all, Tn_all, mean_climate_Tn = NULL,
-    mean_climate_Tx = NULL, Tx_spline = NULL,
-    Tn_spline = NULL, year_max = 1990, year_min = 1961,
-    leap = TRUE, nmonth = 12, verbose = TRUE, p = 1,
-    type = "none", lag.max = NULL, ic = "AIC",
-    activateVARselect = FALSE, year_max_sim = year_max,
-    year_min_sim = year_min, mean_climate_Tn_sim = NULL,
-    mean_climate_Tx_sim = NULL, Tn_spline_sim = NULL,
-    Tx_spline_sim = NULL, onlygeneration = FALSE,
-    varmodel = NULL, normalize = TRUE, type_quantile = 3,
-    sample = NULL, extremes = TRUE, option = 2,
-    yearly = FALSE, yearly_sim = yearly,
-    n_GPCA_iteration = 0,
-    n_GPCA_iteration_residuals = n_GPCA_iteration,
-    exogen = NULL, exogen_sim = exogen,
-    is_exogen_gaussian = FALSE, exogen_all = NULL,
-    exogen_all_col = station, nscenario = 1, seed = NULL,
-    noise = NULL)
+ComprehensiveTemperatureGenerator(station = c("T0001", "T0010", "T0099"),
+  Tx_all, Tn_all, mean_climate_Tn = NULL, mean_climate_Tx = NULL,
+  Tx_spline = NULL, Tn_spline = NULL, year_max = 1990, year_min = 1961,
+  leap = TRUE, nmonth = 12, verbose = TRUE, p = 1, type = "none",
+  lag.max = NULL, ic = "AIC", activateVARselect = FALSE,
+  year_max_sim = year_max, year_min_sim = year_min,
+  mean_climate_Tn_sim = NULL, mean_climate_Tx_sim = NULL,
+  Tn_spline_sim = NULL, Tx_spline_sim = NULL, onlygeneration = FALSE,
+  varmodel = NULL, normalize = TRUE, type_quantile = 3, sample = NULL,
+  extremes = TRUE, option = 2, yearly = FALSE, yearly_sim = yearly,
+  n_GPCA_iteration = 0, n_GPCA_iteration_residuals = n_GPCA_iteration,
+  exogen = NULL, exogen_sim = exogen, is_exogen_gaussian = FALSE,
+  exogen_all = NULL, exogen_all_col = station, nscenario = 1,
+  seed = NULL, noise = NULL)
 }
 \arguments{
   \item{station}{see respective input parameter on
@@ -149,29 +144,29 @@
   case that \code{nscenario>1}.}
 }
 \value{
-  A list of the following variables:
+A list of the following variables:
 
-  \code{input} list of variables returned by
-  \code{\link{setComprehensiveTemperatureGeneratorParameters}}
+\code{input} list of variables returned by
+\code{\link{setComprehensiveTemperatureGeneratorParameters}}
 
-  \code{var} varest object containing the used VAR model
-  (if useVAR is true), \code{NULL} (otherwise)
+\code{var} varest object containing the used VAR model (if
+useVAR is true), \code{NULL} (otherwise)
 
-  \code{output} list variables returned by
-  \code{\link{generateTemperatureTimeseries}} (i.e.
-  generated timeseries)
+\code{output} list variables returned by
+\code{\link{generateTemperatureTimeseries}} (i.e. generated
+timeseries)
 }
 \description{
-  The Comprehensive Temperature Generator
+The Comprehensive Temperature Generator
 }
 \note{
-  It pre-processes series and generates multi-site
-  temperature fields by using
-  \code{\link{setComprehensiveTemperatureGeneratorParameters}},\code{\link{getVARmodel}}
-  and \code{\link{generateTemperatureTimeseries}}. Detailed
-  examples can be viewed of this function in
-  \href{https://docs.google.com/file/d/0B8xDtMCnW3dJU2JIemVqMnpKTHc/edit}{this
-  presentation}.
+It pre-processes series and generates multi-site
+temperature fields by using
+\code{\link{setComprehensiveTemperatureGeneratorParameters}},\code{\link{getVARmodel}}
+and \code{\link{generateTemperatureTimeseries}}. Detailed
+examples can be viewed of this function in
+\href{https://docs.google.com/file/d/0B8xDtMCnW3dJU2JIemVqMnpKTHc/edit}{this
+presentation}.
 }
 \examples{
 data(trentino)
@@ -194,17 +189,17 @@ vstation <- c("B2440","B6130","B8570","B9100","LAVIO","POLSA","SMICH","T0001",
 ## Not Run: the call to ComprehensiveTemperatureGenerator may elapse
 ## too long time (more than 5 eseconds) and is not executed  by CRAN check.
 ## Please uncomment the following line to run the example on your own PC.
- generation00 <-ComprehensiveTemperatureGenerator(station=vstation[16],
- Tx_all=TEMPERATURE_MAX,Tn_all=TEMPERATURE_MIN,year_min=year_min,year_max=year_max,
- p=p,n_GPCA_iteration=n_GPCA_iter,n_GPCA_iteration_residuals=n_GPCA_iteration_residuals,
- sample="monthly",year_min_sim=year_min_sim,year_max_sim=year_max_sim)
+# generation00 <-ComprehensiveTemperatureGenerator(station=vstation[16],
+# Tx_all=TEMPERATURE_MAX,Tn_all=TEMPERATURE_MIN,year_min=year_min,year_max=year_max,
+# p=p,n_GPCA_iteration=n_GPCA_iter,n_GPCA_iteration_residuals=n_GPCA_iteration_residuals,
+# sample="monthly",year_min_sim=year_min_sim,year_max_sim=year_max_sim)
 }
 \author{
-  Emanuele Cordano, Emanuele Eccel
+Emanuele Cordano, Emanuele Eccel
 }
 \seealso{
-  \code{\link{setComprehensiveTemperatureGeneratorParameters}},
-  \code{\link{generateTemperatureTimeseries}}
-  ,\code{\link{generateTemperatureTimeseries}},\code{\link{splineInterpolateMonthlytoDailyforSeveralYears}}.
+\code{\link{setComprehensiveTemperatureGeneratorParameters}},
+\code{\link{generateTemperatureTimeseries}}
+,\code{\link{generateTemperatureTimeseries}},\code{\link{splineInterpolateMonthlytoDailyforSeveralYears}}.
 }
 

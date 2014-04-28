@@ -19,14 +19,14 @@
 #' software is distributed as a Free Software with General Public License (GPL) and is available on CRAN website.
 #' (\url{http://cran.r-project.org/web/packages/RMAWGEN/index.html}) .
 #' A presentation of the package is available on \url{https://docs.google.com/file/d/0B8xDtMCnW3dJU2JIemVqMnpKTHc/edit}.
-#' 
+#' Example script files about package usage are available on \url{https://github.com/ecor/RMAWGENCodeCorner}.
 
 #'
 #' \tabular{ll}{
 #' Package: \tab RMAWGEN\cr
 #' Type: \tab Package\cr
 #' Version: \tab 1.2.6\cr
-#' Date: \tab   2014-01-17\cr
+#' Date: \tab   2014-04-27\cr
 #' License: \tab GPL (>= 2)
 #'  
 

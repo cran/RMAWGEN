@@ -2,7 +2,7 @@
 \alias{PrecipitationEndDay}
 \title{Gets the last day in a precipitation time series, expressed in decimal julian days since 1970-1-1 00:00 UTC}
 \usage{
-  PrecipitationEndDay(name, station_names, end_day)
+PrecipitationEndDay(name, station_names, end_day)
 }
 \arguments{
   \item{name}{charcacter ID of the station}
@@ -17,18 +17,18 @@
   defined in \code{\link{trentino}}.}
 }
 \value{
-  the precipitation measurement end day given the vectors
-  of station IDs and the precipitation measurement end days
+the precipitation measurement end day given the vectors of
+station IDs and the precipitation measurement end days
 }
 \description{
-  Gets the last day in a precipitation time series,
-  expressed in decimal julian days since 1970-1-1 00:00 UTC
+Gets the last day in a precipitation time series, expressed
+in decimal julian days since 1970-1-1 00:00 UTC
 }
 \examples{
 data(trentino)
 PrecipitationEndDay("T0099",station_names=STATION_NAMES,end_day=PRECIPITATION_MEASUREMENT_END_DAY)
 }
 \author{
-  Emanuele Cordano, Emanuele Eccel
+Emanuele Cordano, Emanuele Eccel
 }
 

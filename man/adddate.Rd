@@ -2,7 +2,7 @@
 \alias{adddate}
 \title{Inserts three columns (year,month,day) passing dates  to a matrix or to a dataframe}
 \usage{
-  adddate(data, origin = "1961-1-1")
+adddate(data, origin = "1961-1-1")
 }
 \arguments{
   \item{data}{matrix of daily data}
@@ -11,16 +11,16 @@
   first row of \code{data} as YYYY-MM-DD}
 }
 \value{
-  a data frame with dates and \code{data} values
+a data frame with dates and \code{data} values
 }
 \description{
-  Inserts three columns (year,month,day) passing dates to a
-  matrix or to a dataframe
+Inserts three columns (year,month,day) passing dates to a
+matrix or to a dataframe
 }
 \author{
-  Emanuele Cordano, Emanuele Eccel
+Emanuele Cordano, Emanuele Eccel
 }
 \seealso{
-  \code{\link{findDate}}
+\code{\link{findDate}}
 }
 

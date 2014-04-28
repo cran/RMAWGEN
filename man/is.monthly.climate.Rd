@@ -2,8 +2,7 @@
 \alias{is.monthly.climate}
 \title{Verifies if 'climate' represents the monthly climatology in one year, i.e  'climate' is monthly.climate type matrix whose rows represent months and each column represents a station. It is also used in \code{\link{setComprehensiveTemperatureGeneratorParameters}}.}
 \usage{
-  is.monthly.climate(climate, nstation = 3, nmonth = 12,
-    verbose = TRUE)
+is.monthly.climate(climate, nstation = 3, nmonth = 12, verbose = TRUE)
 }
 \arguments{
   \item{climate}{matrix containing the 'monthly
@@ -22,20 +21,20 @@
   if is \code{TRUE}.}
 }
 \value{
-  A logical variable if the matrix 'climate' is
-  monthly.climate type
+A logical variable if the matrix 'climate' is
+monthly.climate type
 }
 \description{
-  Verifies if 'climate' represents the monthly climatology
-  in one year, i.e 'climate' is monthly.climate type matrix
-  whose rows represent months and each column represents a
-  station. It is also used in
-  \code{\link{setComprehensiveTemperatureGeneratorParameters}}.
+Verifies if 'climate' represents the monthly climatology in
+one year, i.e 'climate' is monthly.climate type matrix
+whose rows represent months and each column represents a
+station. It is also used in
+\code{\link{setComprehensiveTemperatureGeneratorParameters}}.
 }
 \author{
-  Emanuele Cordano, Emanuele Eccel
+Emanuele Cordano, Emanuele Eccel
 }
 \seealso{
-  \code{\link{setComprehensiveTemperatureGeneratorParameters}}
+\code{\link{setComprehensiveTemperatureGeneratorParameters}}
 }
 

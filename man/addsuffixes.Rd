@@ -2,8 +2,8 @@
 \alias{addsuffixes}
 \title{Adds suffixes for daily maximum and minimum temperature to the names of a column data frame}
 \usage{
-  addsuffixes(names = c("T0001", "T0099", "T0001", "T0099"),
-    suffix = c("_Tx", "_Tn"), sep = "")
+addsuffixes(names = c("T0001", "T0099", "T0001", "T0099"), suffix = c("_Tx",
+  "_Tn"), sep = "")
 }
 \arguments{
   \item{names}{a character string vector with column names}
@@ -14,23 +14,23 @@
   \item{sep}{separation element}
 }
 \value{
-  the vector of names with suffixes added
+the vector of names with suffixes added
 }
 \description{
-  Adds suffixes for daily maximum and minimum temperature
-  to the names of a column data frame
+Adds suffixes for daily maximum and minimum temperature to
+the names of a column data frame
 }
 \details{
-  This function is used for data frames with duplicated
-  field names
+This function is used for data frames with duplicated field
+names
 }
 \examples{
 names <- addsuffixes()
 }
 \author{
-  Emanuele Cordano, Emanuele Eccel
+Emanuele Cordano, Emanuele Eccel
 }
 \seealso{
-  \code{\link{getVARmodel}}
+\code{\link{getVARmodel}}
 }
 

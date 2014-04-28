@@ -2,12 +2,11 @@
 \alias{getVARmodel}
 \title{Either creates a VAR model or chooses a VAR model by using VAR or VARselect commands of \code{vars} package}
 \usage{
-  getVARmodel(data, suffix = c("_Tx", "_Tn"), sep = "",
-    p = 1, type = "none", season = NULL, exogen = NULL,
-    lag.max = NULL, ic = "AIC", activateVARselect = FALSE,
-    na.rm = TRUE, n_GPCA_iteration = 0,
-    n_GPCA_iteration_residuals = n_GPCA_iteration,
-    extremes = TRUE)
+getVARmodel(data, suffix = c("_Tx", "_Tn"), sep = "", p = 1,
+  type = "none", season = NULL, exogen = NULL, lag.max = NULL,
+  ic = "AIC", activateVARselect = FALSE, na.rm = TRUE,
+  n_GPCA_iteration = 0, n_GPCA_iteration_residuals = n_GPCA_iteration,
+  extremes = TRUE)
 }
 \arguments{
   \item{data}{see \code{\link{VAR}} and
@@ -51,32 +50,31 @@
   \code{\link{GPCA}}}
 }
 \value{
-  a \code{varest2} or \code{GPCAvarest2} object
-  representing a VAR model or a \code{GPCA-varest} object
-  which also contains the GPCA transformation parameters
+a \code{varest2} or \code{GPCAvarest2} object representing
+a VAR model or a \code{GPCA-varest} object which also
+contains the GPCA transformation parameters
 }
 \description{
-  Either creates a VAR model or chooses a VAR model by
-  using VAR or VARselect commands of \code{vars} package
+Either creates a VAR model or chooses a VAR model by using
+VAR or VARselect commands of \code{vars} package
 }
 \note{
-  It inherits input parameters of \code{\link{VAR}},
-  \code{\link{VARselect}} and \code{\link{addsuffixes}}.
-  The variable \code{data} contains the measured data on
-  which the vector auto-regressive models is estimated.  It
-  is a matrix where each row is a realization of the vector
-  random variable.  In some application of this package,
-  the random variables may be the daily maximum and minimum
-  temperature anomalies for different stations.  Often the
-  the columns of \code{data} are called with the IDs of the
-  stations whithout specifying the type of variable (e.g.
-  minimun or maximum temperature anomalies). This means
-  that two or more columns may have the same name.
-  Therefore the function \code{\link{addsuffixes}}, which
-  is called from this function, adds suitable suffixes to
-  the column names.
+It inherits input parameters of \code{\link{VAR}},
+\code{\link{VARselect}} and \code{\link{addsuffixes}}. The
+variable \code{data} contains the measured data on which
+the vector auto-regressive models is estimated.  It is a
+matrix where each row is a realization of the vector random
+variable.  In some application of this package, the random
+variables may be the daily maximum and minimum temperature
+anomalies for different stations.  Often the the columns of
+\code{data} are called with the IDs of the stations
+whithout specifying the type of variable (e.g. minimun or
+maximum temperature anomalies). This means that two or more
+columns may have the same name. Therefore the function
+\code{\link{addsuffixes}}, which is called from this
+function, adds suitable suffixes to the column names.
 }
 \author{
-  Emanuele Cordano, Emanuele Eccel
+Emanuele Cordano, Emanuele Eccel
 }
 

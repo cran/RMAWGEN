@@ -2,10 +2,9 @@
 \alias{qqplotprecWGEN_seasonal}
 \title{Makes four seasonal qqplots  (winter, spring, summer and autumn) of measured and simulated data for several stations.}
 \usage{
-  qqplotprecWGEN_seasonal(measured, simulated,
-    origin = "1961-1-1", xlab = "simulated[mm]",
-    ylab = "measured[mm]", title = "daily_precipitation",
-    directorypdf, station = names(simulated))
+qqplotprecWGEN_seasonal(measured, simulated, origin = "1961-1-1",
+  xlab = "simulated[mm]", ylab = "measured[mm]",
+  title = "daily_precipitation", directorypdf, station = names(simulated))
 }
 \arguments{
   \item{measured}{matrix containing measured data (each
@@ -32,22 +31,22 @@
   information}
 }
 \value{
-  0 in case of success
+0 in case of success
 }
 \description{
-  Makes four seasonal qqplots (winter, spring, summer and
-  autumn) of measured and simulated data for several
-  stations.
+Makes four seasonal qqplots (winter, spring, summer and
+autumn) of measured and simulated data for several
+stations.
 }
 \note{
-  Uses \code{\link{qqplotprecWGEN}} for each season of
-  collected data and saves the output on pdf files. See the
-  R code for further details.
+Uses \code{\link{qqplotprecWGEN}} for each season of
+collected data and saves the output on pdf files. See the R
+code for further details.
 }
 \author{
-  Emanuele Cordano, Emanuele Eccel
+Emanuele Cordano, Emanuele Eccel
 }
 \seealso{
-  \code{\link{qqplotprecWGEN}},\code{\link{extractmonths}}
+\code{\link{qqplotprecWGEN}},\code{\link{extractmonths}}
 }
 

@@ -3,9 +3,9 @@
 \title{Converts a random variable \code{x} extracted by a population represented by the sample \code{data} or \code{sample}
  to a normally-distributed variable with assigned mean and standard deviation or vice versa in case \code{inverse} is \code{TRUE}}
 \usage{
-  normalizeGaussian(x = 0, data = x, cpf = NULL, mean = 0,
-    sd = 1, inverse = FALSE, step = NULL, prec = 10^-4,
-    type = 3, extremes = TRUE, sample = NULL)
+normalizeGaussian(x = 0, data = x, cpf = NULL, mean = 0, sd = 1,
+  inverse = FALSE, step = NULL, prec = 10^-4, type = 3,
+  extremes = TRUE, sample = NULL)
 }
 \arguments{
   \item{x}{value or vector of values to be converted}
@@ -47,20 +47,20 @@
   information. Default is \code{NULL}}
 }
 \value{
-  the normalized variable or its inverse
+the normalized variable or its inverse
 }
 \description{
-  Converts a random variable \code{x} extracted by a
-  population represented by the sample \code{data} or
-  \code{sample} to a normally-distributed variable with
-  assigned mean and standard deviation or vice versa in
-  case \code{inverse} is \code{TRUE}
+Converts a random variable \code{x} extracted by a
+population represented by the sample \code{data} or
+\code{sample} to a normally-distributed variable with
+assigned mean and standard deviation or vice versa in case
+\code{inverse} is \code{TRUE}
 }
 \note{
-  This function makes a Marginal Gaussianization. See the R
-  code for further details
+This function makes a Marginal Gaussianization. See the R
+code for further details
 }
 \author{
-  Emanuele Cordano, Emanuele Eccel
+Emanuele Cordano, Emanuele Eccel
 }
 

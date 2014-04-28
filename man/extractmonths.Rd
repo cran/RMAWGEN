@@ -2,9 +2,9 @@
 \alias{extractmonths}
 \title{Extracts the rows of a matrix corresponding to requested months of a year given the  date (origin) of the first row}
 \usage{
-  extractmonths(data = array(1:ndim_max, dim = c(ndim_max, 1)),
-    ndim_max = 1e+05, when = c("Dec", "Jan", "Feb"),
-    year = NULL, origin = "1961-1-1")
+extractmonths(data = array(1:ndim_max, dim = c(ndim_max, 1)),
+  ndim_max = 1e+05, when = c("Dec", "Jan", "Feb"), year = NULL,
+  origin = "1961-1-1")
 }
 \arguments{
   \item{data}{an input data matrix where each row
@@ -24,19 +24,19 @@
   and works if \code{data} is missing.}
 }
 \value{
-  a matrix containing the requested rows
+a matrix containing the requested rows
 }
 \description{
-  Extracts the rows of a matrix corresponding to requested
-  months of a year given the date (origin) of the first row
+Extracts the rows of a matrix corresponding to requested
+months of a year given the date (origin) of the first row
 }
 \note{
-  It uses \code{\link{months}} and \code{\link{julian}}
+It uses \code{\link{months}} and \code{\link{julian}}
 }
 \author{
-  Emanuele Cordano, Emanuele Eccel
+Emanuele Cordano, Emanuele Eccel
 }
 \seealso{
-  \code{\link{extractdays}}
+\code{\link{extractdays}}
 }
 

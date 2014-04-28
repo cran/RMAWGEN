@@ -2,20 +2,18 @@
 \alias{ComprehensivePrecipitationGenerator}
 \title{The comprehensive Precipitation Generator}
 \usage{
-  ComprehensivePrecipitationGenerator(station = c("T0001", "T0010", "T0099"),
-    prec_all, mean_climate_prec = NULL, year_max = 1990,
-    year_min = 1961, leap = TRUE, nmonth = 12, cpf = NULL,
-    verbose = TRUE, p = 1, type = "none", lag.max = NULL,
-    ic = "AIC", activateVARselect = FALSE, exogen = NULL,
-    exogen_sim = NULL, is_exogen_gaussian = FALSE,
-    year_max_sim = year_max, year_min_sim = year_min,
-    mean_climate_prec_sim = NULL, onlygeneration = FALSE,
-    varmodel = NULL, type_quantile = 3, qnull = NULL,
-    valmin = 0.5, step = 0, n_GPCA_iteration = 0,
-    n_GPCA_iteration_residuals = n_GPCA_iteration,
-    sample = NULL, extremes = TRUE, exogen_all = NULL,
-    exogen_all_col = station, no_spline = FALSE,
-    nscenario = 1, seed = NULL, noise = NULL)
+ComprehensivePrecipitationGenerator(station = c("T0001", "T0010", "T0099"),
+  prec_all, mean_climate_prec = NULL, year_max = 1990, year_min = 1961,
+  leap = TRUE, nmonth = 12, cpf = NULL, verbose = TRUE, p = 1,
+  type = "none", lag.max = NULL, ic = "AIC", activateVARselect = FALSE,
+  exogen = NULL, exogen_sim = NULL, is_exogen_gaussian = FALSE,
+  year_max_sim = year_max, year_min_sim = year_min,
+  mean_climate_prec_sim = NULL, onlygeneration = FALSE, varmodel = NULL,
+  type_quantile = 3, qnull = NULL, valmin = 0.5, step = 0,
+  n_GPCA_iteration = 0, n_GPCA_iteration_residuals = n_GPCA_iteration,
+  sample = NULL, extremes = TRUE, exogen_all = NULL,
+  exogen_all_col = station, no_spline = FALSE, nscenario = 1,
+  seed = NULL, noise = NULL)
 }
 \arguments{
   \item{station}{character vector of the IDs of the
@@ -133,53 +131,52 @@
   case that \code{nscenario>1}.}
 }
 \value{
-  A list of the following variables:
+A list of the following variables:
 
-  \code{prec_mes} matrix containing measured daily
-  precipitation (the data is copied by the measured data
-  given as input for the period and the station considered
-  for \code{varmodel} estimation)
+\code{prec_mes} matrix containing measured daily
+precipitation (the data is copied by the measured data
+given as input for the period and the station considered
+for \code{varmodel} estimation)
 
-  \code{prec_spline} matrix containing climatic
-  "spline-interpolated" daily preciptation from
-  \code{mean_climate_prec}
+\code{prec_spline} matrix containing climatic
+"spline-interpolated" daily preciptation from
+\code{mean_climate_prec}
 
-  \code{data_prec} matrix containing normalized measured
-  precipitation variable
+\code{data_prec} matrix containing normalized measured
+precipitation variable
 
-  \code{prec_gen} matrix containing generated daily
-  precipitation [mm]
+\code{prec_gen} matrix containing generated daily
+precipitation [mm]
 
-  \code{prec_spline_sim} matrix containing climatic
-  "spline-interpolated" daily preciptation from
-  \code{mean_climate_prec_sim}
+\code{prec_spline_sim} matrix containing climatic
+"spline-interpolated" daily preciptation from
+\code{mean_climate_prec_sim}
 
-  \code{data_prec_gen} matrix containing normalized
-  generated precipitation variable
+\code{data_prec_gen} matrix containing normalized generated
+precipitation variable
 
-  \code{mean_climate_prec} matrix containing monthly means
-  of daily precipitation (historical scenario)
+\code{mean_climate_prec} matrix containing monthly means of
+daily precipitation (historical scenario)
 
-  \code{mean_climate_prec_sim} matrix containing monthly
-  means of daily precipitation (predicted/simulated
-  scenario)
+\code{mean_climate_prec_sim} matrix containing monthly
+means of daily precipitation (predicted/simulated scenario)
 
-  \code{var} a varest object containing the used VAR model
+\code{var} a varest object containing the used VAR model
 }
 \description{
-  The comprehensive Precipitation Generator
+The comprehensive Precipitation Generator
 }
 \note{
-  It pre-processes and generates a multi-site precipitation
-  fields. It uses \code{\link{getVARmodel}}. Detailed
-  examples can be viewed of this function in
-  \href{https://docs.google.com/file/d/0B8xDtMCnW3dJU2JIemVqMnpKTHc/edit}{this
-  presentation}. Unfortunately, using this approach, the
-  spatial correlations are underestimated. This is due to
-  the persinstence of zeros in the precipitation records.
-  This problem is known in literature and can be solved in
-  the future versions of RMAWGEN. See the R code for
-  further details
+It pre-processes and generates a multi-site precipitation
+fields. It uses \code{\link{getVARmodel}}. Detailed
+examples can be viewed of this function in
+\href{https://docs.google.com/file/d/0B8xDtMCnW3dJU2JIemVqMnpKTHc/edit}{this
+presentation}. Unfortunately, using this approach, the
+spatial correlations are underestimated. This is due to the
+persinstence of zeros in the precipitation records. This
+problem is known in literature and can be solved in the
+future versions of RMAWGEN. See the R code for further
+details
 }
 \examples{
 data(trentino)
@@ -196,18 +193,18 @@ station <- c("T0090","T0083")
 ## Not Run: the call to ComprehensivePrecipitationGenerator may elapse too
 ## long time (more than 5 eseconds) and is not executed  by CRAN check.
 ## Please uncomment the following line to run the example on your own PC.
- generation00 <- ComprehensivePrecipitationGenerator(station=station,
- prec_all=PRECIPITATION,year_min=year_min,year_max=year_max,
- year_min_sim=year_min_sim,year_max_sim=year_max_sim,p=p,
- n_GPCA_iteration=n_GPCA_iter,n_GPCA_iteration_residuals=0,
- sample="monthly",nscenario=nscenario,no_spline=TRUE)
+# generation00 <- ComprehensivePrecipitationGenerator(station=station,
+# prec_all=PRECIPITATION,year_min=year_min,year_max=year_max,
+# year_min_sim=year_min_sim,year_max_sim=year_max_sim,p=p,
+# n_GPCA_iteration=n_GPCA_iter,n_GPCA_iteration_residuals=0,
+# sample="monthly",nscenario=nscenario,no_spline=TRUE)
 
 #
 }
 \author{
-  Emanuele Cordano, Emanuele Eccel
+Emanuele Cordano, Emanuele Eccel
 }
 \seealso{
-  \code{\link{splineInterpolateMonthlytoDailyforSeveralYears}}
+\code{\link{splineInterpolateMonthlytoDailyforSeveralYears}}
 }
 

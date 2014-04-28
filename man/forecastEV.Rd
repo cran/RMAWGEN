@@ -2,7 +2,7 @@
 \alias{forecastEV}
 \title{Forecasts the expected value of a VAR realization given the prievious one}
 \usage{
-  forecastEV(var, xprev = NULL, exogen = NULL)
+forecastEV(var, xprev = NULL, exogen = NULL)
 }
 \arguments{
   \item{var}{A VAR model represented by a \code{varest}
@@ -15,16 +15,16 @@
   "exogen" variables (predictor) for the generation}
 }
 \value{
-  a vector of values
+a vector of values
 }
 \description{
-  Forecasts the expected value of a VAR realization given
-  the prievious one
+Forecasts the expected value of a VAR realization given the
+prievious one
 }
 \author{
-  Emanuele Cordano, Emanuele Eccel
+Emanuele Cordano, Emanuele Eccel
 }
 \seealso{
-  \code{\link{forecastResidual}}
+\code{\link{forecastResidual}}
 }
 
