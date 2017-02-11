@@ -4,13 +4,13 @@ NULL
 #' 
 #' 	Adds suffixes for daily maximum and minimum temperature to the names of a column data frame 
 #' 
-#' @author Emanuele Cordano, Emanuele Eccel 
+#' 
 #'   
 #' @param names a character string vector with column names
 #' @param suffix suffixes to add to the first and second groups of column names respectively
 #' @param sep separation element
 #'  
-#'  @export 
+#' @export 
 #'
 #' @seealso \code{\link{getVARmodel}}
 #' 

@@ -9,7 +9,7 @@ NULL
 #' 
 #' 
 #' 
-#' @author  Emanuele Cordano, Emanuele Eccel
+#' 
 #'    
 #'  
 #'
@@ -24,8 +24,6 @@ NULL
 #' @note It uses \code{\link{acf}} function
 #' @return  0 in case of success 
 
-#xlab="simulated[° C]",ylab="measured[° C]"
-#
 
 
 acvWGEN <-
