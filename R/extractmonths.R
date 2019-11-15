@@ -1,10 +1,8 @@
 NULL
-
-
 #' 
 #' Extracts the rows of a matrix corresponding to requested months of a year given the  date (origin) of the first row 
 #' 
-#'  @author  Emanuele Cordano, Emanuele Eccel
+#' @author  Emanuele Cordano, Emanuele Eccel
 #'
 #' @param data an input data matrix where each row corresponds to a daily record
 #' @param when character vactor of months for which the data are required. 
@@ -14,7 +12,7 @@ NULL
 #' @param ndim_max maximum (integer) number of rows in \code{data} where to find \code{when}. 
 #' Default is 100000 and works if \code{data} is missing.
 #' 
-#'  @export    
+#' @export    
 #'   
 #'
 #' @return   a matrix containing the requested rows
@@ -22,8 +20,16 @@ NULL
 #' @note It uses \code{\link{months}} and  \code{\link{julian}}
 #' @seealso \code{\link{extractdays}}
 #' 
+#' @examples 
 #' 
-
+#' extractmonths()
+#' 
+#' data(trentino)
+#' dates <- sprintf("%02d-%02d-%02d",TEMPERATURE_MAX$year,TEMPERATURE_MAX$month,TEMPERATURE_MAX$day)
+#' origin <- dates[1]
+#' out <- extractmonths(data=TEMPERATURE_MAX,origin=origin)
+#' 
+#' 
 
 
 
@@ -40,9 +46,9 @@ function(data=array(1:ndim_max,dim=c(ndim_max,1)),ndim_max=100000,when=c("Dec","
 			years <- years(as.chron(as.POSIXct(origin,tz="GMT")+1:ndata-1))
 			
 			if (is.null(year)) {
-				out <- (data[which(months(1:ndata+start-1,abbreviate=TRUE) %in% when) ,])
+				out <- (data[which(months_f(1:ndata+start-1,abbreviate=TRUE) %in% when) ,])
 			} else {
-				out <- (data[which((months(1:ndata+start-1,abbreviate=TRUE) %in% when) & (years %in% year)) ,])
+				out <- (data[which((months_f(1:ndata+start-1,abbreviate=TRUE) %in% when) & (years %in% year)) ,])
 			}
 	} else {
 		
@@ -51,10 +57,10 @@ function(data=array(1:ndim_max,dim=c(ndim_max,1)),ndim_max=100000,when=c("Dec","
 			start <- as.integer(julian(as.POSIXct(origin),tz="GMT"))
 		
 			if (is.null(year)) {
-				out <-  (data[which(months(1:ndata+start-1,abbreviate=TRUE) %in% when) ])
+				out <-  (data[which(months_f(1:ndata+start-1,abbreviate=TRUE) %in% when) ])
 			} else {
 			
-				out <- (data[which((months(1:ndata+start-1,abbreviate=TRUE) %in% when) & (year %in% years)) ])
+				out <- (data[which((months_f(1:ndata+start-1,abbreviate=TRUE) %in% when) & (year %in% years)) ])
 			}
 	}
 	
