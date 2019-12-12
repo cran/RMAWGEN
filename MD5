@@ -1,4 +1,4 @@
-50d3d52c384bba98526a39b1b9c96989 *DESCRIPTION
+f477c8d6bdcb207f78e617467b8bdab7 *DESCRIPTION
 28b5dbae31240709dca87a8852bedff9 *NAMESPACE
 3c677426aae3ad8b244978a2b4b34761 *R/ComprehensivePrecipitationGenerator.R
 97a06b99055ddbc1933a7bf4571884ab *R/ComprehensiveTemperatureGenerator.R
@@ -23,7 +23,7 @@ de917cfb2d98d87d95e5d9a2201e92c5 *R/countNAs.R
 28c1e9cd52762634070b51b9e1b31c18 *R/extractTnFromAnomalies.R
 dfc541f4e1ee2ec5c9f73b557dd85ffc *R/extractTxFromAnomalies.R
 ff4f8ff52f92edac0ad1f5b317af4035 *R/extractdays.R
-6e9daa8eea4bd1ec490dea2883da64c2 *R/extractmonths.R
+dfbfe283948ebe67e6806a7f205bdb3f *R/extractmonths.R
 e271bee6a735a8350e53a773c372d69b *R/extractyears.R
 eb5b9e44b99f036fb45b84adda070d38 *R/findDate.R
 1a7cf305940ecfc96359f436e51bfa7f *R/forecastEV.R
@@ -67,7 +67,7 @@ efe2b65bc94070c692f0e996b9f8dcc1 *R/zc0_GPCA.R
 f200774ec32dbff1b8087401bae5fc66 *R/zc2_GPCAvarest2.R
 a89ab4d94325154ff75d4280497a9a53 *README.md
 1f5e3be5e9ff55d43d3ef7bca523ac92 *data/datalist
-75f56273d4dae48572870d6ed1b8cb70 *data/trentino.rda
+fea16fb6b0ced53a41a45820e87e846c *data/trentino.rda
 bcf2c775b14007277d6da0c4af6343f8 *inst/CITATION
 2a1ce02917bcd3944524479cdc479d4c *inst/doc/examples/example_scripts_presentation/precipitation-generator_jss.R
 cc8405afcd130dd787efcc0f307ea1ca *inst/doc/examples/example_scripts_presentation/precipitation-generator_jss_uncoupled.R
