@@ -4,7 +4,7 @@
 \alias{GPCA}
 \title{This function makes a Gaussianization procedure based on PCA iteration ( see \code{\link{GPCA_iteration}})}
 \usage{
-GPCA(x_prev, n = 30, extremes = TRUE)
+GPCA(x_prev, n = 30, extremes = TRUE, nearPD = FALSE)
 }
 \arguments{
 \item{x_prev}{previous set of the random variable \code{x}. If it is a \code{varest} object, the residuals are taken into account.}
@@ -12,16 +12,18 @@ GPCA(x_prev, n = 30, extremes = TRUE)
 \item{n}{number of reiterations}
 
 \item{extremes}{see \code{\link{normalizeGaussian_severalstations}}}
+
+\item{nearPD}{logical. Default is \code{FALSE}. If \code{TRUE} covariance matrix is corrected through Nearest Positive Definite Matrix procedure, i.e. \code{\link[Matrix]{nearPD}}}
 }
 \value{
-A  \code{\link{GPCA-class}} S3 object returned by \code{\link{GPCA_iteration}} at each iteration 
+A  \code{\link{GPCA-class}} S3 object returned by \code{\link{GPCA_iteration}} at each iteration
 			and the final results of the G-PCA procedure (matrix \code{final_results})
 }
 \description{
 This function makes a Gaussianization procedure based on PCA iteration ( see \code{\link{GPCA_iteration}})
 }
 \note{
-This function re-iterates the equation (1) of "PCA Gaussianization for One-Class Remote Sensing Image" by V. Laparra et al., \url{http://www.uv.es/lapeva/papers/SPIE09_one_class.pdf},\url{http://www.uv.es/vista/vistavalencia/papers/SPIE_09_Gaussianization_presentation.pdf}
+This function re-iterates the equation (1) of "PCA Gaussianization for One-Class Remote Sensing Image" by V. Laparra et al., \url{https://www.uv.es/lapeva/papers/SPIE09_one_class.pdf},\url{https://www.uv.es/vista/vistavalencia/papers/SPIE_09_Gaussianization_presentation.pdf}
 }
 \examples{
 library(RMAWGEN)

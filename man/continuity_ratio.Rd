@@ -11,15 +11,15 @@ continuity_ratio(data, lag = 0, valmin = 0.5)
 
 \item{lag}{numeric lag (expressed as number of days) used for computation for "cross" continuity ratio and joint probability of prercipitation (no)occurrence.}
 
-\item{valmin}{threshold precipitation value [mm] for wet/dry day indicator. 
+\item{valmin}{threshold precipitation value [mm] for wet/dry day indicator.
 If precipitation is lower than \code{valmin}, day is considered dry. Default is 0.5 mm.}
 }
 \value{
-A list containing the following matrices: 
+A list containing the following matrices:
 
-\code{continuity_ratio} : \code{lag}-day lagged  continuity ratio , 
+\code{continuity_ratio} : \code{lag}-day lagged  continuity ratio ,
 
-\code{occurrence}  : joint probability of \code{lag}-day lagged precipitation occurrence  
+\code{occurrence}  : joint probability of \code{lag}-day lagged precipitation occurrence
 
 \code{nooccurrence} : joint probability of \code{lag}-day lagged no precipitation occurrence.
 
@@ -45,7 +45,7 @@ origin <- paste(year_min,1,1,sep="-")
 
 period <- PRECIPITATION$year>=year_min & PRECIPITATION$year<=year_max
 station <- names(PRECIPITATION)[!(names(PRECIPITATION) \%in\% c("day","month","year"))]
-prec_mes <- PRECIPITATION[period,station]  
+prec_mes <- PRECIPITATION[period,station]
 
 ## removing nonworking stations (e.g. time series with NA)
 accepted <- array(TRUE,length(names(prec_mes)))
@@ -55,7 +55,7 @@ for (it in names(prec_mes)) {
 }
 
 prec_mes <- prec_mes[,accepted]
-## the dateset is reduced!!! 
+## the dateset is reduced!!!
 prec_mes <- prec_mes[,1:2]
 
 continuity_ratio <-continuity_ratio(data=prec_mes,lag=0,valmin=0.5)
@@ -64,6 +64,7 @@ continuity_ratio1 <-continuity_ratio(data=prec_mes,lag=-1,valmin=0.5)
 
 }
 \references{
-see the following URL references:  \url{http://onlinelibrary.wiley.com/doi/10.1002/joc.2305/abstract} 
-  and \url{http://www.sciencedirect.com/science/article/pii/S0022169498001863}
+Mhanna, M. and Bauwens, W. (2012), A stochastic space-time model for the generation of daily rainfall in the Gaza Strip. Int. J. Climatol., 32: 1098-1112. \doi{10.1002/joc.2305}
+
+ D.S. Wilks (1998),Multisite generalization of a daily stochastic precipitation generation model,Journal of Hydrology, \doi{10.1016/S0022-1694(98)00186-3}
 }

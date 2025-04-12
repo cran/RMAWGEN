@@ -7,28 +7,84 @@
 \alias{qqplot_RMAWGEN_prec}
 \title{It makes the Q-Q plots observed vs generated time series of daily maximum, minimum temperature and daily thermal range for a list of collected stochastic generations}
 \usage{
-qqplot_RMAWGEN_Tx(Tx_mes, Tx_gen, Tn_gen, Tn_mes, Tx_spline = NULL,
-  Tn_spline = NULL, xlab = "observed", ylab = "simulated",
-  when = 1:nrow(Tx_mes), main = names(Tx_gen), station, pdf = NULL,
-  xlim = range(Tx_mes), ylim = xlim, cex = 0.4, cex.main = 1,
-  cex.lab = 1, cex.axis = 1)
+qqplot_RMAWGEN_Tx(
+  Tx_mes,
+  Tx_gen,
+  Tn_gen,
+  Tn_mes,
+  Tx_spline = NULL,
+  Tn_spline = NULL,
+  xlab = "observed",
+  ylab = "simulated",
+  when = 1:nrow(Tx_mes),
+  main = names(Tx_gen),
+  station,
+  pdf = NULL,
+  xlim = range(Tx_mes),
+  ylim = xlim,
+  cex = 0.4,
+  cex.main = 1,
+  cex.lab = 1,
+  cex.axis = 1
+)
 
-qqplot_RMAWGEN_Tn(Tx_mes, Tx_gen, Tn_gen, Tn_mes, Tx_spline = NULL,
-  Tn_spline = NULL, xlab = "observed", ylab = "simulated",
-  when = 1:nrow(Tn_mes), main = names(Tn_gen), station, pdf = NULL,
-  xlim = range(Tn_mes), ylim = xlim, cex = 0.4, cex.main = 1,
-  cex.lab = 1, cex.axis = 1)
+qqplot_RMAWGEN_Tn(
+  Tx_mes,
+  Tx_gen,
+  Tn_gen,
+  Tn_mes,
+  Tx_spline = NULL,
+  Tn_spline = NULL,
+  xlab = "observed",
+  ylab = "simulated",
+  when = 1:nrow(Tn_mes),
+  main = names(Tn_gen),
+  station,
+  pdf = NULL,
+  xlim = range(Tn_mes),
+  ylim = xlim,
+  cex = 0.4,
+  cex.main = 1,
+  cex.lab = 1,
+  cex.axis = 1
+)
 
-qqplot_RMAWGEN_deltaT(Tx_mes, Tx_gen, Tn_gen, Tn_mes, xlab = "observed",
-  ylab = "simulated", when = 1:nrow(Tx_mes), main = names(Tx_gen),
-  station, pdf = NULL, xlim = range(Tx_mes - Tn_mes), ylim = xlim,
-  cex = 0.4, cex.main = 1, cex.lab = 1, cex.axis = 1)
+qqplot_RMAWGEN_deltaT(
+  Tx_mes,
+  Tx_gen,
+  Tn_gen,
+  Tn_mes,
+  xlab = "observed",
+  ylab = "simulated",
+  when = 1:nrow(Tx_mes),
+  main = names(Tx_gen),
+  station,
+  pdf = NULL,
+  xlim = range(Tx_mes - Tn_mes),
+  ylim = xlim,
+  cex = 0.4,
+  cex.main = 1,
+  cex.lab = 1,
+  cex.axis = 1
+)
 
-qqplot_RMAWGEN_prec(prec_mes, prec_gen, xlab = "observed",
-  ylab = "simulated", when = 1:nrow(prec_mes),
-  main = names(prec_gen), station, pdf = NULL,
-  xlim = range(prec_mes), ylim = xlim, cex = 0.4, cex.main = 1,
-  cex.lab = 1, cex.axis = 1, lag = 1)
+qqplot_RMAWGEN_prec(
+  prec_mes,
+  prec_gen,
+  xlab = "observed",
+  ylab = "simulated",
+  when = 1:nrow(prec_mes),
+  main = names(prec_gen),
+  station,
+  pdf = NULL,
+  xlim = range(prec_mes),
+  ylim = xlim,
+  cex = 0.4,
+  cex.main = 1,
+  cex.lab = 1,
+  cex.axis = 1,
+  lag = 1
+)
 }
 \arguments{
 \item{Tx_mes}{data frame containing measured daily maximum temperature}
@@ -67,7 +123,7 @@ qqplot_RMAWGEN_prec(prec_mes, prec_gen, xlab = "observed",
 It makes the Q-Q plots observed vs generated time series of daily maximum, minimum temperature and daily thermal range for a list of collected stochastic generations
 }
 \note{
-\code{Tx_gen},{Tn_gen} and \code{main} must have an even number of elements.
+\code{Tx_gen},\code{Tn_gen} and \code{main} must have an even number of elements.
 }
 \author{
 Emanuele Cordano

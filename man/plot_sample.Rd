@@ -4,18 +4,40 @@
 \alias{plot_sample}
 \title{It makes a plot by sampling (e.g. monthly) the variables \code{x} and \code{y}}
 \usage{
-plot_sample(x, y = normalizeGaussian_severalstations(x =
-  as.data.frame(x), data = as.data.frame(data), origin_x = origin_x,
-  origin_data = origin_data, sample = sample, step = step, prec = prec)[,
-  1], xlim = range(x, na.rm = TRUE), legend_position = "topleft",
-  ylim = range(y, na.rm = TRUE), pch = 1, col = 1, col_max = 0.9,
-  col_min = 0.1, origin, sample = NULL, xhist = hist(x, breaks =
-  breaks, plot = FALSE), yhist = hist(y, breaks = breaks, plot = FALSE),
-  axes = FALSE, step = NULL, prec = 1e-04, breaks = 50,
-  origin_x = origin, origin_data = origin, data = x, xlab = "",
-  ylab = "", color = FALSE, gray = TRUE, sort = FALSE,
-  valmin_x = valmin, valmin_y = valmin, valmin = -9999,
-  abline = c(0, 1), ...)
+plot_sample(
+  x,
+  y = normalizeGaussian_severalstations(x = as.data.frame(x), data = as.data.frame(data),
+    origin_x = origin_x, origin_data = origin_data, sample = sample, step = step, prec =
+    prec)[, 1],
+  xlim = range(x, na.rm = TRUE),
+  legend_position = "topleft",
+  ylim = range(y, na.rm = TRUE),
+  pch = 1,
+  col = 1,
+  col_max = 0.9,
+  col_min = 0.1,
+  origin,
+  sample = NULL,
+  xhist = hist(x, breaks = breaks, plot = FALSE),
+  yhist = hist(y, breaks = breaks, plot = FALSE),
+  axes = FALSE,
+  step = NULL,
+  prec = 1e-04,
+  breaks = 50,
+  origin_x = origin,
+  origin_data = origin,
+  data = x,
+  xlab = "",
+  ylab = "",
+  color = FALSE,
+  gray = TRUE,
+  sort = FALSE,
+  valmin_x = valmin,
+  valmin_y = valmin,
+  valmin = -9999,
+  abline = c(0, 1),
+  ...
+)
 }
 \arguments{
 \item{x}{vector of input data}
@@ -68,11 +90,11 @@ plot_sample(x, y = normalizeGaussian_severalstations(x =
 
 \item{abline}{arguments for  \code{\link{abline}} function. Default is \code{c(0,1)}. If it is \code{NULL}, \code{\link{abline}} is disabled and not called.}
 
-\item{...}{see graphical parametes on \code{\link{plot.default}} 
+\item{...}{see graphical parametes on \code{\link{plot.default}}
 
  @usage plot_sample(x,
- y = normalizeGaussian_severalstations(x = as.data.frame(x), 
-  data = as.data.frame(data), origin_x = origin_x, origin_data = origin_data, 
+ y = normalizeGaussian_severalstations(x = as.data.frame(x),
+  data = as.data.frame(data), origin_x = origin_x, origin_data = origin_data,
   sample = sample, step = step, prec = prec)[, 1],
  xlim = range(x, na.rm = TRUE),
  legend_position = "topleft",
@@ -93,7 +115,7 @@ plot_sample(x, y = normalizeGaussian_severalstations(x =
 It makes a plot by sampling (e.g. monthly) the variables \code{x} and \code{y}
 }
 \note{
-It makes a plot betwee \code{x} and \code{y} and shows thair respective probibilty histograms. 
+It makes a plot betwee \code{x} and \code{y} and shows thair respective probibilty histograms.
 If \code{y} is missing, it is automatically calculated as one-dimensional Gaussianization of \code{x} through the function \code{\link{normalizeGaussian_severalstations}}.
 }
 \examples{
@@ -105,9 +127,9 @@ plot_sample(x=TEMPERATURE_MIN$T0090,sample="monthly",
  origin="1958-1-1",axes=FALSE,xlab="Tn [ degC]",
  ylab="x")
 
-set.seed(123456) 
-z <- rexp(10000,rate=0.5) 
-x <- normalizeGaussian(x=z,data=z) 
+set.seed(123456)
+z <- rexp(10000,rate=0.5)
+x <- normalizeGaussian(x=z,data=z)
 plot_sample(x=z,xlab="z",ylab="x")
 }
 

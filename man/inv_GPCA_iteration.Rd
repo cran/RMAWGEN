@@ -4,8 +4,12 @@
 \alias{inv_GPCA_iteration}
 \title{This function makes an inverse iteration of PCA-Gaussianization process}
 \usage{
-inv_GPCA_iteration(x = GPCA_iter_param$x_next, GPCA_iter_param,
-  type = 3, extremes = TRUE)
+inv_GPCA_iteration(
+  x = GPCA_iter_param$x_next,
+  GPCA_iter_param,
+  type = 3,
+  extremes = TRUE
+)
 }
 \arguments{
 \item{x}{matrix of gaussian random variale to transform}
@@ -23,7 +27,7 @@ the non-Gaussian random variable
 This function makes an inverse iteration of PCA-Gaussianization process
 }
 \note{
-This function is based on the inverse of the equation (1) of "PCA Gaussianization for One-Class Remote Sensing Image" by V. Laparra et al.,  \url{http://ieeexplore.ieee.org/document/5413808/}
+This function is based on the inverse of the equation (1) of "PCA Gaussianization for One-Class Remote Sensing Image" by V. Laparra et al.,  \url{https://ieeexplore.ieee.org/document/5413808/}
 }
 \examples{
 library(RMAWGEN)

@@ -4,15 +4,17 @@
 \alias{GPCA_iteration}
 \title{This function makes an iteration of PCA-Gaussianization process}
 \usage{
-GPCA_iteration(x_prev, extremes = TRUE)
+GPCA_iteration(x_prev, extremes = TRUE, nearPD = FALSE)
 }
 \arguments{
 \item{x_prev}{previous set of random variable \code{x}}
 
 \item{extremes}{see \code{\link{normalizeGaussian_severalstations}}}
+
+\item{nearPD}{logical. Default is \code{FALSE}. If \code{TRUE} covariance matrix is corrected through Nearest Positive Definite Matrix procedure, i.e. \code{\link[Matrix]{nearPD}}}
 }
 \value{
-A \code{GPCA_iteration} S3 object which contains the following objects: 
+A \code{GPCA_iteration} S3 object which contains the following objects:
 
 \code{x_prev} Previous set of random variable, \code{x_prev} input variable
 
@@ -26,7 +28,7 @@ A \code{GPCA_iteration} S3 object which contains the following objects:
 This function makes an iteration of PCA-Gaussianization process
 }
 \note{
-This function is based on equation (1) of "PCA Gaussianization for One-Class Remote Sensing Image" by V. Laparra et al.,  \url{https://www.uv.es/lapeva/papers/SPIE09_one_class.pdf} and  \url{http://ieeexplore.ieee.org/document/5413808/}
+This function is based on equation (1) of "PCA Gaussianization for One-Class Remote Sensing Image" by V. Laparra et al.,  \url{https://www.uv.es/lapeva/papers/SPIE09_one_class.pdf} and  \url{https://ieeexplore.ieee.org/document/5413808/}
 }
 \examples{
 library(RMAWGEN)
